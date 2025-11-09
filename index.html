@@ -23,7 +23,20 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="padding: 20px; font-family: sans-serif; text-align: center;">
+        <p>Loading portfolio...</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Fallback: If the module doesn't load within 5 seconds, show an error
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && root.children.length === 1 && root.children[0].textContent === 'Loading portfolio...') {
+          root.innerHTML = '<div style="padding: 20px; font-family: sans-serif; text-align: center;"><h1>Loading Error</h1><p>Please check the browser console for errors.</p><p style="color: #666; font-size: 12px;">If this persists, the JavaScript file may not be loading correctly.</p></div>';
+        }
+      }, 5000);
+    </script>
   </body>
 </html>
