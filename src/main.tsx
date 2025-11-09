@@ -18,6 +18,9 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
+// Clear any existing content in root before React renders
+rootElement.innerHTML = "";
+
 try {
   const root = createRoot(rootElement);
   root.render(<App />);
@@ -32,6 +35,9 @@ try {
       </p>
       <p style="color: #999; font-size: 11px; margin-top: 10px;">
         Base URL: ${import.meta.env.BASE_URL || "not set"}
+      </p>
+      <p style="color: #999; font-size: 11px; margin-top: 10px;">
+        Check the browser console (F12) for more details.
       </p>
     </div>
   `;
