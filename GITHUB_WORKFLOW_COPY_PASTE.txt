@@ -1,3 +1,14 @@
+==========================================
+GITHUB ACTIONS WORKFLOW - COPY & PASTE
+==========================================
+
+File Location: .github/workflows/deploy.yml
+
+Copy the content below and paste it into a new file at:
+.github/workflows/deploy.yml
+
+==========================================
+
 name: Deploy Portfolio to GitHub Pages
 
 # Trigger the workflow on push to main/master or manual trigger
@@ -41,7 +52,7 @@ jobs:
           # Set base path for GitHub Pages
           # For repository pages (username.github.io/repo-name): /repo-name/
           # For user/organization pages (username.github.io): change to "/"
-          BASE_PATH: /portfolio/
+          BASE_PATH: /${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -61,3 +72,28 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+==========================================
+INSTRUCTIONS:
+==========================================
+
+1. Go to your GitHub repository: https://github.com/Jovix27/portfolio
+
+2. Click on "Add file" → "Create new file"
+
+3. Type: .github/workflows/deploy.yml
+   (GitHub will automatically create the folders)
+
+4. Copy and paste the workflow content above
+
+5. Click "Commit new file"
+
+6. Go to Settings → Pages
+
+7. Under "Source", select "GitHub Actions"
+
+8. Your portfolio will automatically deploy!
+
+==========================================
+
+
