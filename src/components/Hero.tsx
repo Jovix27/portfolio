@@ -54,10 +54,10 @@ const Hero = () => {
                 <p className="text-xs font-medium">Email</p>
               </div>
               <a
-                href="mailto:126001020@sastra.ac.in"
+                href="mailto:ajoseva04@gmail.com"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                126001020@sastra.ac.in
+                ajoseva04@gmail.com
               </a>
             </div>
             <div className="space-y-2">

@@ -63,8 +63,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "126001020@sastra.ac.in",
-      link: "mailto:126001020@sastra.ac.in",
+      value: "ajoseva04@gmail.com",
+      link: "mailto:ajoseva04@gmail.com",
     },
     {
       icon: Phone,

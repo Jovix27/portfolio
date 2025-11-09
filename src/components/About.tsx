@@ -61,9 +61,18 @@ const About = () => {
               </div>
             </Card>
 
-            <Button className="w-full bg-primary hover:bg-primary-dark text-primary-foreground group">
-              <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-              Download Resume
+            <Button 
+              asChild
+              className="w-full bg-primary hover:bg-primary-dark text-primary-foreground group"
+            >
+              <a 
+                href="/resume.pdf" 
+                download="Joseva_A_Resume.pdf"
+                className="flex items-center justify-center"
+              >
+                <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                Download Resume
+              </a>
             </Button>
           </div>
         </div>
