@@ -40,3 +40,6 @@ This portfolio is automatically deployed to GitHub Pages using GitHub Actions. T
 ## License
 
 © 2025 Joseva A. All rights reserved.
+
+---
+*Last updated: November 2025*
