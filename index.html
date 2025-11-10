@@ -29,19 +29,17 @@
       </div>
     </div>
     <script>
-      // Global error handler - only log errors, don't interfere with React
-      var errorCaught = false;
+      // Global error handler - capture all errors for debugging
+      var scriptLoadError = null;
       window.addEventListener('error', function(e) {
         console.error('Global error:', e);
-        // Only show error UI if it's a fatal script loading error and React hasn't loaded
-        if (e.filename && e.target && e.target.tagName === 'SCRIPT' && !errorCaught) {
-          errorCaught = true;
-          setTimeout(function() {
-            var root = document.getElementById('root');
-            if (root && root.textContent && root.textContent.includes('Loading')) {
-              root.innerHTML = '<div style="padding: 20px; font-family: sans-serif; text-align: center;"><h1>JavaScript Error</h1><p>An error occurred while loading the page.</p><p style="color: #666; font-size: 12px; margin-top: 10px;">Error: ' + (e.message || 'Unknown error') + '</p><p style="color: #999; font-size: 11px; margin-top: 10px;">Check the browser console (F12) for more details.</p></div>';
-            }
-          }, 3000);
+        // Capture script loading errors
+        if (e.target && (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK')) {
+          scriptLoadError = {
+            message: e.message || 'Script failed to load',
+            filename: e.filename || e.target.src || e.target.href,
+            type: e.type
+          };
         }
       }, true);
       
@@ -52,20 +50,36 @@
     </script>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      // Fallback: If the module doesn't load within 15 seconds, show an error
+      // Fallback: If the module doesn't load within 8 seconds, show an error
       setTimeout(function() {
         var root = document.getElementById('root');
-        // Check if React hasn't rendered (still showing loading message or empty)
+        // Check if React hasn't rendered (still showing loading message)
         if (root) {
-          var hasReactContent = root.querySelector('[data-reactroot]') || 
-                                root.children.length > 1 || 
-                                (root.children.length === 1 && root.children[0].textContent && !root.children[0].textContent.includes('Loading'));
+          var loadingText = root.textContent && root.textContent.includes('Loading portfolio');
+          var hasReactContent = root.children.length > 1 || 
+                                (root.children.length === 1 && 
+                                 root.children[0].textContent && 
+                                 !root.children[0].textContent.includes('Loading'));
           
-          if (!hasReactContent && root.textContent && root.textContent.includes('Loading')) {
-            root.innerHTML = '<div style="padding: 20px; font-family: sans-serif; text-align: center;"><h1>Loading Error</h1><p>The JavaScript file may not be loading correctly.</p><p style="color: #666; font-size: 12px; margin-top: 10px;">Please check:</p><ul style="text-align: left; display: inline-block; color: #666; font-size: 12px;"><li>Browser console (F12) for errors</li><li>Network tab for failed requests (look for 404 errors)</li><li>Try refreshing the page</li><li>Check if the file exists at: <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 3px;">/portfolio/assets/index-*.js</code></li></ul></div>';
+          // Also check for React-rendered content by looking for common class names or structure
+          var hasReactStructure = root.querySelector('section') || 
+                                  root.querySelector('nav') || 
+                                  root.querySelector('[class*="section"]') ||
+                                  root.querySelector('[id="home"]') ||
+                                  root.querySelector('[id="about"]');
+          
+          if (loadingText && !hasReactContent && !hasReactStructure) {
+            var errorInfo = '';
+            if (scriptLoadError) {
+              errorInfo = '<p style="color: #d32f2f; font-size: 12px; margin-top: 10px;"><strong>Error Details:</strong> ' + scriptLoadError.message + '</p>';
+              if (scriptLoadError.filename) {
+                errorInfo += '<p style="color: #666; font-size: 11px; margin-top: 5px;">Failed to load: ' + scriptLoadError.filename + '</p>';
+              }
+            }
+            root.innerHTML = '<div style="padding: 20px; font-family: sans-serif; text-align: center;"><h1>Loading Error</h1><p>The JavaScript file may not be loading correctly.</p>' + errorInfo + '<p style="color: #666; font-size: 12px; margin-top: 10px;">Please check:</p><ul style="text-align: left; display: inline-block; color: #666; font-size: 12px;"><li>Browser console (F12) for errors</li><li>Network tab for failed requests (look for 404 errors)</li><li>Try refreshing the page</li><li>Check if the file exists at: <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 3px;">/portfolio/assets/index-*.js</code></li></ul></div>';
           }
         }
-      }, 15000);
+      }, 8000);
     </script>
   </body>
 </html>
