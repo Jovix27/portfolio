@@ -66,7 +66,7 @@ const About = () => {
               className="w-full bg-primary hover:bg-primary-dark text-primary-foreground group"
             >
               <a 
-                href="/resume.pdf" 
+                href={`${import.meta.env.BASE_URL}resume.pdf`}
                 download="Joseva_A_Resume.pdf"
                 className="flex items-center justify-center"
               >
