@@ -45,12 +45,40 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "Checking build output..."
+          echo "=== Checking build output ==="
           ls -la dist/
-          echo "Checking index.html..."
-          grep -q "/portfolio/assets/index-" dist/index.html && echo "✓ Script path is correct" || (echo "✗ Script path is incorrect" && exit 1)
-          echo "Checking assets directory..."
-          ls -la dist/assets/ || (echo "✗ Assets directory not found" && exit 1)
+          echo ""
+          echo "=== Checking index.html content ==="
+          cat dist/index.html | grep -E "(src=|href=)" | head -5
+          echo ""
+          echo "=== Verifying script path ==="
+          if grep -q "/portfolio/assets/index-" dist/index.html; then
+            echo "✓ Script path is correct in dist/index.html"
+          else
+            echo "✗ ERROR: Script path is incorrect in dist/index.html"
+            echo "Current content:"
+            grep -E "src=" dist/index.html | head -3
+            exit 1
+          fi
+          echo ""
+          echo "=== Checking assets directory ==="
+          if [ -d "dist/assets" ]; then
+            echo "✓ Assets directory exists"
+            ls -lh dist/assets/
+          else
+            echo "✗ ERROR: Assets directory not found"
+            exit 1
+          fi
+          echo ""
+          echo "=== Checking .nojekyll file ==="
+          if [ -f "dist/.nojekyll" ]; then
+            echo "✓ .nojekyll file exists"
+          else
+            echo "⚠ WARNING: .nojekyll file not found, creating it..."
+            touch dist/.nojekyll
+          fi
+          echo ""
+          echo "=== Build verification complete ==="
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
