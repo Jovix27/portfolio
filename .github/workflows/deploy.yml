@@ -83,6 +83,19 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: List files to be deployed
+        run: |
+          echo "=== Files in dist/ that will be deployed ==="
+          find dist -type f -exec ls -lh {} \; | head -20
+          echo ""
+          echo "=== Verifying index.html one final time ==="
+          if grep -q "/portfolio/assets/index-" dist/index.html && ! grep -q "/src/main.tsx" dist/index.html; then
+            echo "✓✓✓ BUILD IS CORRECT - Ready for deployment ✓✓✓"
+          else
+            echo "✗✗✗ BUILD IS INCORRECT - Deployment will fail ✗✗✗"
+            exit 1
+          fi
+
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
