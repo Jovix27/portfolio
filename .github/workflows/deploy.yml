@@ -43,6 +43,15 @@ jobs:
           # For user/organization pages (username.github.io): change to "/"
           BASE_PATH: /portfolio/
 
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la dist/
+          echo "Checking index.html..."
+          grep -q "/portfolio/assets/index-" dist/index.html && echo "✓ Script path is correct" || (echo "✗ Script path is incorrect" && exit 1)
+          echo "Checking assets directory..."
+          ls -la dist/assets/ || (echo "✗ Assets directory not found" && exit 1)
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
