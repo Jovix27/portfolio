@@ -4,21 +4,21 @@ import { Card } from "@/components/ui/card";
 const services = [
   {
     icon: Ruler,
-    title: "CAD Drafting",
+    title: "BIM & 3D Modeling",
     description:
-      "Professional 2D drafting and design using AutoCAD for precision civil layouts, construction drawings, and technical documentation.",
+      "Expertise in creating high-fidelity Building Information Models using Revit and AutoCAD, focusing on clash detection, energy analysis, and integrated project delivery.",
   },
   {
     icon: Brain,
-    title: "AI in Construction",
+    title: "AI-Driven Civil Solutions",
     description:
-      "Integration of AI and data analytics in construction planning, monitoring, and optimization for enhanced project efficiency.",
+      "Implementing deep learning and computer vision frameworks for safety monitoring, geotechnical predictive analysis, and construction site automation.",
   },
   {
     icon: Leaf,
-    title: "Sustainable Building Design",
+    title: "Sustainable Infrastructure",
     description:
-      "BIM-based energy-efficient design focusing on green and eco-conscious infrastructure with reduced environmental impact.",
+      "Designing eco-friendly, energy-efficient building systems that comply with IGBC standards, focusing on reduced environmental impact and passive design principles.",
   },
 ];
 

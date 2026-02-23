@@ -20,10 +20,10 @@ const Hero = () => {
               I am <span className="text-gradient">Joseva A</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-              Civil Engineering Undergraduate | AI & BIM Enthusiast
+              Civil Engineering Undergraduate | BIM & AI Enthusiast
             </p>
             <p className="text-lg text-muted-foreground">
-              Sustainable Design Innovator
+              Construction Technology Innovator
             </p>
           </div>
 
@@ -95,7 +95,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
           </div>
-          
+
           {/* Geometric Background Elements */}
           <div className="absolute -top-8 -right-8 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
           <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-primary-dark/10 rounded-full blur-3xl -z-10" />

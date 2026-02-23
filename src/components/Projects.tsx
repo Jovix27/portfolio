@@ -4,25 +4,25 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
+    title: "BuildSight: AI-Based Safety Monitoring",
+    period: "2025 - 2026",
+    description:
+      "Developed an AI-driven computer vision system for real-time Personal Protective Equipment (PPE) detection on construction sites. Optimized deep learning models to ensure safety compliance under extreme environmental and lighting conditions.",
+    tags: ["AI/ML", "Computer Vision", "Deep Learning", "Construction Tech"],
+  },
+  {
     title: "Precipitable Water Vapor Validation System",
     period: "2024 - 2025",
     description:
-      "Developed AI-driven bias correction models (Random Forest) to improve MODIS satellite data accuracy by 89%. Built a Python-based satellite data processing pipeline for climate monitoring.",
-    tags: ["Python", "AI/ML", "Random Forest", "Climate Tech"],
+      "Developed AI-driven bias correction models using Random Forest to improve MODIS satellite data accuracy by 89%. Built a Python-based processing pipeline for high-precision climate monitoring and water vapor thermal analysis.",
+    tags: ["Python", "AI/ML", "Climate Tech", "Data Science"],
   },
   {
-    title: "Sustainable Campus Hotspot Design",
-    period: "2025",
-    description:
-      "Designed eco-friendly shaded rest zones using locally sourced materials and reusing campus resources, reducing waste by 50%. Proposed scalable sustainable infrastructure models.",
-    tags: ["Sustainable Design", "BIM", "Green Infrastructure"],
-  },
-  {
-    title: "Energy Efficient Building Design",
+    title: "BIM-Based Energy Efficient Design",
     period: "2024",
     description:
-      "Converted conventional residential designs into BIM-based green building models using Autodesk Revit. Achieved 30% reduction in energy consumption through passive architecture principles and sustainable design strategies. Conducted detailed performance modeling including thermal efficiency and building envelope optimization.",
-    tags: ["BIM", "Revit", "Sustainable Design", "Energy Efficiency", "Green Building"],
+      "Engineered sustainable residential models using Autodesk Revit, achieving a 30% reduction in energy consumption. Conducted advanced thermal performance simulations and optimized building envelopes for passive cooling.",
+    tags: ["BIM", "Autodesk Revit", "Sustainable Design", "Energy Efficiency"],
   },
 ];
 

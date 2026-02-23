@@ -18,19 +18,14 @@ const About = () => {
           <div className="md:col-span-2 space-y-6 animate-slide-in">
             <Card className="p-8 hover-lift">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                I'm <span className="font-semibold text-foreground">Joseva A</span>, a Civil Engineering
-                undergraduate from <span className="font-semibold text-foreground">SASTRA Deemed University</span>,
-                passionate about <span className="text-primary font-medium">Building Information Modeling (BIM)</span>,{" "}
+                I'm <span className="font-semibold text-foreground">Joseva A</span>, a dedicated Civil Engineering
+                undergraduate at <span className="font-semibold text-foreground">SASTRA Deemed University</span>,
+                specializing in <span className="text-primary font-medium">Building Information Modeling (BIM)</span>,{" "}
                 <span className="text-primary font-medium">AI-driven construction</span>, and{" "}
                 <span className="text-primary font-medium">sustainable infrastructure design</span>.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground mt-4">
-                I specialize in integrating{" "}
-                <span className="font-semibold text-foreground">Revit, AutoCAD, STAAD Pro</span>, and{" "}
-                <span className="font-semibold text-foreground">Python-based modeling tools</span> to enhance project
-                efficiency and design accuracy. My work focuses on developing energy-efficient buildings, smart
-                construction systems, and AI-powered civil solutions that drive digital transformation and
-                sustainability in modern engineering.
+                My work focuses on leveraging technologies like <span className="font-semibold text-foreground">Revit, AutoCAD</span>, and <span className="font-semibold text-foreground">Python-based AI models</span> to optimize building performance and construction efficiency. I am committed to advancing sustainable engineering practices through innovative digital solutions and smart infrastructure planning.
               </p>
             </Card>
           </div>
@@ -55,17 +50,17 @@ const About = () => {
                 </div>
                 <div className="pt-3 border-t border-border">
                   <p className="text-sm text-muted-foreground">CGPA</p>
-                  <p className="text-2xl font-bold text-primary">7.10</p>
-                  <p className="text-xs text-muted-foreground">(till 6th semester)</p>
+                  <p className="text-2xl font-bold text-primary">7.2</p>
+                  <p className="text-xs text-muted-foreground">(till 7th semester)</p>
                 </div>
               </div>
             </Card>
 
-            <Button 
+            <Button
               asChild
               className="w-full bg-primary hover:bg-primary-dark text-primary-foreground group"
             >
-              <a 
+              <a
                 href={`${import.meta.env.BASE_URL}resume.pdf`}
                 download="Joseva_A_Resume.pdf"
                 className="flex items-center justify-center"
@@ -85,7 +80,7 @@ const About = () => {
               "Building Information Modeling",
               "Sustainable Infrastructure",
               "AI-enabled Construction",
-              "Transportation Engineering",
+              "Transportation Planning",
             ].map((area, index) => (
               <Card
                 key={index}

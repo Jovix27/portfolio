@@ -5,24 +5,24 @@ const experiences = [
   {
     company: "Larsen & Toubro (L&T)",
     location: "Chennai",
-    role: "Intern",
+    role: "Engineering Intern",
     period: "June - July 2025",
     description: [
-      "Supported Metro Phase 2 Corridor 3 project execution",
-      "Monitored tunneling and TBM operations, ensuring safety compliance",
-      "Applied GeoFreq for real-time geotechnical monitoring and AI integration",
-      "Conceptualized ClimaNEX AI, an AI-based hyper-local weather forecasting system",
+      "Assisted in Metro Phase 2 Corridor 3 project execution, gaining hands-on experience in urban transit infrastructure",
+      "Monitored tunneling and Tunnel Boring Machine (TBM) operations, ensuring adherence to safety protocols",
+      "Applied GeoFreq for real-time geotechnical monitoring and explored AI integration for geological predictive modeling",
+      "Conceptualized ClimaNEX AI, an innovative AI-based hyper-local weather forecasting system for construction sites",
     ],
   },
   {
     company: "National Institute of Technology (NIT) Trichy",
     location: "Tiruchirappalli",
-    role: "Research Intern",
+    role: "Research Intern (Transportation)",
     period: "May - June 2024",
     description: [
-      "Conducted large-scale driver behavior survey (200+ participants)",
-      "Analyzed transportation data using IBM SPSS and improved accuracy by 20%",
-      "Provided insights for transportation planning and infrastructure optimization",
+      "Conducted a large-scale driver behavior survey involving 200+ participants to analyze traffic psychology",
+      "Processed and analyzed complex transportation datasets using IBM SPSS, improving data reliability by 20%",
+      "Provided strategic insights for urban transportation planning and infrastructure optimization based on data trends",
     ],
   },
 ];

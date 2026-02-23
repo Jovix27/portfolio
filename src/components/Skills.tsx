@@ -4,33 +4,33 @@ import { Card } from "@/components/ui/card";
 const skillCategories = [
   {
     icon: Hammer,
-    title: "Core Civil Tools",
-    skills: ["AutoCAD", "Revit", "STAAD Pro", "EPANET", "QGIS", "Plaxis 2D"],
+    title: "Civil & BIM Tools",
+    skills: ["AutoCAD", "Autodesk Revit", "STAAD Pro", "EPANET", "QGIS", "Plaxis 2D"],
   },
   {
     icon: Target,
-    title: "BIM Tools",
-    skills: ["Revit", "BIM 360", "IFC Standards", "Green Building Studio"],
+    title: "Sustainable Design",
+    skills: ["Green Building Studio", "Energy Modeling"],
   },
   {
     icon: Code2,
-    title: "Programming & AI",
-    skills: ["Python", "Random Forest", "LSTM", "Generative AI"],
+    title: "Tech & Programming",
+    skills: ["Python", "Machine Learning (Random Forest, LSTM)", "Data Science", "Generative AI"],
   },
   {
     icon: BarChart3,
-    title: "Project Management",
-    skills: ["MS Project", "IBM SPSS", "GIS", "Data Visualization"],
+    title: "Software & Analysis",
+    skills: ["MS Project", "IBM SPSS", "Microsoft Office and Excel"],
   },
   {
     icon: Brain,
-    title: "Core Competencies",
+    title: "Core Areas",
     skills: [
-      "Sustainable Design",
-      "Energy Efficiency",
-      "Construction Technology",
-      "Transportation Engineering",
-      "Infrastructure Planning",
+      "AI in Civil Engineering",
+      "Sustainable Infrastructure",
+      "Building Information Modeling",
+      "Transportation Planning",
+      "Project Management",
     ],
   },
 ];
