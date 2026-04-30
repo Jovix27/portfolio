@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────
-   ConTech Portfolio — Dark Design System
-   Reference: JSMastery 3D Portfolio aesthetic
+   ConTech Portfolio — Glassmorphism Design System
 ───────────────────────────────────────────── */
 
 @layer base {
   :root {
-    /* Shadcn/ui tokens mapped to dark palette */
+    /* Shadcn/ui tokens */
     --background: 222 47% 5%;
     --foreground:  0 0% 100%;
     --card:       222 47% 7%;
@@ -33,23 +32,24 @@
     --radius:     0.75rem;
 
     /* ── Brand palette ── */
-    --blue:       #3b82f6;
-    --emerald:    #10b981;
-    --violet:     #8b5cf6;
-    --amber:      #f59e0b;
+    --blue:    #3b82f6;
+    --emerald: #10b981;
+    --violet:  #8b5cf6;
+    --amber:   #f59e0b;
 
-    /* ── Surface system ── */
-    --bg-base:    #f8fafc;           /* clean engineering white */
-    --bg-alt:     #f1f5f9;           /* soft grey blueprint base */
-    --card-bg:    rgba(255,255,255,0.7);
-    --card-border: rgba(255,255,255,0.4);
-    --card-hover-border: rgba(59,130,246,0.50);
-    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-    --card-glow:  0 0 30px rgba(59,130,246,0.12);
-    --glass-blur: blur(12px);
+    /* ── Light mode surfaces ── */
+    --bg-base:    #f0f4ff;
+    --bg-alt:     #e8eef8;
+    --card-bg:    rgba(255, 255, 255, 0.65);
+    --card-border: rgba(255, 255, 255, 0.80);
+    --card-inner-highlight: rgba(255,255,255,0.90);
+    --card-hover-border: rgba(59, 130, 246, 0.45);
+    --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255,255,255,0.90);
+    --card-hover-shadow: 0 20px 48px rgba(59,130,246,0.14), inset 0 1px 0 rgba(255,255,255,0.95);
+    --glass-blur: blur(20px);
 
     /* ── Typography ── */
-    --text-primary:   #0f172a;       /* dark slate for text */
+    --text-primary:   #0f172a;
     --text-secondary: #334155;
     --text-muted:     #64748b;
 
@@ -67,19 +67,20 @@
   }
 }
 
-/* ── Dark mode CSS variable overrides ── */
+/* ── Dark mode: deep navy glass ── */
 html.dark {
-  --bg-base:    #0a0f1e;
-  --bg-alt:     #0f172a;
-  --card-bg:    rgba(15, 23, 42, 0.6);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-hover-border: rgba(59,130,246,0.4);
-  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --card-glow:  0 0 30px rgba(59,130,246,0.18);
-  --glass-blur: blur(16px);
+  --bg-base:    #050d1a;
+  --bg-alt:     #070f1d;
+  --card-bg:    rgba(13, 22, 48, 0.55);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --card-inner-highlight: rgba(255, 255, 255, 0.04);
+  --card-hover-border: rgba(99, 179, 250, 0.40);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.60), 0 0 0 1px rgba(59,130,246,0.15), inset 0 1px 0 rgba(255,255,255,0.07);
+  --glass-blur: blur(24px);
   --text-primary:   #e2e8f0;
-  --text-secondary: #cbd5e1;
-  --text-muted:     #64748b;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
 }
 
 @layer base {
@@ -92,25 +93,24 @@ html.dark {
     background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    /* Base technical grid - responsive size */
+    min-height: 100dvh;
+    transition: background-color 0.4s ease, color 0.4s ease;
     background-image:
-      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-    @media (min-width: 768px) {
-      background-size: 40px 40px;
-    }
+      linear-gradient(rgba(59,130,246,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  @media (min-width: 768px) {
+    body { background-size: 44px 44px; }
   }
 
-  /* Dark mode body grid - slightly more visible */
   html.dark body {
     background-image:
-      linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+      linear-gradient(rgba(59,130,246,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.055) 1px, transparent 1px);
   }
 
-  /* Dark mode global overrides for hardcoded Tailwind color classes */
+  /* ── Dark mode Tailwind class overrides ── */
   html.dark .text-slate-900 { color: #f1f5f9 !important; }
   html.dark .text-slate-800 { color: #e2e8f0 !important; }
   html.dark .text-slate-700 { color: #cbd5e1 !important; }
@@ -118,12 +118,14 @@ html.dark {
   html.dark .text-slate-500 { color: #64748b !important; }
   html.dark .text-slate-400 { color: #475569 !important; }
 
-  html.dark .bg-slate-50  { background-color: #0a0f1e !important; }
-  html.dark .bg-slate-100 { background-color: #0f172a !important; }
-  html.dark .bg-white     { background-color: #0f172a !important; }
+  html.dark .bg-slate-50  { background-color: #070f1d !important; }
+  html.dark .bg-slate-100 { background-color: #0d1a30 !important; }
+  html.dark .bg-white     { background-color: #0d1a30 !important; }
 
-  html.dark .border-slate-200 { border-color: rgba(59,130,246,0.20) !important; }
-  html.dark .border-slate-100 { border-color: rgba(59,130,246,0.12) !important; }
+  html.dark .border-slate-200 { border-color: rgba(59,130,246,0.18) !important; }
+  html.dark .border-slate-100 { border-color: rgba(59,130,246,0.10) !important; }
+  html.dark .border-blue-100  { border-color: rgba(59,130,246,0.18) !important; }
+  html.dark .border-blue-50   { border-color: rgba(59,130,246,0.10) !important; }
 }
 
 @layer utilities {
@@ -135,66 +137,44 @@ html.dark {
     background-clip: text;
   }
 
-  /* Section background helpers */
-  .bg-hero-dark  { background-color: var(--bg-base); }
-  .bg-section    { background-color: var(--bg-base); }
+  /* Section backgrounds */
+  .bg-hero-dark   { background-color: var(--bg-base); }
+  .bg-section     { background-color: var(--bg-base); }
   .bg-section-alt { background-color: var(--bg-alt); }
 
-  /* Glass card refined for Liquid Glass effect */
+  /* ── Professional Glassmorphism Card ── */
   .glass-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: var(--card-shadow);
-    border-radius: 1.5rem;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 1.25rem;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.35s ease;
     position: relative;
     overflow: hidden;
   }
 
-  .glass-card::before {
+  /* Inner highlight shimmer — key to glass realism */
+  .glass-card::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      var(--card-inner-highlight) 0%,
+      transparent 50%
+    );
     pointer-events: none;
-    transition: transform 0.6s ease;
   }
 
   .glass-card:hover {
     border-color: var(--card-hover-border);
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(59,130,246,0.15);
-  }
-
-  .glass-card:hover::before {
-    transform: translate(10%, 10%);
-  }
-
-  /* Liquid Glass UI Helper */
-  .liquid-container {
-    position: relative;
-    z-index: 0;
-  }
-
-  .liquid-bg {
-    position: absolute;
-    filter: blur(80px);
-    opacity: 0.4;
-    z-index: -1;
-    animation: liquid-float 20s ease-in-out infinite alternate;
-  }
-
-  .liquid-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    mix-blend-mode: overlay;
-    animation: blob-float 25s infinite alternate;
+    transform: translateY(-6px);
+    box-shadow: var(--card-hover-shadow);
   }
 
   /* Section heading underline bar */
@@ -203,50 +183,54 @@ html.dark {
     background: linear-gradient(90deg, #3b82f6, #10b981);
   }
 
-  .section-padding { @apply py-10 px-5 sm:py-16 sm:px-8 md:py-20 md:px-12 lg:px-24; }
+  .section-padding {
+    @apply py-12 px-4 sm:py-16 sm:px-8 md:py-24 md:px-12 lg:px-24;
+  }
 
   /* Glow button */
   .btn-glow {
     box-shadow: 0 0 20px rgba(59,130,246,0.35);
-    transition: box-shadow 0.25s ease;
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
   }
-  .btn-glow:hover { box-shadow: 0 0 35px rgba(59,130,246,0.60); }
+  .btn-glow:hover {
+    box-shadow: 0 0 35px rgba(59,130,246,0.60);
+    transform: translateY(-1px);
+  }
+  .btn-glow:active { transform: translateY(0); }
+
+  /* Ambient glow orbs for glassmorphism depth */
+  .ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.55;
+    animation: orb-drift 18s ease-in-out infinite alternate;
+  }
+  .ambient-orb-sm {
+    filter: blur(50px);
+    opacity: 0.40;
+  }
 
   /* Animations */
-  .animate-spin-slow    { animation: spin-slow 14s linear infinite; }
-  .animate-loading-bar  { animation: loading-bar 1.8s ease-in-out infinite; }
-  .animate-scan-line    { animation: scan-line 4s ease-in-out infinite; }
+  .animate-spin-slow   { animation: spin-slow 14s linear infinite; }
+  .animate-loading-bar { animation: loading-bar 1.8s ease-in-out infinite; }
+  .animate-scan-line   { animation: scan-line 4s ease-in-out infinite; }
+  .animate-float       { animation: orb-drift 6s ease-in-out infinite alternate; }
 
-  /* Blueprint CAD grid — refined for Light Concept */
+  /* Blueprint CAD grid */
   .cad-grid {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px),
-      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(59,130,246,0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.10) 1px, transparent 1px),
+      linear-gradient(rgba(59,130,246,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.035) 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
     -webkit-mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
-  }
-
-  /* Schematic overlay — floating technical annotation layer */
-  .schematic-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background-image:
-      radial-gradient(circle 1px at 80px 80px, rgba(59,130,246,0.4) 0%, transparent 100%),
-      radial-gradient(circle 1px at 160px 80px, rgba(59,130,246,0.4) 0%, transparent 100%),
-      radial-gradient(circle 1px at 80px 160px, rgba(59,130,246,0.4) 0%, transparent 100%);
-    background-size: 160px 160px;
-    display: none;
-  }
-  @media (min-width: 1024px) {
-    .schematic-overlay { display: block; }
   }
 }
 
@@ -266,16 +250,11 @@ html.dark {
   90%  { opacity: 1; }
   100% { transform: translateY(100vh); opacity: 0; }
 }
-@keyframes liquid-float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(5%, 10%) scale(1.1); }
-  66% { transform: translate(-10%, 5%) scale(0.9); }
+@keyframes orb-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(6%, 12%) scale(1.08); }
+  66%  { transform: translate(-8%, 6%) scale(0.94); }
   100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes blob-float {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(100px, 50px) rotate(180deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
 }
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(30px); }
@@ -290,9 +269,9 @@ html.dark {
   to   { height: 0; }
 }
 
-/* ── Vertical Timeline overrides ── */
+/* ── Vertical Timeline ── */
 .vertical-timeline::before {
-  background: rgba(59,130,246,0.18) !important;
+  background: rgba(59,130,246,0.15) !important;
   width: 1.5px !important;
 }
 .vertical-timeline-element-content {
@@ -301,15 +280,31 @@ html.dark {
 .vertical-timeline-element-content-arrow {
   display: none !important;
 }
-
-/* Dark mode timeline card backgrounds */
 html.dark .vertical-timeline-element-content {
-  background: rgba(15,23,42,0.85) !important;
-  border: 1px solid rgba(59,130,246,0.20) !important;
+  background: rgba(13,22,48,0.70) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+html.dark .vertical-timeline::before {
+  background: rgba(59,130,246,0.22) !important;
 }
 
-/* Dark mode for skill cards with bg-white */
-html.dark [class*="rounded"][class*="bg-white"],
-html.dark [class*="rounded-3xl"] {
-  background: rgba(15,23,42,0.85) !important;
+/* ── Skill card dark override (bg-white class) ── */
+html.dark .skill-glass-card {
+  background: rgba(13,22,48,0.60) !important;
+  border-color: rgba(255,255,255,0.07) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Smooth theme transition on all elements */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+/* But not transforms — it breaks animations */
+*:not(.glass-card):not(.btn-glow):not([class*="motion"]) {
+  transition-property: background-color, border-color, color;
 }
