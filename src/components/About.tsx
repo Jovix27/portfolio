@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/useTheme";
 const stats = [
   { value: "3+",   label: "AI Projects Built" },
   { value: "IGBC", label: "AP Associate" },
-  { value: "R&D",  label: "Engineering Focus" },
+  { value: "AI+",  label: "Problem Solving" },
   { value: "15+",  label: "Software Proficiency" },
 ];
 

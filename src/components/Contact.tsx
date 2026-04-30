@@ -60,7 +60,7 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: MapPin, color: "#8b5cf6", label: "Location", value: "Tiruchirappalli, TN", link: null },
-    { icon: Mail, color: "#3b82f6", label: "Email", value: "jovinitro007@gmail.com", link: "mailto:jovinitro007@gmail.com" },
+    { icon: Mail, color: "#3b82f6", label: "Email", value: "ajoseva04@gmail.com", link: "mailto:ajoseva04@gmail.com" },
     { icon: Phone, color: "#10b981", label: "Phone", value: "+91 8015164110", link: "tel:+918015164110" },
   ];
 

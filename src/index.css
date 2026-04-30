@@ -224,13 +224,11 @@ html.dark {
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(59,130,246,0.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.10) 1px, transparent 1px),
-      linear-gradient(rgba(59,130,246,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.035) 1px, transparent 1px);
+      linear-gradient(rgba(59,130,246,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.15) 1px, transparent 1px),
+      linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-    mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
   }
 }
 
@@ -300,11 +298,11 @@ html.dark .skill-glass-card {
 
 /* Smooth theme transition on all elements */
 *, *::before, *::after {
-  transition-property: background-color, border-color, color;
+  transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
-/* But not transforms — it breaks animations */
-*:not(.glass-card):not(.btn-glow):not([class*="motion"]) {
-  transition-property: background-color, border-color, color;
+/* But not transforms or specialized components — it breaks animations */
+*:not(.glass-card):not(.btn-glow):not([class*="motion"]):not([class*="cad-grid"]) {
+  transition-property: background-color, border-color, color, fill, stroke;
 }

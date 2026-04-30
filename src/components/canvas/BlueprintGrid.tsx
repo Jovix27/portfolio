@@ -4,14 +4,13 @@ import { motion } from "framer-motion";
    Pure CSS/Framer Motion — zero asset dependencies */
 
 const BlueprintGrid = () => (
-  <div className="absolute inset-0 overflow-hidden">
+  <div className="absolute inset-0 overflow-hidden bg-section">
     {/* Main CAD crosshatch grid */}
     <div className="cad-grid" />
 
     {/* Corner coordinate markers */}
     {[
       { top: "5%",  left:  "3%",  label: "0,0" },
-      { top: "5%",  right: "3%",  label: "X+400" },
       { bottom:"5%",left:  "3%",  label: "Y+300" },
     ].map((m) => (
       <div
@@ -29,7 +28,7 @@ const BlueprintGrid = () => (
       style={{
         top: "50%",
         height: "1px",
-        background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.18) 20%, rgba(59,130,246,0.18) 80%, transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.3) 20%, rgba(59,130,246,0.3) 80%, transparent)",
       }}
     />
 
@@ -39,14 +38,15 @@ const BlueprintGrid = () => (
       style={{
         left: "50%",
         width: "1px",
-        background: "linear-gradient(180deg, transparent, rgba(59,130,246,0.18) 20%, rgba(59,130,246,0.18) 80%, transparent)",
+        background: "linear-gradient(180deg, transparent, rgba(59,130,246,0.3) 20%, rgba(59,130,246,0.3) 80%, transparent)",
       }}
     />
 
-    {/* Node dots at grid intersections (large) */}
+    {/* Node dots at grid intersections (expanded) */}
     {[
-      [20, 25], [80, 25], [50, 50], [20, 75], [80, 75],
-      [35, 38], [65, 38], [35, 62], [65, 62],
+      [10, 15], [90, 15], [50, 50], [10, 85], [90, 85],
+      [25, 30], [75, 30], [25, 70], [75, 70],
+      [5, 50], [95, 50],
     ].map(([x, y]) => (
       <motion.div
         key={`${x}-${y}`}
@@ -66,26 +66,22 @@ const BlueprintGrid = () => (
       />
     ))}
 
-    {/* Connector lines between nodes */}
+    {/* Connector lines (updated for wider nodes) */}
     <svg
       className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ opacity: 0.12 }}
     >
-      <line x1="20%" y1="25%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="80%" y1="25%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="20%" y1="75%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="80%" y1="75%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="35%" y1="38%" x2="65%" y2="38%" stroke="#10b981" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="35%" y1="62%" x2="65%" y2="62%" stroke="#10b981" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="35%" y1="38%" x2="35%" y2="62%" stroke="#10b981" strokeWidth="0.5" strokeDasharray="4 6" />
-      <line x1="65%" y1="38%" x2="65%" y2="62%" stroke="#10b981" strokeWidth="0.5" strokeDasharray="4 6" />
+      <line x1="10%" y1="15%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
+      <line x1="90%" y1="15%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
+      <line x1="10%" y1="85%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
+      <line x1="90%" y1="85%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="0.5" strokeDasharray="4 6" />
     </svg>
 
-    {/* Ambient glow pools — replaces old radial space glows */}
-    <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{ background: "radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%)" }} />
-    <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none"
-      style={{ background: "radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%)" }} />
+    {/* Ambient glow pools — widened */}
+    <div className="absolute top-[-20%] right-[-10%] w-[700px] h-[700px] rounded-full pointer-events-none"
+      style={{ background: "radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)" }} />
+    <div className="absolute bottom-[-15%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none"
+      style={{ background: "radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%)" }} />
   </div>
 );
 
