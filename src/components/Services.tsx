@@ -24,8 +24,8 @@ const Services = () => (
         viewport={{ once: true }} transition={{ duration: 0.7 }}
         className="text-center mb-16"
       >
-        <p className="text-blue-400 text-sm uppercase tracking-widest font-medium mb-2">What I offer</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">What I offer</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
           Core <span className="text-hero-gradient">Services</span>
         </h2>
         <div className="section-bar" />
@@ -55,8 +55,8 @@ const Services = () => (
                 className="absolute top-0 left-6 right-6 h-px opacity-0 group-hover:opacity-100 transition-opacity rounded-full"
                 style={{ background: `linear-gradient(90deg,transparent,${svc.color},transparent)` }}
               />
-              <h3 className="text-xl font-bold text-white mb-3">{svc.title}</h3>
-              <p className="text-white/45 leading-relaxed text-sm">{svc.description}</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{svc.title}</h3>
+              <p className="text-slate-500 leading-relaxed text-sm">{svc.description}</p>
             </motion.div>
           );
         })}

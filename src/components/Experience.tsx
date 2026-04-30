@@ -26,9 +26,9 @@ const experiences = [
     icon: Star,
     color: "#8b5cf6",
     points: [
-      "Designed and conducted a large-scale driver behavior survey with 200+ participants, analyzing traffic psychology and risk perception.",
-      "Processed and analyzed complex transportation datasets using IBM SPSS, improving dataset reliability by 20% through bias correction techniques.",
-      "Derived strategic insights for urban transportation planning, identifying key infrastructure bottlenecks through statistical modeling.",
+      "Optimized transportation datasets using IBM SPSS, achieving a 20% improvement in reliability through advanced bias correction.",
+      "Conducted statistical modeling to identify urban infrastructure bottlenecks, delivering actionable insights for strategic transportation planning.",
+      "Designed data-driven frameworks for analyzing traffic psychology and risk perception metrics.",
     ],
   },
   {
@@ -54,44 +54,44 @@ const Experience = () => (
         viewport={{ once: true }} transition={{ duration: 0.7 }}
         className="text-center mb-4"
       >
-        <p className="text-blue-400 text-sm uppercase tracking-widest font-medium mb-2">What I have done so far</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">What I have done so far</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
           Work <span className="text-hero-gradient">Experience</span>
         </h2>
-        <div className="section-bar" />
+        <div className="section-bar bg-blue-500/20" />
       </motion.div>
 
       <div className="mt-16">
-        <VerticalTimeline lineColor="rgba(59,130,246,0.18)">
+        <VerticalTimeline lineColor="rgba(59,130,246,0.12)">
           {experiences.map((exp, i) => {
             const Icon = exp.icon;
             return (
               <VerticalTimelineElement
                 key={i}
                 contentStyle={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: `1px solid ${exp.color}28`,
+                  background: "rgba(255,255,255,0.85)",
+                  border: `1px solid ${exp.color}20`,
                   backdropFilter: "blur(16px)",
-                  boxShadow: `0 4px 24px rgba(0,0,0,0.35), 0 0 20px ${exp.color}10`,
+                  boxShadow: `0 4px 20px rgba(59,130,246,0.08), 0 0 15px ${exp.color}08`,
                   borderRadius: "1rem",
-                  color: "#fff",
+                  color: "#0f172a",
                 }}
                 contentArrowStyle={{ borderRight: `7px solid ${exp.color}28` }}
                 date={exp.period}
-                dateClassName="!text-white/40 !font-medium !text-sm"
+                dateClassName="!text-slate-400 !font-medium !text-[11px] sm:!text-sm"
                 iconStyle={{
                   background: exp.color,
                   boxShadow: `0 0 0 4px ${exp.color}28, 0 0 20px ${exp.color}40`,
                 }}
                 icon={<Icon className="w-5 h-5 text-white" />}
               >
-                <h3 className="text-white font-bold text-xl">{exp.title}</h3>
+                <h3 className="text-slate-900 font-bold text-xl">{exp.title}</h3>
                 <p className="text-sm font-semibold mt-0.5" style={{ color: exp.color }}>{exp.company}</p>
-                <p className="text-xs text-white/30 mt-0.5">{exp.location}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{exp.location}</p>
 
                 <ul className="mt-5 space-y-2.5">
                   {exp.points.map((pt, j) => (
-                    <li key={j} className="flex gap-3 text-sm text-white/55 leading-relaxed">
+                    <li key={j} className="flex gap-3 text-sm text-slate-500 leading-relaxed">
                       <span className="mt-[3px] flex-shrink-0 font-bold" style={{ color: exp.color }}>▸</span>
                       <span>{pt}</span>
                     </li>

@@ -1,79 +1,138 @@
-import { motion } from "framer-motion";
+import { useRef, useMemo, useState, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Html } from "@react-three/drei";
+import * as THREE from "three";
 
-// Animated CSS Earth — no GLTF required
-const EarthFallback = () => (
-  <div className="w-full h-full flex items-center justify-center">
-    <div className="relative w-52 h-52">
-      {/* Outer glow */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 opacity-20 blur-2xl animate-pulse" />
+const hotspots = [
+  { 
+    id: "chennai" as const,
+    name: "L&T - ClimaNEX AI", 
+    pos: [1.2, 1.4, 2], 
+    target: "#experience",
+    desc: "Hyper-local Weather Forecasting" 
+  },
+  { 
+    id: "trichy" as const,
+    name: "NIT Trichy", 
+    pos: [0.8, 0.5, 2.3], 
+    target: "#experience",
+    desc: "Driver Behavior Analysis" 
+  },
+  { 
+    id: "thanjavur" as const,
+    name: "SASTRA University", 
+    pos: [0.2, 0.1, 2.5], 
+    target: "#about",
+    desc: "B.Tech Civil Engineering (2022-2026)" 
+  },
+];
 
-      {/* Spinning globe */}
-      <motion.div
-        className="relative w-full h-full rounded-full overflow-hidden border border-blue-400/25"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 35%, #1e40af, #0f766e 45%, #166534 80%, #052e16)",
-          boxShadow:
-            "0 0 40px rgba(59,130,246,0.25), inset -8px -8px 20px rgba(0,0,0,0.5), inset 4px 4px 12px rgba(255,255,255,0.08)",
-        }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+const Hotspot = ({ name, pos, target, desc }: { name: string; pos: any; target: string; desc: string }) => {
+  const [hovered, setHovered] = useState(false);
+  
+  const handleClick = () => {
+    const el = document.querySelector(target);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <group position={pos}>
+      <mesh 
+        onClick={handleClick}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       >
-        {/* Faux land masses (CSS blobs) */}
-        <div
-          className="absolute rounded-full opacity-70"
-          style={{
-            width: "45%", height: "35%",
-            top: "20%", left: "25%",
-            background: "#166534",
-            filter: "blur(3px)",
-          }}
-        />
-        <div
-          className="absolute rounded-full opacity-60"
-          style={{
-            width: "30%", height: "40%",
-            top: "45%", left: "55%",
-            background: "#14532d",
-            filter: "blur(4px)",
-          }}
-        />
-        <div
-          className="absolute rounded-full opacity-50"
-          style={{
-            width: "20%", height: "20%",
-            top: "15%", left: "60%",
-            background: "#065f46",
-            filter: "blur(3px)",
-          }}
-        />
-        {/* Specular highlight */}
-        <div
-          className="absolute rounded-full opacity-25"
-          style={{
-            width: "40%", height: "35%",
-            top: "8%", left: "10%",
-            background: "white",
-            filter: "blur(10px)",
-          }}
-        />
-      </motion.div>
+        <sphereGeometry args={[0.08, 16, 16]} />
+        <meshBasicMaterial color={hovered ? "#60a5fa" : "#3b82f6"} />
+      </mesh>
+      
+      {/* Outer pulse */}
+      <mesh scale={hovered ? 2 : 1.5}>
+        <sphereGeometry args={[0.1, 16, 16]} />
+        <meshBasicMaterial color="#3b82f6" transparent opacity={0.2} />
+      </mesh>
 
-      {/* Atmosphere ring */}
-      <div
-        className="absolute inset-[-6px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 70%, rgba(59,130,246,0.15) 85%, rgba(16,185,129,0.08) 100%)",
-          border: "1px solid rgba(59,130,246,0.1)",
-        }}
-      />
+      {hovered && (
+        <Html distanceFactor={10}>
+          <div className="bg-white/95 border border-blue-500/20 backdrop-blur-md p-3 rounded-lg shadow-xl shadow-blue-500/10 pointer-events-none whitespace-nowrap">
+            <p className="text-blue-600 text-[10px] font-bold uppercase tracking-tighter mb-0.5">{name}</p>
+            <p className="text-slate-600 text-[9px] font-medium">{desc}</p>
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+const GlobeModel = () => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const geometry = useMemo(() => new THREE.SphereGeometry(2.5, 32, 24), []);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.12;
+    }
+  });
+
+  return (
+    <group>
+      {/* 1. Boundary Circle - Blue */}
+      <mesh>
+        <ringGeometry args={[2.55, 2.58, 64]} />
+        <meshBasicMaterial color="#3b82f6" side={THREE.DoubleSide} transparent opacity={0.4} />
+      </mesh>
+
+      {/* 2. Main Wireframe - Blue */}
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[2.5, 32, 24]} />
+        <meshBasicMaterial 
+          color="#3b82f6" 
+          wireframe 
+          transparent 
+          opacity={0.35}
+        />
+        
+        {/* Project Hotspots attached to the rotating globe */}
+        {hotspots.map((h, i) => (
+          <Hotspot key={i} {...h} />
+        ))}
+      </mesh>
+
+      {/* 3. Inner Glow */}
+      <mesh>
+        <sphereGeometry args={[2.45, 32, 24]} />
+        <meshBasicMaterial color="#3b82f6" transparent opacity={0.05} />
+      </mesh>
+    </group>
+  );
+};
+
+const EarthCanvas = () => {
+  return (
+    <div className="w-full h-full cursor-pointer">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 45 }}
+        gl={{ antialias: true, alpha: true }}
+      >
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} color="#3b82f6" />
+        <GlobeModel />
+        <OrbitControls 
+          enableZoom={false} 
+          enablePan={false}
+          autoRotate={false}
+          rotateSpeed={0.4}
+        />
+      </Canvas>
     </div>
+  );
+};
+
+const EarthFallback = () => (
+  <div className="w-full h-full flex items-center justify-center bg-slate-50/50">
+     <div className="w-48 h-48 rounded-full border-2 border-blue-500/10 border-t-blue-500 animate-spin" />
   </div>
 );
-
-// Main export — CSS globe for all screen sizes (no GLTF dependency)
-const EarthCanvas = () => <EarthFallback />;
 
 export { EarthFallback };
 export default EarthCanvas;

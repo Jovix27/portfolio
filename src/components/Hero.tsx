@@ -1,32 +1,27 @@
 import { Suspense, lazy } from "react";
-import { ArrowDown, Mail, Phone, MapPin, Zap } from "lucide-react";
+import { ArrowDown, Mail, Phone, MapPin, HardHat } from "lucide-react";
 import { motion } from "framer-motion";
 import { DeskFallback } from "./canvas/ArchitectDesk";
+import BlueprintGrid from "./canvas/BlueprintGrid";
+import { useTheme } from "@/hooks/useTheme";
 
 const ArchitectDeskCanvas = lazy(() => import("./canvas/ArchitectDesk"));
-const Stars = lazy(() => import("./canvas/Stars"));
 
 const isMobile = () => window.innerWidth < 768;
 
 const Hero = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const goto = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 section-padding overflow-hidden bg-hero-dark"
+      className="relative min-h-screen flex items-center justify-center pt-20 section-padding overflow-hidden bg-slate-50"
     >
-      {/* Star field — full opacity on dark */}
+      {/* Blueprint grid — ConTech identity background */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={null}>
-          <Stars />
-        </Suspense>
-      </div>
-
-      {/* Radial glow overlays */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-600/8 blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-emerald-600/6 blur-[100px]" />
+        <BlueprintGrid />
       </div>
 
       <div className="relative z-10 max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
@@ -43,23 +38,22 @@ const Hero = () => {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card"
             style={{
-              background: "rgba(59,130,246,0.10)",
-              border: "1px solid rgba(59,130,246,0.25)",
-              backdropFilter: "blur(12px)",
+              background: "rgba(59,130,246,0.04)",
+              border: "1px solid rgba(255,255,255,0.4)",
             }}
           >
-            <Zap className="h-3.5 w-3.5 text-blue-400 flex-shrink-0" />
-            <span className="text-xs text-blue-300 font-medium">
-              AI + BIM Engineer · L&T · NIT Trichy
+            <HardHat className="h-3.5 w-3.5 text-blue-600 flex-shrink-0" />
+            <span className="text-xs text-blue-600 font-medium">
+              IGBC AP · AI + BIM Engineer · ConTech
             </span>
           </motion.div>
 
           {/* Name */}
           <div className="space-y-3">
             <motion.p
-              className="text-white/40 text-sm font-medium tracking-[0.25em] uppercase"
+              className="text-slate-400 text-sm font-medium tracking-[0.25em] uppercase"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -68,7 +62,7 @@ const Hero = () => {
             </motion.p>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -77,46 +71,46 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-white/75 font-semibold"
+              className="text-lg sm:text-xl md:text-2xl text-slate-700 font-semibold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.45 }}
             >
-              AI + BIM Engineer
+              I design intelligent construction systems and solve real-world civil engineering problems using AI.
             </motion.p>
 
             <motion.p
-              className="text-base text-white/45 leading-relaxed max-w-lg"
+              className="text-base text-slate-500 leading-relaxed max-w-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55 }}
             >
-              Building intelligent construction systems — from AI-powered floor plan generation
-              to real-time site safety monitoring.
+              I specialize in delivering measurable outcomes across construction workflows — bridging the gap between traditional civil engineering and intelligent, scalable systems.
             </motion.p>
           </div>
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.5 }}
           >
             <button
               onClick={() => goto("#projects")}
-              className="px-7 py-3 rounded-full text-sm font-semibold text-white btn-glow transition-all"
+              className="px-7 py-3 rounded-xl sm:rounded-full text-sm font-semibold text-white btn-glow transition-all"
               style={{ background: "linear-gradient(135deg,#3b82f6,#1d4ed8)" }}
             >
               View My Work
             </button>
             <button
               onClick={() => goto("#contact")}
-              className="px-7 py-3 rounded-full text-sm font-semibold text-white/80 hover:text-white transition-all"
+              className="px-7 py-3 rounded-xl sm:rounded-full text-sm font-semibold transition-all hover:scale-105 active:scale-95"
               style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                backdropFilter: "blur(12px)",
+                background: isDark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.4)",
+                border: "1px solid rgba(255,255,255,0.4)",
+                backdropFilter: "blur(20px)",
+                color: isDark ? "#cbd5e1" : "#475569",
               }}
             >
               Get in Touch
@@ -125,7 +119,7 @@ const Hero = () => {
 
           {/* Contact chips */}
           <motion.div
-            className="grid sm:grid-cols-3 gap-3 pt-4 border-t border-white/6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -136,13 +130,13 @@ const Hero = () => {
               { icon: MapPin, label: "Location", value: "Tiruchirappalli, TN",  href: null },
             ].map(({ icon: Icon, label, value, href }) => (
               <div key={label}>
-                <div className="flex items-center gap-1.5 text-blue-400/70 mb-1">
+                <div className="flex items-center gap-1.5 text-blue-600/70 mb-1">
                   <Icon className="h-3 w-3" />
                   <span className="text-[10px] font-semibold uppercase tracking-widest">{label}</span>
                 </div>
                 {href
-                  ? <a href={href} className="text-xs text-white/40 hover:text-blue-300 transition-colors truncate block">{value}</a>
-                  : <p className="text-xs text-white/40">{value}</p>
+                  ? <a href={href} className="text-xs text-slate-400 hover:text-blue-600 transition-colors truncate block">{value}</a>
+                  : <p className="text-xs text-slate-400">{value}</p>
                 }
               </div>
             ))}
@@ -151,7 +145,7 @@ const Hero = () => {
 
         {/* ── Right: Desk image ── */}
         <motion.div
-          className="relative h-[480px] md:h-[580px]"
+          className="relative h-[320px] sm:h-[400px] md:h-[580px]"
           initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.25, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
@@ -166,7 +160,7 @@ const Hero = () => {
       {/* Scroll cue */}
       <motion.button
         onClick={() => goto("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/30 hover:text-white/60 transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 6, 0] }}
         transition={{ delay: 1.3, duration: 2.5, repeat: Infinity, ease: "easeInOut" }}

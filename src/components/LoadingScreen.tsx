@@ -19,7 +19,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <motion.div
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-      style={{ backgroundColor: "#050816" }}
+      style={{ backgroundColor: "#f8fafc" }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.04 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -44,16 +44,21 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="flex items-center gap-4">
-          <motion.span
-            className="text-5xl font-black text-white/12 select-none leading-none"
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.12, duration: 0.55 }}
-          >[</motion.span>
-
+        <div className="flex flex-col items-center gap-4">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <img 
+              src={`${import.meta.env.BASE_URL}logo.png`} 
+              alt="JA Logo" 
+              className="h-20 md:h-24 w-auto object-contain brightness-125 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+            />
+          </motion.div>
+          
           <span
-            className="text-5xl md:text-6xl font-black tracking-tight"
+            className="text-4xl md:text-5xl font-black tracking-tight"
             style={{
               background: "linear-gradient(90deg,#3b82f6,#10b981)",
               WebkitBackgroundClip: "text",
@@ -61,19 +66,12 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               backgroundClip: "text",
             }}
           >
-            JA
+            Joseva A
           </span>
-
-          <motion.span
-            className="text-5xl font-black text-white/12 select-none leading-none"
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.12, duration: 0.55 }}
-          >]</motion.span>
         </div>
 
         <motion.p
-          className="text-xs text-white/30 uppercase tracking-[0.3em] font-medium"
+          className="text-xs text-slate-400 uppercase tracking-[0.3em] font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -91,7 +89,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
       >
         <div
           className="relative h-[2px] w-full rounded-full overflow-hidden"
-          style={{ background: "rgba(255,255,255,0.06)" }}
+          style={{ background: "rgba(0,0,0,0.06)" }}
         >
           <motion.div
             className="absolute inset-y-0 left-0 rounded-full"
@@ -106,10 +104,10 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         </div>
 
         <div className="flex items-center justify-between mt-3">
-          <span className="text-[10px] text-white/25 uppercase tracking-widest font-medium">
+          <span className="text-[10px] text-slate-400 uppercase tracking-widest font-medium">
             Initialising
           </span>
-          <span className="text-[10px] font-mono text-blue-400/70">{progress}%</span>
+          <span className="text-[10px] font-mono text-blue-500/70">{progress}%</span>
         </div>
       </motion.div>
 

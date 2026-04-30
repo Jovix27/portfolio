@@ -39,21 +39,22 @@
     --amber:      #f59e0b;
 
     /* ── Surface system ── */
-    --bg-base:    #050816;           /* page background */
-    --bg-alt:     #080c24;           /* alternating sections */
-    --card-bg:    rgba(255,255,255,0.04);
-    --card-border: rgba(255,255,255,0.08);
-    --card-hover-border: rgba(59,130,246,0.35);
-    --card-shadow: 0 4px 24px rgba(0,0,0,0.35);
-    --card-glow:  0 0 28px rgba(59,130,246,0.10);
+    --bg-base:    #f8fafc;           /* clean engineering white */
+    --bg-alt:     #f1f5f9;           /* soft grey blueprint base */
+    --card-bg:    rgba(255,255,255,0.7);
+    --card-border: rgba(255,255,255,0.4);
+    --card-hover-border: rgba(59,130,246,0.50);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --card-glow:  0 0 30px rgba(59,130,246,0.12);
+    --glass-blur: blur(12px);
 
     /* ── Typography ── */
-    --text-primary:   #ffffff;
-    --text-secondary: rgba(255,255,255,0.70);
-    --text-muted:     rgba(255,255,255,0.45);
+    --text-primary:   #0f172a;       /* dark slate for text */
+    --text-secondary: #334155;
+    --text-muted:     #64748b;
 
     /* ── Gradient ── */
-    --hero-gradient: linear-gradient(90deg, #3b82f6, #10b981);
+    --hero-gradient: linear-gradient(90deg, #2563eb, #0d9488);
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -66,6 +67,21 @@
   }
 }
 
+/* ── Dark mode CSS variable overrides ── */
+html.dark {
+  --bg-base:    #0a0f1e;
+  --bg-alt:     #0f172a;
+  --card-bg:    rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover-border: rgba(59,130,246,0.4);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --card-glow:  0 0 30px rgba(59,130,246,0.18);
+  --glass-blur: blur(16px);
+  --text-primary:   #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #64748b;
+}
+
 @layer base {
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
@@ -73,14 +89,41 @@
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-base);
-    /* Subtle ambient glows — matches JSMastery reference */
-    background-image:
-      radial-gradient(ellipse 80% 50% at 80% 0%,   rgba(59,130,246,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 20% 100%, rgba(16,185,129,0.06) 0%, transparent 55%);
     background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Base technical grid - responsive size */
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    @media (min-width: 768px) {
+      background-size: 40px 40px;
+    }
   }
+
+  /* Dark mode body grid - slightly more visible */
+  html.dark body {
+    background-image:
+      linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+  }
+
+  /* Dark mode global overrides for hardcoded Tailwind color classes */
+  html.dark .text-slate-900 { color: #f1f5f9 !important; }
+  html.dark .text-slate-800 { color: #e2e8f0 !important; }
+  html.dark .text-slate-700 { color: #cbd5e1 !important; }
+  html.dark .text-slate-600 { color: #94a3b8 !important; }
+  html.dark .text-slate-500 { color: #64748b !important; }
+  html.dark .text-slate-400 { color: #475569 !important; }
+
+  html.dark .bg-slate-50  { background-color: #0a0f1e !important; }
+  html.dark .bg-slate-100 { background-color: #0f172a !important; }
+  html.dark .bg-white     { background-color: #0f172a !important; }
+
+  html.dark .border-slate-200 { border-color: rgba(59,130,246,0.20) !important; }
+  html.dark .border-slate-100 { border-color: rgba(59,130,246,0.12) !important; }
 }
 
 @layer utilities {
@@ -97,19 +140,61 @@
   .bg-section    { background-color: var(--bg-base); }
   .bg-section-alt { background-color: var(--bg-alt); }
 
-  /* Dark glass card */
+  /* Glass card refined for Liquid Glass effect */
   .glass-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: var(--card-shadow);
-    border-radius: 1rem;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
   }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    transition: transform 0.6s ease;
+  }
+
   .glass-card:hover {
     border-color: var(--card-hover-border);
-    box-shadow: var(--card-shadow), var(--card-glow);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(59,130,246,0.15);
+  }
+
+  .glass-card:hover::before {
+    transform: translate(10%, 10%);
+  }
+
+  /* Liquid Glass UI Helper */
+  .liquid-container {
+    position: relative;
+    z-index: 0;
+  }
+
+  .liquid-bg {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: liquid-float 20s ease-in-out infinite alternate;
+  }
+
+  .liquid-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    mix-blend-mode: overlay;
+    animation: blob-float 25s infinite alternate;
   }
 
   /* Section heading underline bar */
@@ -118,7 +203,7 @@
     background: linear-gradient(90deg, #3b82f6, #10b981);
   }
 
-  .section-padding { @apply py-20 px-6 md:px-12 lg:px-24; }
+  .section-padding { @apply py-10 px-5 sm:py-16 sm:px-8 md:py-20 md:px-12 lg:px-24; }
 
   /* Glow button */
   .btn-glow {
@@ -130,6 +215,39 @@
   /* Animations */
   .animate-spin-slow    { animation: spin-slow 14s linear infinite; }
   .animate-loading-bar  { animation: loading-bar 1.8s ease-in-out infinite; }
+  .animate-scan-line    { animation: scan-line 4s ease-in-out infinite; }
+
+  /* Blueprint CAD grid — refined for Light Concept */
+  .cad-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px),
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 10%, transparent 80%);
+  }
+
+  /* Schematic overlay — floating technical annotation layer */
+  .schematic-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle 1px at 80px 80px, rgba(59,130,246,0.4) 0%, transparent 100%),
+      radial-gradient(circle 1px at 160px 80px, rgba(59,130,246,0.4) 0%, transparent 100%),
+      radial-gradient(circle 1px at 80px 160px, rgba(59,130,246,0.4) 0%, transparent 100%);
+    background-size: 160px 160px;
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .schematic-overlay { display: block; }
+  }
 }
 
 /* ── Keyframes ── */
@@ -141,6 +259,23 @@
   0%   { transform: translateX(-100%); }
   50%  { transform: translateX(0%); }
   100% { transform: translateX(100%); }
+}
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes liquid-float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, 10%) scale(1.1); }
+  66% { transform: translate(-10%, 5%) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(100px, 50px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(30px); }
@@ -155,14 +290,26 @@
   to   { height: 0; }
 }
 
-/* ── Vertical Timeline dark overrides ── */
+/* ── Vertical Timeline overrides ── */
 .vertical-timeline::before {
   background: rgba(59,130,246,0.18) !important;
-  width: 2px !important;
+  width: 1.5px !important;
 }
 .vertical-timeline-element-content {
   box-shadow: none !important;
 }
 .vertical-timeline-element-content-arrow {
   display: none !important;
+}
+
+/* Dark mode timeline card backgrounds */
+html.dark .vertical-timeline-element-content {
+  background: rgba(15,23,42,0.85) !important;
+  border: 1px solid rgba(59,130,246,0.20) !important;
+}
+
+/* Dark mode for skill cards with bg-white */
+html.dark [class*="rounded"][class*="bg-white"],
+html.dark [class*="rounded-3xl"] {
+  background: rgba(15,23,42,0.85) !important;
 }

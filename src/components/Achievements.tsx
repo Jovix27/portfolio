@@ -27,14 +27,14 @@ const Achievements = () => (
         viewport={{ once: true }} transition={{ duration: 0.7 }}
         className="text-center mb-14"
       >
-        <p className="text-blue-400 text-sm uppercase tracking-widest font-medium mb-2">Recognition</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">Recognition</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
           Achievements & <span className="text-hero-gradient">Leadership</span>
         </h2>
         <div className="section-bar" />
       </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
         {achievements.map((a, i) => {
           const Icon = a.icon;
           return (
@@ -52,8 +52,8 @@ const Achievements = () => (
                   <Icon className="h-5 w-5" style={{ color: a.color }} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-base leading-tight">{a.title}</h3>
-                  <p className="text-sm text-white/45 mt-1 leading-snug">{a.org}</p>
+                  <h3 className="font-bold text-slate-900 text-base leading-tight">{a.title}</h3>
+                  <p className="text-sm text-slate-500 mt-1 leading-snug">{a.org}</p>
                   <span
                     className="inline-block mt-2 text-xs font-semibold px-2.5 py-0.5 rounded-full"
                     style={{ background: `${a.color}14`, color: a.color, border: `1px solid ${a.color}28` }}
@@ -71,14 +71,14 @@ const Achievements = () => (
         viewport={{ once: true }} transition={{ duration: 0.7 }}
         className="text-center mb-14"
       >
-        <p className="text-blue-400 text-sm uppercase tracking-widest font-medium mb-2">Credentials</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">Credentials</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
           <span className="text-hero-gradient">Certifications</span>
         </h2>
         <div className="section-bar" />
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {certifications.map((c, i) => (
           <motion.div
             key={i}
@@ -88,12 +88,12 @@ const Achievements = () => (
             className="p-6 rounded-2xl glass-card flex items-start gap-4"
           >
             <div className="p-3 rounded-xl flex-shrink-0"
-              style={{ background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.22)" }}>
-              <Award className="h-5 w-5 text-emerald-400" />
+              style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
+              <Award className="h-5 w-5 text-emerald-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-white text-sm leading-snug">{c.title}</h3>
-              <p className="text-xs text-white/40 mt-1">{c.issuer}</p>
+            <h3 className="font-bold text-slate-900 text-sm leading-snug">{c.title}</h3>
+              <p className="text-xs text-slate-500 mt-1">{c.issuer}</p>
               <span className="inline-block mt-2 text-xs font-semibold px-2.5 py-0.5 rounded-full"
                 style={{ background: "rgba(16,185,129,0.12)", color: "#10b981", border: "1px solid rgba(16,185,129,0.22)" }}>
                 {c.year}
