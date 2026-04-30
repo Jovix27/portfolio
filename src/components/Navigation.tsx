@@ -160,15 +160,16 @@ const Navigation = () => {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2.5 sm:p-3 rounded-xl transition-all duration-200"
+            className="p-3 sm:p-3.5 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg"
             style={{
-              background: isDark ? "rgba(59,130,246,0.15)" : "rgba(59,130,246,0.08)",
-              border: "1px solid rgba(59,130,246,0.25)",
+              background: isDark ? "rgba(59,130,246,0.25)" : "rgba(59,130,246,0.12)",
+              border: "2px solid rgba(59,130,246,0.4)",
+              boxShadow: isDark ? "0 0 15px rgba(59,130,246,0.3)" : "0 0 10px rgba(59,130,246,0.1)",
             }}
           >
             {isDark
-              ? <Sun size={20} style={{ color: "#fbbf24" }} />
-              : <Moon size={20} style={{ color: "#6366f1" }} />
+              ? <Sun size={22} style={{ color: "#fbbf24", filter: "drop-shadow(0 0 5px rgba(251,191,36,0.4))" }} />
+              : <Moon size={22} style={{ color: "#6366f1", filter: "drop-shadow(0 0 5px rgba(99,102,241,0.4))" }} />
             }
           </button>
         </div>

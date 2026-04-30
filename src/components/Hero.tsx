@@ -24,7 +24,7 @@ const Hero = () => {
     <section
       id="home"
       className="relative flex items-center justify-center overflow-hidden bg-section transition-colors duration-500"
-      style={{ minHeight: "100dvh", paddingTop: "5rem" }}
+      style={{ minHeight: "100dvh", paddingTop: "3.5rem" }}
     >
       {/* Blueprint grid */}
       <div className="absolute inset-0 z-0 pointer-events-none">
