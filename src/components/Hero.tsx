@@ -34,21 +34,23 @@ const Hero = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card"
-            style={{
-              background: "rgba(59,130,246,0.04)",
-              border: "1px solid rgba(255,255,255,0.4)",
-            }}
-          >
-            <HardHat className="h-3.5 w-3.5 text-blue-600 flex-shrink-0" />
-            <span className="text-xs text-blue-600 font-medium">
-              IGBC AP · AI + BIM Engineer · ConTech
-            </span>
-          </motion.div>
+          <div className="flex justify-center md:justify-start">
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card"
+              style={{
+                background: "rgba(59,130,246,0.04)",
+                border: "1px solid rgba(255,255,255,0.4)",
+              }}
+            >
+              <HardHat className="h-3.5 w-3.5 text-blue-600 flex-shrink-0" />
+              <span className="text-xs text-blue-600 font-medium">
+                IGBC AP · AI + BIM Engineer · ConTech
+              </span>
+            </motion.div>
+          </div>
 
           {/* Name */}
           <div className="space-y-3">

@@ -65,8 +65,9 @@ const Hotspot = ({ name, pos, target, desc }: { name: string; pos: any; target: 
 };
 
 const GlobeModel = () => {
+  const isMobile = window.innerWidth < 768;
   const meshRef = useRef<THREE.Mesh>(null);
-  const geometry = useMemo(() => new THREE.SphereGeometry(2.5, 32, 24), []);
+  const geometry = useMemo(() => new THREE.SphereGeometry(2.5, isMobile ? 24 : 32, isMobile ? 18 : 24), [isMobile]);
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -84,7 +85,7 @@ const GlobeModel = () => {
 
       {/* 2. Main Wireframe - Blue */}
       <mesh ref={meshRef}>
-        <sphereGeometry args={[2.5, 32, 24]} />
+        <primitive object={geometry} attach="geometry" />
         <meshBasicMaterial 
           color="#3b82f6" 
           wireframe 
@@ -100,7 +101,7 @@ const GlobeModel = () => {
 
       {/* 3. Inner Glow */}
       <mesh>
-        <sphereGeometry args={[2.45, 32, 24]} />
+        <sphereGeometry args={[2.45, isMobile ? 16 : 32, isMobile ? 12 : 24]} />
         <meshBasicMaterial color="#3b82f6" transparent opacity={0.05} />
       </mesh>
     </group>
@@ -112,7 +113,8 @@ const EarthCanvas = () => {
     <div className="w-full h-full cursor-pointer">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: window.innerWidth >= 768, alpha: true, powerPreference: "high-performance" }}
+        dpr={[1, 2]}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#3b82f6" />
