@@ -4,8 +4,8 @@ import { useTheme } from "@/hooks/useTheme";
 
 const stats = [
   { value: "3+",   label: "AI Projects Built" },
-  { value: "88%",  label: "Safety Accuracy" },
-  { value: "30%",  label: "Energy Reduction" },
+  { value: "IGBC", label: "AP Associate" },
+  { value: "R&D",  label: "Engineering Focus" },
   { value: "15+",  label: "Software Proficiency" },
 ];
 
@@ -16,10 +16,10 @@ const focusAreas = [
   { icon: Car,       label: "Transportation Planning",       color: "#f59e0b" },
 ];
 
-const SectionHeading = ({ sub, title, accent }: { sub: string; title: string; accent: string }) => (
+const SectionHeading = ({ sub, title, accent, isDark }: { sub: string; title: string; accent: string; isDark: boolean }) => (
   <div className="text-center mb-16">
-    <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">{sub}</p>
-    <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
+    <p className="text-blue-500 text-sm uppercase tracking-widest font-bold mb-3">{sub}</p>
+    <h2 className={`text-4xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
       {title} <span className="text-hero-gradient">{accent}</span>
     </h2>
     <div className="section-bar bg-blue-500/20" />
@@ -52,7 +52,7 @@ const About = () => {
         initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.7 }}
       >
-        <SectionHeading sub="Introduction" title="About" accent="Me" />
+        <SectionHeading sub="Introduction" title="About" accent="Me" isDark={isDark} />
       </motion.div>
 
       <div className="grid md:grid-cols-3 gap-8 items-start">
@@ -63,32 +63,32 @@ const About = () => {
           initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <div className="rounded-2xl p-8" style={card}>
-            <p className="text-lg leading-relaxed text-slate-600">
-              I'm <span className="font-bold text-slate-900">Joseva A</span> — a Civil Engineering
-              undergraduate at <span className="font-bold text-slate-900">SASTRA Deemed University</span>,
+          <div className="rounded-2xl p-8 glass-card">
+            <p className={`text-lg leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+              I'm <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Joseva A</span> — a Civil Engineering
+              undergraduate at <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>SASTRA Deemed University</span>,
               operating at the intersection of{" "}
-              <span className="text-blue-600 font-semibold">AI systems</span>,{" "}
-              <span className="text-blue-600 font-semibold">BIM workflows</span>, and{" "}
-              <span className="text-emerald-600 font-semibold">sustainable infrastructure</span>.
+              <span className="text-blue-500 font-semibold">AI systems</span>,{" "}
+              <span className="text-blue-500 font-semibold">BIM workflows</span>, and{" "}
+              <span className="text-emerald-500 font-semibold">sustainable infrastructure</span>.
             </p>
-            <p className="text-base leading-relaxed text-slate-500 mt-4">
-              I specialize in building scalable solutions that improve site safety, efficiency, and sustainability. From <span className="text-slate-900 font-medium">AI-powered PPE safety monitoring</span> achieving <span className="text-blue-600 font-bold">~88% detection accuracy</span> to <span className="text-slate-900 font-medium">BIM-driven energy models</span> reducing consumption by <span className="text-emerald-600 font-bold">~30%</span>, my work focuses on delivering measurable outcomes across construction workflows.
+            <p className={`text-base leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'} mt-4`}>
+              I specialize in building scalable solutions that improve site safety, efficiency, and sustainability. My work leverages <span className={`${isDark ? 'text-slate-200' : 'text-slate-900'} font-medium`}>AI-powered safety monitoring</span>, <span className={`${isDark ? 'text-slate-200' : 'text-slate-900'} font-medium`}>BIM-driven energy modeling</span>, and <span className="text-emerald-500 font-semibold">sustainable infrastructure</span> to deliver measurable outcomes across construction workflows.
             </p>
-            <p className="text-base leading-relaxed text-slate-500 mt-4">
+            <p className={`text-base leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'} mt-4`}>
               I don't just model buildings — I engineer systems that make construction smarter. My work bridges the gap between civil engineering fundamentals and cutting-edge technology, focusing on delivering intelligent, production-ready solutions.
             </p>
-            <p className="text-base leading-relaxed text-slate-400 mt-4 text-xs italic">
-              Currently pursuing my B.Tech at <span className="text-slate-900">SASTRA Deemed University</span>. Interned at <span className="text-blue-600">L&T Chennai Metro</span> and researched at <span className="text-blue-600">NIT Trichy</span>.
+            <p className={`text-xs italic ${isDark ? 'text-slate-500' : 'text-slate-400'} mt-6`}>
+              Currently pursuing my B.Tech at <span className={isDark ? 'text-slate-300' : 'text-slate-900'}>SASTRA Deemed University</span>. Interned at <span className="text-blue-500">L&T Chennai Metro</span> and researched at <span className="text-blue-500">NIT Trichy</span>.
             </p>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 gap-4 mt-10">
             {stats.map((s, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-3 sm:p-5 rounded-2xl glass-card border-blue-500/10 bg-white/50">
-                <span className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">{s.value}</span>
-                <span className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider leading-tight">{s.label}</span>
+              <div key={i} className="flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl glass-card">
+                <span className={`text-2xl sm:text-3xl font-black tracking-tight mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>{s.value}</span>
+                <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest leading-tight ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{s.label}</span>
               </div>
             ))}
           </div>
@@ -149,24 +149,24 @@ const About = () => {
           </div>
 
           {/* Education card */}
-          <div className="rounded-2xl p-6" style={educationCard}>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2.5 rounded-xl" style={{ background: "rgba(59,130,246,0.10)", border: "1px solid rgba(59,130,246,0.15)" }}>
-                <GraduationCap className="h-5 w-5 text-blue-600" />
+          <div className="rounded-2xl p-6 glass-card">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 rounded-xl flex items-center justify-center" style={{ background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.2)" }}>
+                <GraduationCap className="h-5 w-5 text-blue-500" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Education</h3>
+              <h3 className={`text-lg font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>Education</h3>
             </div>
-            <p className="font-bold text-slate-900 text-sm">Bachelor of Technology</p>
-            <p className="text-xs text-blue-600 font-semibold mt-0.5">Civil Engineering</p>
-            <div className="mt-3 pt-3 border-t border-slate-200">
-              <p className="text-sm text-slate-600 font-medium">SASTRA Deemed University</p>
-              <p className="text-xs text-slate-400 mt-0.5">2022 – 2026 · Thanjavur, TN</p>
+            <p className={`font-bold text-sm ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>Bachelor of Technology</p>
+            <p className="text-xs text-blue-500 font-bold mt-0.5 uppercase tracking-wide">Civil Engineering</p>
+            <div className={`mt-4 pt-4 border-t ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
+              <p className={`text-sm font-semibold ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>SASTRA Deemed University</p>
+              <p className={`text-[11px] font-medium mt-1 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>2022 – 2026 · Thanjavur, TN</p>
             </div>
-            <div className="mt-3 pt-3 border-t border-slate-200">
-              <p className="text-[10px] text-slate-400 uppercase tracking-widest">CGPA</p>
+            <div className={`mt-4 pt-4 border-t ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
+              <p className={`text-[9px] uppercase tracking-widest font-black ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>Cumulative GPA</p>
               <div className="flex items-end gap-2 mt-1">
                 <p className="text-3xl font-black text-hero-gradient">7.2</p>
-                <p className="text-xs text-slate-400 mb-1">/ 10</p>
+                <p className={`text-xs font-bold mb-1.5 ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>/ 10</p>
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@ const About = () => {
         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
       >
-        <p className="text-center text-slate-400 text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-6">Core Focus Areas</p>
+        <p className={`text-center text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] mb-8 ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>Core Focus Areas</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {focusAreas.map((area, i) => {
             const Icon = area.icon;
@@ -199,16 +199,16 @@ const About = () => {
                 key={area.label}
                 initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }} transition={{ delay: 0.08 * i }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="p-5 rounded-2xl text-center cursor-default transition-all glass-card"
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="p-6 rounded-2xl text-center cursor-default transition-all glass-card group"
               >
                 <div
-                  className="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: `${area.color}18`, border: `1px solid ${area.color}30` }}
+                  className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                  style={{ background: `${area.color}12`, border: `1px solid ${area.color}25` }}
                 >
-                  <Icon className="h-5 w-5" style={{ color: area.color }} />
+                  <Icon className="h-6 w-6" style={{ color: area.color }} />
                 </div>
-                <p className="text-sm font-medium text-slate-700">{area.label}</p>
+                <p className={`text-xs font-bold leading-tight ${isDark ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-700 group-hover:text-slate-900'} transition-colors`}>{area.label}</p>
               </motion.div>
             );
           })}

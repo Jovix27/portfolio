@@ -38,14 +38,14 @@
     --amber:   #f59e0b;
 
     /* ── Light mode surfaces ── */
-    --bg-base:    #f0f4ff;
-    --bg-alt:     #e8eef8;
-    --card-bg:    rgba(255, 255, 255, 0.65);
-    --card-border: rgba(255, 255, 255, 0.80);
-    --card-inner-highlight: rgba(255,255,255,0.90);
-    --card-hover-border: rgba(59, 130, 246, 0.45);
-    --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255,255,255,0.90);
-    --card-hover-shadow: 0 20px 48px rgba(59,130,246,0.14), inset 0 1px 0 rgba(255,255,255,0.95);
+    --bg-base:    #f8faff;
+    --bg-alt:     #f1f5f9;
+    --card-bg:    rgba(255, 255, 255, 0.45);
+    --card-border: rgba(255, 255, 255, 0.6);
+    --card-inner-highlight: rgba(255,255,255,0.8);
+    --card-hover-border: rgba(59, 130, 246, 0.4);
+    --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+    --card-hover-shadow: 0 20px 48px rgba(59,130,246,0.1);
     --glass-blur: blur(20px);
 
     /* ── Typography ── */
@@ -69,16 +69,16 @@
 
 /* ── Dark mode: deep navy glass ── */
 html.dark {
-  --bg-base:    #050d1a;
-  --bg-alt:     #070f1d;
-  --card-bg:    rgba(13, 22, 48, 0.55);
-  --card-border: rgba(255, 255, 255, 0.07);
-  --card-inner-highlight: rgba(255, 255, 255, 0.04);
-  --card-hover-border: rgba(99, 179, 250, 0.40);
-  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.05);
-  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.60), 0 0 0 1px rgba(59,130,246,0.15), inset 0 1px 0 rgba(255,255,255,0.07);
+  --bg-base:    #020617;
+  --bg-alt:     #030712;
+  --card-bg:    rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --card-inner-highlight: rgba(255, 255, 255, 0.02);
+  --card-hover-border: rgba(59, 130, 246, 0.3);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.5);
   --glass-blur: blur(24px);
-  --text-primary:   #e2e8f0;
+  --text-primary:   #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted:     #475569;
 }
@@ -95,37 +95,33 @@ html.dark {
     min-height: 100vh;
     min-height: 100dvh;
     transition: background-color 0.4s ease, color 0.4s ease;
-    background-image:
-      linear-gradient(rgba(59,130,246,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.025) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  @media (min-width: 768px) {
-    body { background-size: 44px 44px; }
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.03) 0%, transparent 50%);
   }
 
   html.dark body {
-    background-image:
-      linear-gradient(rgba(59,130,246,0.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.055) 1px, transparent 1px);
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.07) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.07) 0%, transparent 50%);
   }
 
   /* ── Dark mode Tailwind class overrides ── */
-  html.dark .text-slate-900 { color: #f1f5f9 !important; }
-  html.dark .text-slate-800 { color: #e2e8f0 !important; }
-  html.dark .text-slate-700 { color: #cbd5e1 !important; }
-  html.dark .text-slate-600 { color: #94a3b8 !important; }
-  html.dark .text-slate-500 { color: #64748b !important; }
-  html.dark .text-slate-400 { color: #475569 !important; }
+  html.dark .text-slate-900 { color: #f8fafc !important; }
+  html.dark .text-slate-800 { color: #f1f5f9 !important; }
+  html.dark .text-slate-700 { color: #e2e8f0 !important; }
+  html.dark .text-slate-600 { color: #cbd5e1 !important; }
+  html.dark .text-slate-500 { color: #94a3b8 !important; }
+  html.dark .text-slate-400 { color: #64748b !important; }
 
-  html.dark .bg-slate-50  { background-color: #070f1d !important; }
-  html.dark .bg-slate-100 { background-color: #0d1a30 !important; }
-  html.dark .bg-white     { background-color: #0d1a30 !important; }
+  html.dark .bg-slate-50  { background-color: #030712 !important; }
+  html.dark .bg-slate-100 { background-color: #0f172a !important; }
+  html.dark .bg-white     { background-color: transparent !important; }
 
-  html.dark .border-slate-200 { border-color: rgba(59,130,246,0.18) !important; }
-  html.dark .border-slate-100 { border-color: rgba(59,130,246,0.10) !important; }
-  html.dark .border-blue-100  { border-color: rgba(59,130,246,0.18) !important; }
-  html.dark .border-blue-50   { border-color: rgba(59,130,246,0.10) !important; }
+  html.dark .border-slate-200 { border-color: rgba(255,255,255,0.06) !important; }
+  html.dark .border-slate-100 { border-color: rgba(255,255,255,0.04) !important; }
+  html.dark .border-blue-100  { border-color: rgba(59,130,246,0.15) !important; }
+  html.dark .border-blue-50   { border-color: rgba(59,130,246,0.1) !important; }
 }
 
 @layer utilities {

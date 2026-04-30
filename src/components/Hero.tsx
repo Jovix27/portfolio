@@ -31,7 +31,7 @@ const Hero = () => {
         <BlueprintGrid />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 py-8 md:py-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-24 py-6 md:py-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
 
         {/* ── Left: text ── */}
         <motion.div
@@ -133,24 +133,34 @@ const Hero = () => {
 
           {/* Contact chips */}
           <motion.div
-            className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 border-t"
-            style={{ borderColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)" }}
+            className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 border-t"
+            style={{ borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.70 }}
           >
             {contactChips.map(({ icon: Icon, label, value, href }) => (
-              <div key={label}>
-                <div className="flex items-center gap-1 mb-0.5" style={{ color: isDark ? "#60a5fa" : "#3b82f6", opacity: 0.75 }}>
-                  <Icon className="h-3 w-3 flex-shrink-0" />
-                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest hidden sm:block">{label}</span>
+              <div key={label} className="flex items-center gap-2">
+                <div 
+                  className="p-1.5 rounded-lg flex-shrink-0"
+                  style={{ 
+                    background: isDark ? "rgba(59,130,246,0.12)" : "rgba(59,130,246,0.06)",
+                    color: isDark ? "#60a5fa" : "#3b82f6" 
+                  }}
+                >
+                  <Icon className="h-3.5 w-3.5" />
                 </div>
-                {href
-                  ? <a href={href} className="text-[10px] sm:text-xs leading-tight hover:text-blue-500 transition-colors truncate block"
-                      style={{ color: isDark ? "#64748b" : "#94a3b8" }}>{value}</a>
-                  : <p className="text-[10px] sm:text-xs leading-tight truncate"
-                      style={{ color: isDark ? "#64748b" : "#94a3b8" }}>{value}</p>
-                }
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[9px] font-bold uppercase tracking-widest leading-none mb-0.5" style={{ color: isDark ? "#475569" : "#94a3b8" }}>
+                    {label}
+                  </span>
+                  {href
+                    ? <a href={href} className="text-[11px] sm:text-xs leading-tight font-medium hover:text-blue-500 transition-colors truncate max-w-[140px]"
+                        style={{ color: isDark ? "#94a3b8" : "#475569" }}>{value}</a>
+                    : <p className="text-[11px] sm:text-xs leading-tight font-medium truncate max-w-[140px]"
+                        style={{ color: isDark ? "#94a3b8" : "#475569" }}>{value}</p>
+                  }
+                </div>
               </div>
             ))}
           </motion.div>
