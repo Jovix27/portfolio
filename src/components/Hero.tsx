@@ -39,7 +39,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mt-4 md:mt-0"
               style={{
                 background: "rgba(59,130,246,0.04)",
                 border: "1px solid rgba(255,255,255,0.4)",
@@ -69,7 +69,17 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter"
             >
-              <span className="block" style={{ color: isDark ? "#f8fafc" : "#0f172a" }}>Joseva A</span>
+              <span 
+                className="block" 
+                style={{ 
+                  background: "linear-gradient(90deg, #3b82f6 0%, #10b981 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                Joseva A
+              </span>
             </motion.h1>
           </div>
 
