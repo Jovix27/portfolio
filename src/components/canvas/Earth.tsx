@@ -67,7 +67,10 @@ const Hotspot = ({ name, pos, target, desc }: { name: string; pos: any; target: 
 const GlobeModel = () => {
   const isMobile = window.innerWidth < 768;
   const meshRef = useRef<THREE.Mesh>(null);
-  const geometry = useMemo(() => new THREE.SphereGeometry(2.5, isMobile ? 24 : 32, isMobile ? 18 : 24), [isMobile]);
+  const geometry = useMemo(() => {
+    // Significantly lower resolution for mobile to prevent loading hangups
+    return new THREE.SphereGeometry(2.5, isMobile ? 20 : 32, isMobile ? 14 : 24);
+  }, [isMobile]);
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -79,7 +82,7 @@ const GlobeModel = () => {
     <group>
       {/* 1. Boundary Circle - Blue */}
       <mesh>
-        <ringGeometry args={[2.55, 2.58, 64]} />
+        <ringGeometry args={[2.55, 2.58, isMobile ? 32 : 64]} />
         <meshBasicMaterial color="#3b82f6" side={THREE.DoubleSide} transparent opacity={0.4} />
       </mesh>
 
@@ -101,7 +104,7 @@ const GlobeModel = () => {
 
       {/* 3. Inner Glow */}
       <mesh>
-        <sphereGeometry args={[2.45, isMobile ? 16 : 32, isMobile ? 12 : 24]} />
+        <sphereGeometry args={[2.45, isMobile ? 12 : 32, isMobile ? 8 : 24]} />
         <meshBasicMaterial color="#3b82f6" transparent opacity={0.05} />
       </mesh>
     </group>
@@ -109,12 +112,18 @@ const GlobeModel = () => {
 };
 
 const EarthCanvas = () => {
+  const isMobile = window.innerWidth < 768;
   return (
     <div className="w-full h-full cursor-pointer">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        gl={{ antialias: window.innerWidth >= 768, alpha: true, powerPreference: "high-performance" }}
-        dpr={[1, 2]}
+        gl={{ 
+          antialias: !isMobile, // Disable antialiasing on mobile for performance
+          alpha: true, 
+          powerPreference: "high-performance",
+          preserveDrawingBuffer: true 
+        }}
+        dpr={isMobile ? [1, 1.5] : [1, 2]} // Lower DPR on mobile
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#3b82f6" />
@@ -131,10 +140,17 @@ const EarthCanvas = () => {
 };
 
 const EarthFallback = () => (
-  <div className="w-full h-full flex items-center justify-center bg-slate-50/50">
-     <div className="w-48 h-48 rounded-full border-2 border-blue-500/10 border-t-blue-500 animate-spin" />
+  <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900/10 backdrop-blur-sm rounded-3xl">
+     <div className="relative w-32 h-32 flex items-center justify-center">
+       {/* Animated pulse rings */}
+       <div className="absolute inset-0 rounded-full border-2 border-blue-500/20 animate-ping" />
+       <div className="absolute inset-4 rounded-full border-2 border-blue-500/10 animate-pulse" />
+       <div className="w-20 h-20 rounded-full border-2 border-t-blue-500 border-r-blue-500/30 border-b-blue-500/10 border-l-blue-500/30 animate-spin" />
+     </div>
+     <p className="mt-6 text-[10px] text-blue-500 font-black uppercase tracking-[0.3em] animate-pulse">Initializing Interface</p>
   </div>
 );
 
 export { EarthFallback };
 export default EarthCanvas;
+

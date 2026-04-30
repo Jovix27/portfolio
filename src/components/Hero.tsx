@@ -31,11 +31,11 @@ const Hero = () => {
         <BlueprintGrid />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-24 py-6 md:py-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-24 py-4 md:py-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
         {/* ── Left: text ── */}
         <motion.div
-          className="flex flex-col gap-5 md:gap-7"
+          className="flex flex-col gap-4 md:gap-7"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -45,25 +45,25 @@ const Hero = () => {
             initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.55 }}
-            className="inline-flex self-start items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full glass-card"
+            className="inline-flex self-start items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full glass-card whitespace-nowrap overflow-hidden max-w-[calc(100vw-3rem)]"
             style={{
               background: isDark ? "rgba(37,99,235,0.12)" : "rgba(59,130,246,0.07)",
               borderColor: isDark ? "rgba(99,179,250,0.20)" : "rgba(59,130,246,0.22)",
             }}
           >
             <HardHat className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-blue-500 flex-shrink-0" />
-            <span className="text-[10px] sm:text-xs text-blue-500 font-semibold tracking-wide">
-              IGBC AP · AI + BIM Engineer · ConTech
+            <span className="text-[9px] xs:text-[10px] sm:text-xs text-blue-500 font-bold tracking-tight sm:tracking-wide">
+              IGBC AP Associate · AI + BIM Engineer
             </span>
           </motion.div>
 
           {/* Name block */}
-          <div>
+          <div className="space-y-1 sm:space-y-2">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="text-xs sm:text-sm font-bold tracking-[0.22em] uppercase mb-2"
+              className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.22em] uppercase"
               style={{ color: isDark ? "#60a5fa" : "#2563eb" }}
             >
               Hi there, I'm
@@ -73,7 +73,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.65 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-none"
+              className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9]"
               style={{
                 background: "linear-gradient(90deg, #3b82f6 0%, #10b981 100%)",
                 WebkitBackgroundClip: "text",
@@ -87,18 +87,19 @@ const Hero = () => {
 
           {/* Tagline */}
           <motion.div
+            className="space-y-3 sm:space-y-4"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.6 }}
           >
             <h2
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug mb-3"
+              className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold leading-tight"
               style={{ color: isDark ? "#e2e8f0" : "#1e293b" }}
             >
               I design intelligent construction systems and solve real-world civil engineering problems using AI.
             </h2>
             <p
-              className="text-sm sm:text-base leading-relaxed"
+              className="text-xs sm:text-sm md:text-base leading-relaxed"
               style={{ color: isDark ? "#94a3b8" : "#64748b" }}
             >
               Bridging traditional civil engineering with intelligent, scalable systems — from BIM workflows to AI-driven site safety.
@@ -107,21 +108,21 @@ const Hero = () => {
 
           {/* CTA buttons */}
           <motion.div
-            className="flex flex-col xs:flex-row gap-3"
+            className="flex flex-col xs:flex-row gap-3 pt-2"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.5 }}
           >
             <button
               onClick={() => goto("#projects")}
-              className="flex-1 xs:flex-none px-6 py-3 rounded-xl text-sm font-semibold text-white btn-glow"
+              className="flex-1 xs:flex-none px-6 py-3.5 rounded-xl text-xs font-bold text-white btn-glow uppercase tracking-widest"
               style={{ background: "linear-gradient(135deg,#3b82f6,#1d4ed8)" }}
             >
               View My Work
             </button>
             <button
               onClick={() => goto("#contact")}
-              className="flex-1 xs:flex-none px-6 py-3 rounded-xl text-sm font-semibold glass-card"
+              className="flex-1 xs:flex-none px-6 py-3.5 rounded-xl text-xs font-bold glass-card uppercase tracking-widest"
               style={{
                 color: isDark ? "#cbd5e1" : "#475569",
                 borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(59,130,246,0.20)",
@@ -133,7 +134,7 @@ const Hero = () => {
 
           {/* Contact chips */}
           <motion.div
-            className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 border-t"
+            className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-6 border-t"
             style={{ borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -148,22 +149,23 @@ const Hero = () => {
                     color: isDark ? "#60a5fa" : "#3b82f6" 
                   }}
                 >
-                  <Icon className="h-3.5 w-3.5" />
+                  <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="text-[9px] font-bold uppercase tracking-widest leading-none mb-0.5" style={{ color: isDark ? "#475569" : "#94a3b8" }}>
+                  <span className="text-[8px] font-bold uppercase tracking-widest leading-none mb-0.5" style={{ color: isDark ? "#475569" : "#94a3b8" }}>
                     {label}
                   </span>
                   {href
-                    ? <a href={href} className="text-[11px] sm:text-xs leading-tight font-medium hover:text-blue-500 transition-colors truncate max-w-[140px]"
+                    ? <a href={href} className="text-[10px] sm:text-xs leading-tight font-medium hover:text-blue-500 transition-colors truncate max-w-[120px]"
                         style={{ color: isDark ? "#94a3b8" : "#475569" }}>{value}</a>
-                    : <p className="text-[11px] sm:text-xs leading-tight font-medium truncate max-w-[140px]"
+                    : <p className="text-[10px] sm:text-xs leading-tight font-medium truncate max-w-[120px]"
                         style={{ color: isDark ? "#94a3b8" : "#475569" }}>{value}</p>
                   }
                 </div>
               </div>
             ))}
           </motion.div>
+
         </motion.div>
 
         {/* ── Right: 3D desk (desktop only) ── */}

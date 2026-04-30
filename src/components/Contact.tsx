@@ -93,11 +93,14 @@ const Contact = () => {
             viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
             {/* Globe Card */}
-            <div className="h-64 sm:h-80 relative rounded-3xl overflow-hidden glass-card shadow-2xl"
+            <div className="h-72 sm:h-80 md:h-96 relative rounded-3xl overflow-hidden glass-card shadow-2xl"
               style={{ ...cardStyle, border: isDark ? "1px solid rgba(59,130,246,0.15)" : "1px solid rgba(59,130,246,0.2)" }}>
-              <Suspense fallback={<EarthFallback />}><EarthCanvas /></Suspense>
-              <div className={`absolute inset-0 pointer-events-none ${isDark ? 'bg-gradient-to-t from-[#020617]/80 to-transparent' : 'bg-gradient-to-t from-slate-200/50 to-transparent'}`} />
+              <div className="absolute inset-0 z-0">
+                <Suspense fallback={<EarthFallback />}><EarthCanvas /></Suspense>
+              </div>
+              <div className={`absolute inset-0 pointer-events-none z-10 ${isDark ? 'bg-gradient-to-t from-[#020617]/80 to-transparent' : 'bg-gradient-to-t from-slate-200/50 to-transparent'}`} />
             </div>
+
 
             {/* Contact Chips */}
             <div className="space-y-4">

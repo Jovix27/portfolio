@@ -145,22 +145,22 @@ const Navigation = () => {
         </div>
 
         {/* Mobile right controls */}
-        <div className="md:hidden flex items-center gap-4">
-          {/* Menu Button (Hamburger) - Moved to be more primary and visible */}
+        <div className="md:hidden flex items-center gap-3">
+          {/* Menu Button (Hamburger) */}
           <button
-            className="p-1.5 transition-colors"
+            className="p-2 sm:p-2.5 transition-colors rounded-xl hover:bg-blue-500/10"
             style={{ color: isDark ? "#ffffff" : "#0f172a" }}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
-            {open ? <X size={28} /> : <Menu size={28} strokeWidth={2.5} />}
+            {open ? <X size={26} /> : <Menu size={26} strokeWidth={2.5} />}
           </button>
 
-          {/* Mobile theme toggle - Moved slightly left for better thumb reach */}
+          {/* Mobile theme toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2.5 rounded-full transition-all duration-200"
+            className="p-2.5 sm:p-3 rounded-xl transition-all duration-200"
             style={{
               background: isDark ? "rgba(59,130,246,0.15)" : "rgba(59,130,246,0.08)",
               border: "1px solid rgba(59,130,246,0.25)",
@@ -172,6 +172,7 @@ const Navigation = () => {
             }
           </button>
         </div>
+
       </div>
 
       {/* Mobile menu */}
