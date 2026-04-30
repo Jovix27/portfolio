@@ -1,3 +1,4 @@
+import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
@@ -6,11 +7,43 @@ import "./index.css";
 console.log("Base URL:", import.meta.env.BASE_URL);
 console.log("Mode:", import.meta.env.MODE);
 
+// Simple Error Boundary component
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean, error: Error | null }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: "20px", fontFamily: "sans-serif", textAlign: "center", color: "white", backgroundColor: "#050816", minHeight: "100vh" }}>
+          <h1>Something went wrong</h1>
+          <p>{this.state.error?.message}</p>
+          <button onClick={() => window.location.reload()} style={{ padding: "10px 20px", marginTop: "20px", cursor: "pointer" }}>
+            Reload Page
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {
+  console.error("Critical: Root element not found!");
   document.body.innerHTML = `
-    <div style="padding: 20px; font-family: sans-serif; text-align: center;">
+    <div style="padding: 20px; font-family: sans-serif; text-align: center; color: white; background: #050816; height: 100vh;">
       <h1>Critical Error</h1>
       <p>Root element not found. Please check the HTML structure.</p>
     </div>
@@ -18,12 +51,21 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
+// Force dark mode
+document.documentElement.classList.add("dark");
+
 // Clear any existing content in root before React renders
 rootElement.innerHTML = "";
 
 try {
+  console.log("Starting React render...");
   const root = createRoot(rootElement);
-  root.render(<App />);
+  root.render(
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  );
+  console.log("Render call completed");
 } catch (error) {
   console.error("Failed to render app:", error);
   const errorMessage = error instanceof Error ? error.message : String(error);

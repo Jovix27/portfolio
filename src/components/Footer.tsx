@@ -1,57 +1,79 @@
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, ExternalLink, Mail } from "lucide-react";
 
-const Footer = () => {
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      url: "https://linkedin.com/in/joseva2748",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      url: "https://github.com/Jovix27",
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      url: "mailto:ajoseva04@gmail.com",
-    },
-  ];
+const socials = [
+  { icon: Linkedin,    label: "LinkedIn", url: "https://linkedin.com/in/joseva2748" },
+  { icon: ExternalLink,label: "GitHub",   url: "https://github.com/Jovix27" },
+  { icon: Mail,        label: "Email",    url: "mailto:ajoseva04@gmail.com" },
+];
 
-  return (
-    <footer className="bg-foreground text-background py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        <div className="flex flex-col items-center gap-6">
-          <div className="flex gap-6">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-background/10 rounded-full hover:bg-primary transition-colors hover:text-primary-foreground"
-                  aria-label={social.label}
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
-              );
-            })}
-          </div>
-          <div className="text-center">
-            <p className="text-sm font-medium">
-              © {new Date().getFullYear()} Joseva A. All rights reserved.
-            </p>
-            <p className="text-xs text-background/60 mt-2 max-w-md mx-auto">
-              Synthesizing AI, BIM, and Sustainable Design to build the future of infrastructure.
-            </p>
-          </div>
-        </div>
+const Footer = () => (
+  <footer
+    style={{
+      background: "rgba(5,8,22,0.95)",
+      borderTop: "1px solid rgba(255,255,255,0.06)",
+      backdropFilter: "blur(20px)",
+    }}
+    className="py-12"
+  >
+    <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex flex-col items-center gap-6">
+      {/* Logo */}
+      <span
+        className="text-2xl font-black tracking-tight select-none"
+        style={{
+          background: "linear-gradient(90deg,#3b82f6,#10b981)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        Joseva A
+      </span>
+
+      {/* Nav links */}
+      <div className="flex flex-wrap justify-center gap-6 text-sm text-white/35 font-medium">
+        {["About","Experience","Skills","Projects","Contact"].map((l) => (
+          <a
+            key={l}
+            href={`#${l.toLowerCase()}`}
+            onClick={(e) => { e.preventDefault(); document.querySelector(`#${l.toLowerCase()}`)?.scrollIntoView({ behavior: "smooth" }); }}
+            className="hover:text-white transition-colors"
+          >
+            {l}
+          </a>
+        ))}
       </div>
-    </footer>
-  );
-};
+
+      {/* Social icons */}
+      <div className="flex gap-3">
+        {socials.map((s) => {
+          const Icon = s.icon;
+          return (
+            <a
+              key={s.label}
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="p-2.5 rounded-full transition-all hover:scale-110"
+              style={{
+                background: "rgba(59,130,246,0.08)",
+                border: "1px solid rgba(59,130,246,0.16)",
+              }}
+            >
+              <Icon className="h-4 w-4 text-blue-400" />
+            </a>
+          );
+        })}
+      </div>
+
+      {/* Copyright */}
+      <p className="text-xs text-white/25 text-center">
+        © {new Date().getFullYear()} Joseva A · AI + BIM Engineer
+        <span className="mx-2">·</span>
+        Synthesizing AI, BIM &amp; Sustainable Design to build the future of infrastructure.
+      </p>
+    </div>
+  </footer>
+);
 
 export default Footer;

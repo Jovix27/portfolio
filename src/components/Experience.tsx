@@ -1,81 +1,109 @@
-import { Briefcase, Calendar } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { Briefcase, GraduationCap, Star } from "lucide-react";
 
 const experiences = [
   {
+    title: "Engineering Intern",
     company: "Larsen & Toubro (L&T)",
-    location: "Chennai",
-    role: "Engineering Intern",
-    period: "June - July 2025",
-    description: [
-      "Assisted in Metro Phase 2 Corridor 3 project execution, gaining hands-on experience in urban transit infrastructure",
-      "Monitored tunneling and Tunnel Boring Machine (TBM) operations, ensuring adherence to safety protocols",
-      "Applied GeoFreq for real-time geotechnical monitoring and explored AI integration for geological predictive modeling",
-      "Conceptualized ClimaNEX AI, an innovative AI-based hyper-local weather forecasting system for construction sites",
+    location: "Chennai Metro Phase 2",
+    period: "June – July 2025",
+    icon: Briefcase,
+    color: "#3b82f6",
+    points: [
+      "Deployed on Metro Phase 2 Corridor 3 — one of India's largest urban transit projects, gaining direct site experience in TBM tunneling operations.",
+      "Applied GeoFreq for real-time geotechnical monitoring, integrating live sensor feeds with AI-based geological predictive modeling.",
+      "Conceptualized ClimaNEX AI — an AI-driven hyper-local weather forecasting system designed specifically for construction site safety.",
+      "Enforced and monitored safety protocols across tunneling operations in a high-risk underground environment.",
     ],
   },
   {
-    company: "National Institute of Technology (NIT) Trichy",
-    location: "Tiruchirappalli",
-    role: "Research Intern (Transportation)",
-    period: "May - June 2024",
-    description: [
-      "Conducted a large-scale driver behavior survey involving 200+ participants to analyze traffic psychology",
-      "Processed and analyzed complex transportation datasets using IBM SPSS, improving data reliability by 20%",
-      "Provided strategic insights for urban transportation planning and infrastructure optimization based on data trends",
+    title: "Research Intern – Transportation",
+    company: "NIT Trichy",
+    location: "National Institute of Technology, Tiruchirappalli",
+    period: "May – June 2024",
+    icon: Star,
+    color: "#8b5cf6",
+    points: [
+      "Designed and conducted a large-scale driver behavior survey with 200+ participants, analyzing traffic psychology and risk perception.",
+      "Processed and analyzed complex transportation datasets using IBM SPSS, improving dataset reliability by 20% through bias correction techniques.",
+      "Derived strategic insights for urban transportation planning, identifying key infrastructure bottlenecks through statistical modeling.",
+    ],
+  },
+  {
+    title: "B.Tech – Civil Engineering",
+    company: "SASTRA Deemed University",
+    location: "Thanjavur, Tamil Nadu",
+    period: "2022 – 2026",
+    icon: GraduationCap,
+    color: "#10b981",
+    points: [
+      "Specializing in BIM, AI-integrated construction systems, and sustainable infrastructure design.",
+      "CGPA: 7.2 (till 7th semester) with focus on computational structural engineering and smart building technologies.",
+      "Led research on PWV satellite data bias correction using ML (Random Forest), achieving 89% accuracy improvement.",
     ],
   },
 ];
 
-const Experience = () => {
-  return (
-    <section id="experience" className="section-padding">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Professional <span className="text-gradient">Experience</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary-dark mx-auto rounded-full" />
-        </div>
+const Experience = () => (
+  <section id="experience" className="section-padding bg-section">
+    <div className="max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.7 }}
+        className="text-center mb-4"
+      >
+        <p className="text-blue-400 text-sm uppercase tracking-widest font-medium mb-2">What I have done so far</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-white">
+          Work <span className="text-hero-gradient">Experience</span>
+        </h2>
+        <div className="section-bar" />
+      </motion.div>
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="p-8 hover-lift animate-slide-up"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div className="flex gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg h-fit">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-1">{exp.company}</h3>
-                    <p className="text-lg font-semibold text-primary mb-2">{exp.role}</p>
-                    <p className="text-sm text-muted-foreground">{exp.location}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground md:text-right">
-                  <Calendar className="h-4 w-4" />
-                  <span className="text-sm font-medium">{exp.period}</span>
-                </div>
-              </div>
+      <div className="mt-16">
+        <VerticalTimeline lineColor="rgba(59,130,246,0.18)">
+          {experiences.map((exp, i) => {
+            const Icon = exp.icon;
+            return (
+              <VerticalTimelineElement
+                key={i}
+                contentStyle={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: `1px solid ${exp.color}28`,
+                  backdropFilter: "blur(16px)",
+                  boxShadow: `0 4px 24px rgba(0,0,0,0.35), 0 0 20px ${exp.color}10`,
+                  borderRadius: "1rem",
+                  color: "#fff",
+                }}
+                contentArrowStyle={{ borderRight: `7px solid ${exp.color}28` }}
+                date={exp.period}
+                dateClassName="!text-white/40 !font-medium !text-sm"
+                iconStyle={{
+                  background: exp.color,
+                  boxShadow: `0 0 0 4px ${exp.color}28, 0 0 20px ${exp.color}40`,
+                }}
+                icon={<Icon className="w-5 h-5 text-white" />}
+              >
+                <h3 className="text-white font-bold text-xl">{exp.title}</h3>
+                <p className="text-sm font-semibold mt-0.5" style={{ color: exp.color }}>{exp.company}</p>
+                <p className="text-xs text-white/30 mt-0.5">{exp.location}</p>
 
-              <ul className="space-y-3 ml-16">
-                {exp.description.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span className="text-base leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
+                <ul className="mt-5 space-y-2.5">
+                  {exp.points.map((pt, j) => (
+                    <li key={j} className="flex gap-3 text-sm text-white/55 leading-relaxed">
+                      <span className="mt-[3px] flex-shrink-0 font-bold" style={{ color: exp.color }}>▸</span>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </VerticalTimelineElement>
+            );
+          })}
+        </VerticalTimeline>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Experience;
