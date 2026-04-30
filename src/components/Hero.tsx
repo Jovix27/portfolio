@@ -34,12 +34,12 @@ const Hero = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Badge */}
-          <div className="flex justify-center md:justify-start">
+          <div className="flex justify-start">
             <motion.div
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mt-4 md:mt-0"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mt-8 md:mt-0"
               style={{
                 background: "rgba(59,130,246,0.04)",
                 border: "1px solid rgba(255,255,255,0.4)",
@@ -53,7 +53,7 @@ const Hero = () => {
           </div>
 
           {/* Name */}
-          <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-4 text-left">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="max-w-2xl text-center md:text-left"
+            className="max-w-2xl text-left"
           >
             <h2 
               className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-[1.1]"
@@ -106,7 +106,7 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+            className="flex flex-col sm:flex-row gap-4 justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.5 }}
