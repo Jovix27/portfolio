@@ -53,47 +53,50 @@ const Hero = () => {
           </div>
 
           {/* Name */}
-          <div className="space-y-3">
+          <div className="space-y-4 text-center md:text-left">
             <motion.p
-              className="text-slate-400 text-sm font-medium tracking-[0.25em] uppercase"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-sm font-bold tracking-[0.2em] uppercase"
+              style={{ color: isDark ? "#60a5fa" : "#3b82f6" }}
             >
               Hi there, I'm
             </motion.p>
-
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight"
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter"
             >
-              <span className="text-hero-gradient">Joseva A</span>
+              <span className="block" style={{ color: isDark ? "#f8fafc" : "#0f172a" }}>Joseva A</span>
             </motion.h1>
+          </div>
 
-            <motion.p
-              className="text-lg sm:text-xl md:text-2xl text-slate-700 font-semibold"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.45 }}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="max-w-2xl text-center md:text-left"
+          >
+            <h2 
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-[1.1]"
+              style={{ color: isDark ? "#e2e8f0" : "#1e293b" }}
             >
               I design intelligent construction systems and solve real-world civil engineering problems using AI.
-            </motion.p>
-
-            <motion.p
-              className="text-base text-slate-500 leading-relaxed max-w-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55 }}
+            </h2>
+            <p 
+              className="text-base sm:text-lg leading-relaxed mb-10"
+              style={{ color: isDark ? "#94a3b8" : "#64748b" }}
             >
-              I specialize in delivering measurable outcomes across construction workflows — bridging the gap between traditional civil engineering and intelligent, scalable systems.
-            </motion.p>
-          </div>
+              I specialize in delivering measurable outcomes across construction workflows — 
+              bridging the gap between traditional civil engineering and intelligent, scalable systems.
+            </p>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.5 }}

@@ -145,30 +145,31 @@ const Navigation = () => {
         </div>
 
         {/* Mobile right controls */}
-        <div className="md:hidden flex items-center gap-3">
-          {/* Mobile theme toggle */}
+        <div className="md:hidden flex items-center gap-4">
+          {/* Menu Button (Hamburger) - Moved to be more primary and visible */}
+          <button
+            className="p-1.5 transition-colors"
+            style={{ color: isDark ? "#ffffff" : "#0f172a" }}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={28} /> : <Menu size={28} strokeWidth={2.5} />}
+          </button>
+
+          {/* Mobile theme toggle - Moved slightly left for better thumb reach */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2 rounded-full transition-all duration-200"
+            className="p-2.5 rounded-full transition-all duration-200"
             style={{
-              background: isDark ? "rgba(59,130,246,0.12)" : "rgba(59,130,246,0.08)",
-              border: "1px solid rgba(59,130,246,0.20)",
+              background: isDark ? "rgba(59,130,246,0.15)" : "rgba(59,130,246,0.08)",
+              border: "1px solid rgba(59,130,246,0.25)",
             }}
           >
             {isDark
-              ? <Sun size={18} style={{ color: "#fbbf24" }} />
-              : <Moon size={18} style={{ color: "#6366f1" }} />
+              ? <Sun size={20} style={{ color: "#fbbf24" }} />
+              : <Moon size={20} style={{ color: "#6366f1" }} />
             }
-          </button>
-
-          {/* Hamburger */}
-          <button
-            className="p-1 transition-colors"
-            style={{ color: isDark ? "#94a3b8" : "#64748b" }}
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
