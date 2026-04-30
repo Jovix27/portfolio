@@ -71,13 +71,13 @@
 html.dark {
   --bg-base:    #020617;
   --bg-alt:     #030712;
-  --card-bg:    rgba(15, 23, 42, 0.6);
-  --card-border: rgba(255, 255, 255, 0.05);
-  --card-inner-highlight: rgba(255, 255, 255, 0.02);
-  --card-hover-border: rgba(59, 130, 246, 0.3);
-  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.5);
-  --glass-blur: blur(24px);
+  --card-bg:    rgba(15, 23, 42, 0.75);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-inner-highlight: rgba(255, 255, 255, 0.04);
+  --card-hover-border: rgba(59, 130, 246, 0.5);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.6);
+  --glass-blur: blur(28px);
   --text-primary:   #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted:     #475569;
@@ -106,8 +106,8 @@ html.dark {
 
   html.dark body {
     background-image: 
-      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.07) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.07) 0%, transparent 50%);
+      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.14) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.14) 0%, transparent 50%);
   }
 
   /* ── Dark mode Tailwind class overrides ── */

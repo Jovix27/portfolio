@@ -65,8 +65,7 @@ const About = () => {
         >
           <div className="rounded-2xl p-8 glass-card">
             <p className={`text-lg leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-              I'm <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Joseva A</span> — a Civil Engineering
-              undergraduate at <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>SASTRA Deemed University</span>,
+              I'm <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Joseva A</span> — a <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Final Year Civil Engineering graduate</span> at <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>SASTRA Deemed University</span>,
               operating at the intersection of{" "}
               <span className="text-blue-500 font-semibold">AI systems</span>,{" "}
               <span className="text-blue-500 font-semibold">BIM workflows</span>, and{" "}

@@ -102,7 +102,7 @@ const Hero = () => {
               className="text-xs sm:text-sm md:text-base leading-relaxed"
               style={{ color: isDark ? "#94a3b8" : "#64748b" }}
             >
-              Bridging traditional civil engineering with intelligent, scalable systems — from BIM workflows to AI-driven site safety.
+              Final year Civil Engineering graduate bridging traditional engineering with intelligent, scalable systems — from BIM workflows to AI-driven site safety.
             </p>
           </motion.div>
 
