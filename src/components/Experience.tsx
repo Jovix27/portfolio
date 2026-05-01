@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { Briefcase, GraduationCap, Star } from "lucide-react";
+import { Briefcase, GraduationCap, Star, ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 
 const experiences = [
@@ -12,6 +12,7 @@ const experiences = [
     period: "June – July 2025",
     icon: Briefcase,
     color: "#3b82f6",
+    certificateUrl: "/portfolio/L&T%20Intership%20Certificate%20.pdf",
     points: [
       "Deployed on Metro Phase 2 Corridor 3 — one of India's largest urban transit projects, gaining direct site experience in TBM tunneling operations.",
       "Applied GeoFreq for real-time geotechnical monitoring, integrating live sensor feeds with AI-based geological predictive modeling.",
@@ -26,8 +27,10 @@ const experiences = [
     period: "May – June 2024",
     icon: Star,
     color: "#8b5cf6",
+    certificateUrl: "/portfolio/NIT%20Internship%20Certificate.pdf",
     points: [
-      "Optimized transportation datasets using IBM SPSS, achieving a 20% improvement in reliability through advanced bias correction.",
+      "Collaborated on driver behavior analysis in Tiruchirappalli, collecting and preprocessing 111+ comprehensive driver behavior datasets from field observations.",
+      "Optimized transportation datasets using IBM's SPSS software, achieving a 20% improvement in reliability through advanced bias correction.",
       "Conducted statistical modeling to identify urban infrastructure bottlenecks, delivering actionable insights for strategic transportation planning.",
       "Designed data-driven frameworks for analyzing traffic psychology and risk perception metrics.",
     ],
@@ -39,6 +42,7 @@ const experiences = [
     period: "2022 – 2026",
     icon: GraduationCap,
     color: "#10b981",
+    certificateUrl: null, // Academic foundation - no certificate trigger
     points: [
       "Specializing in BIM, AI-integrated construction systems, and sustainable infrastructure design.",
       "CGPA: 7.2 (till 7th semester) with focus on computational structural engineering and smart building technologies.",
@@ -90,9 +94,27 @@ const Experience = () => {
                   }}
                   icon={<Icon className="w-5 h-5 text-white" />}
                 >
-                  <h3 className={`font-black text-xl tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>{exp.title}</h3>
-                  <p className="text-sm font-black mt-1 uppercase tracking-widest" style={{ color: exp.color }}>{exp.company}</p>
-                  <p className={`text-xs mt-1.5 font-medium ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{exp.location}</p>
+                  <div className="relative">
+                    {exp.certificateUrl && (
+                      <motion.a
+                        href={exp.certificateUrl}
+                        download
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.1, backgroundColor: `${exp.color}20` }}
+                        className="absolute -top-4 -right-4 p-2.5 rounded-xl border border-blue-500/20 bg-blue-500/5 transition-all group/cert shadow-lg shadow-blue-500/5"
+                        title="View Verified Experience"
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-blue-500 transition-transform group-hover/cert:translate-x-0.5 group-hover/cert:-translate-y-0.5" />
+                        <div className="absolute top-0 right-full mr-3 py-1 px-2.5 bg-blue-600 text-white text-[9px] font-black uppercase tracking-widest rounded opacity-0 pointer-events-none transition-opacity group-hover/cert:opacity-100 whitespace-nowrap shadow-xl">
+                          View Verified Experience
+                        </div>
+                      </motion.a>
+                    )}
+                    <h3 className={`font-black text-xl tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>{exp.title}</h3>
+                    <p className="text-sm font-black mt-1 uppercase tracking-widest" style={{ color: exp.color }}>{exp.company}</p>
+                    <p className={`text-xs mt-1.5 font-medium ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{exp.location}</p>
+                  </div>
 
                   <ul className="mt-6 space-y-3">
                     {exp.points.map((pt, j) => (

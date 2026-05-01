@@ -93,12 +93,31 @@ const Contact = () => {
             viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
             {/* Globe Card */}
-            <div className="h-72 sm:h-80 md:h-96 relative rounded-3xl overflow-hidden glass-card shadow-2xl"
+            <div className="h-72 sm:h-80 md:h-96 relative rounded-3xl overflow-hidden glass-card shadow-2xl group/globe"
               style={{ ...cardStyle, border: isDark ? "1px solid rgba(59,130,246,0.15)" : "1px solid rgba(59,130,246,0.2)" }}>
+              
+
+
               <div className="absolute inset-0 z-0">
                 <Suspense fallback={<EarthFallback />}><EarthCanvas /></Suspense>
               </div>
-              <div className={`absolute inset-0 pointer-events-none z-10 ${isDark ? 'bg-gradient-to-t from-[#020617]/80 to-transparent' : 'bg-gradient-to-t from-slate-200/50 to-transparent'}`} />
+              <div className={`absolute inset-0 pointer-events-none z-10 ${isDark ? 'bg-gradient-to-t from-[#020617]/90 via-transparent to-transparent' : 'bg-gradient-to-t from-slate-200/60 via-transparent to-transparent'}`} />
+              
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className={`px-4 py-2 rounded-full border backdrop-blur-md shadow-lg ${isDark ? 'bg-slate-900/50 border-white/10' : 'bg-white/50 border-blue-500/20'}`}
+                >
+                  <p className={`text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                    Explore my experience
+                  </p>
+                </motion.div>
+              </div>
+              
+
             </div>
 
 
