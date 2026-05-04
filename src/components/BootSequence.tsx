@@ -101,21 +101,6 @@ const BootSequence = ({ onComplete }: { onComplete: () => void }) => {
           </div>
         </div>
 
-        {/* Technical Footer */}
-        <div className="absolute bottom-[-100px] flex gap-12 opacity-20">
-           <div className="flex flex-col items-center">
-              <span className="text-[8px] font-black">CPU_TEMP</span>
-              <span className="text-[8px] dot-matrix">32°C</span>
-           </div>
-           <div className="flex flex-col items-center">
-              <span className="text-[8px] font-black">MEM_USAGE</span>
-              <span className="text-[8px] dot-matrix">12.4GB</span>
-           </div>
-           <div className="flex flex-col items-center">
-              <span className="text-[8px] font-black">UPLINK</span>
-              <span className="text-[8px] dot-matrix text-accent">ACTIVE</span>
-           </div>
-        </div>
       </div>
     </motion.div>
   );

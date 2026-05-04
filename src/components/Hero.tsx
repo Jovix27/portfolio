@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Cpu } from "lucide-react";
+import MatrixGraph from "./MatrixGraph";
 
 const Hero = () => {
   return (
@@ -13,31 +14,67 @@ const Hero = () => {
         {/* ─── MOBILE: Photo hero strip ──────────────────────────────── */}
         {/* Shows on mobile/tablet, hidden on lg+ (right column handles it) */}
         <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:hidden mb-4 nothing-card overflow-hidden p-0 relative group"
-          style={{ aspectRatio: "16/9" }}
+          className="lg:hidden mb-12 flex justify-center items-center"
         >
-          <img
-            src="./Joseva_A.jpeg"
-            alt="Joseva A"
-            className="w-full h-full object-cover transition-transform duration-[1200ms] scale-[1.06] group-hover:scale-100 opacity-90 group-hover:opacity-100"
-            style={{ objectPosition: "center 15%" }}
-          />
-          {/* Gradient scrim */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
-          {/* Status badge */}
-          <div className="absolute bottom-4 left-4 right-4 z-20">
-            <div className="nothing-card-flat bg-background/75 backdrop-blur-2xl px-4 py-2.5 flex items-center justify-between">
-              <span className="text-[9px] font-bold uppercase tracking-[0.28em] text-foreground">
-                Open to Opportunities
-              </span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_8px_#00FF85]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-[#00FF85]">LIVE</span>
+          <div className="w-64 h-64 relative group">
+            {/* Outer ring */}
+            <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
+              {/* Photo container */}
+              <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
+                {/* The actual photo */}
+                <img
+                  src="./profile photo dot matrix.png"
+                  alt="Joseva A"
+                  loading="eager"
+                  className="w-full h-full object-cover relative z-10 transition-all duration-700"
+                />
+
+                {/* DOT MATRIX OVERLAY */}
+                <div
+                  className="absolute inset-0 z-20 pointer-events-none"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "8px 8px",
+                  }}
+                />
+                <div
+                  className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "8px 8px",
+                  }}
+                />
+
+                {/* Matrix graph animation */}
+                <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
+                  <MatrixGraph />
+                </div>
+
+                {/* Radial vignette */}
+                <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
               </div>
             </div>
+
+            {/* Status badge - Floating on circle */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-40 w-[200px]">
+              <div className="nothing-card-flat bg-background/85 backdrop-blur-2xl px-3 py-2 flex items-center justify-between shadow-xl border-accent/20">
+                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-foreground">
+                  OPEN TO WORK
+                </span>
+                <div className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_8px_#00FF85]" />
+                  <span className="text-[7px] font-black uppercase tracking-widest text-[#00FF85]">LIVE</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Accent pulse ring */}
+            <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse pointer-events-none" />
           </div>
         </motion.div>
 
@@ -107,28 +144,64 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="nothing-card overflow-hidden p-0 relative group"
-              style={{ aspectRatio: "3/4", maxHeight: "420px" }}
+              className="flex justify-center items-center h-full py-8"
             >
-              <img
-                src="./Joseva_A.jpeg"
-                alt="Joseva A"
-                className="w-full h-full object-cover transition-transform duration-[1200ms] scale-[1.06] group-hover:scale-100 opacity-90 group-hover:opacity-100"
-                style={{ objectPosition: "center 15%" }}
-              />
-              {/* Gradient scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent z-10" />
-              {/* Status badge */}
-              <div className="absolute bottom-5 left-5 right-5 z-20">
-                <div className="nothing-card-flat bg-background/75 backdrop-blur-2xl p-3.5 flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-foreground">
-                    Open to Opportunities
-                  </span>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-[#00FF85]">LIVE</span>
+              <div className="w-64 h-64 xl:w-72 xl:h-72 relative group">
+                {/* Outer ring */}
+                <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
+                  {/* Photo container */}
+                  <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
+                    {/* The actual photo */}
+                    <img
+                      src="./profile photo dot matrix.png"
+                      alt="Joseva A"
+                      loading="eager"
+                      className="w-full h-full object-cover relative z-10 transition-all duration-700"
+                    />
+
+                    {/* DOT MATRIX OVERLAY */}
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "8px 8px",
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "8px 8px",
+                      }}
+                    />
+
+                    {/* Matrix graph animation */}
+                    <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
+                      <MatrixGraph />
+                    </div>
+
+                    {/* Radial vignette */}
+                    <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
                   </div>
                 </div>
+
+                {/* Status badge - Floating on circle */}
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-40 w-[210px]">
+                  <div className="nothing-card-flat bg-background/85 backdrop-blur-2xl p-3 flex items-center justify-between shadow-xl border-accent/20">
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-foreground">
+                      OPEN TO WORK
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
+                      <span className="text-[8px] font-black uppercase tracking-widest text-[#00FF85]">LIVE</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Accent pulse ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse pointer-events-none" />
               </div>
             </motion.div>
 
