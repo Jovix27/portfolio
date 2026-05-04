@@ -64,7 +64,7 @@ const Navigation = () => {
           <ThemeToggle />
           <button 
             onClick={() => setIsOpen(true)}
-            className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+            className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-muted text-foreground transition-colors"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -79,7 +79,7 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 250 }}
-            className="fixed inset-0 z-[150] bg-background flex flex-col p-8 md:p-12 overflow-hidden"
+            className="fixed inset-0 z-[150] bg-background/80 backdrop-blur-2xl text-foreground flex flex-col p-8 md:p-12 overflow-hidden"
           >
             {/* Background Dot Grid inside menu */}
             <div className="absolute inset-0 pointer-events-none opacity-20" 
@@ -89,20 +89,16 @@ const Navigation = () => {
               }} 
             />
 
-            <div className="flex justify-between items-center mb-16 relative z-10">
-              <div className="flex flex-col">
-                 <span className="dot-matrix text-xs font-bold tracking-[0.3em] text-accent mb-1">SYSTEM ACCESS</span>
-                <span className="text-2xl font-black tracking-tighter uppercase">INTERFACE</span>
-              </div>
+            <div className="flex justify-end items-center mb-16 relative z-10">
               <button 
                 onClick={() => setIsOpen(false)}
-                className="w-14 h-14 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors bg-background shadow-lg"
+                className="w-14 h-14 rounded-full border border-border flex items-center justify-center hover:bg-muted text-foreground transition-colors bg-background shadow-lg"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            <div className="flex flex-col gap-6 relative z-10">
+            <div className="flex flex-col gap-8 relative z-10 mt-8">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}
@@ -114,22 +110,15 @@ const Navigation = () => {
                   className="flex items-center gap-4 group"
                 >
                   <span className="dot-matrix text-[10px] font-bold text-accent opacity-40 group-hover:opacity-100 transition-opacity">0{i + 1}</span>
-                  <span className="text-4xl md:text-6xl font-black tracking-tighter hover:text-accent transition-all duration-300 uppercase leading-none">
+                  <span className="text-3xl md:text-5xl font-black tracking-tighter text-foreground group-hover:text-accent transition-all duration-300 uppercase leading-none">
                     {link.name}
                   </span>
                 </motion.a>
               ))}
             </div>
 
-            <div className="mt-auto pt-12 border-t border-border flex justify-between items-center relative z-10">
-               <div className="flex flex-col">
-                   <span className="dot-matrix text-[10px] tracking-widest text-muted-foreground mb-1">MODULE VERSION: 4.0.0</span>
-                   <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">© 2026 Joseva A // CIVIL AI</span>
-               </div>
-               <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                   <span className="dot-matrix text-[10px] text-accent tracking-widest">LIVE SYNC</span>
-               </div>
+            <div className="mt-auto pt-8 border-t border-border flex justify-center items-center relative z-10">
+               <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">© 2026 Joseva A // CIVIL AI</span>
             </div>
           </motion.div>
         )}

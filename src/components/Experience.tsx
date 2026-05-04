@@ -38,7 +38,7 @@ const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-bg-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
 
           {/* Full-width Heading */}
           <motion.div

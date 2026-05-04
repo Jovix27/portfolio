@@ -19,7 +19,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
             >
               <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase">// UPLINK INITIATION</p>
-              <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none mb-6 text-foreground">
+              <h2 className="text-4xl md:text-6xl font-3022 text-foreground mb-6">
                 CONTACT
               </h2>
               <p className="text-foreground font-medium text-base md:text-lg leading-relaxed max-w-md">
@@ -59,7 +59,7 @@ const Contact = () => {
             className="lg:col-span-7 nothing-card p-6 md:p-12 flex flex-col justify-between relative overflow-hidden border border-border/20"
           >
             <div className="absolute top-0 right-0 p-6 opacity-5 md:opacity-10 pointer-events-none hidden sm:block">
-              <span className="dot-matrix text-[40px] md:text-[60px] font-black leading-none tracking-tighter">@CONTACT</span>
+              <span className="font-3022 text-[40px] md:text-[80px] leading-none">@CONTACT</span>
             </div>
 
             <form className="space-y-8 md:space-y-10 relative z-10">
@@ -76,8 +76,8 @@ const Contact = () => {
                   />
                 </div>
                 <div className="group/field space-y-3">
-                  <div className="flex justify-between items-center px-1">
-                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">UPLINK EMAIL</label>
+                   <div className="flex justify-between items-center px-1">
+                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">EMAIL</label>
                     <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">VALID_REQUIRED</span>
                   </div>
                   <input 
@@ -90,7 +90,7 @@ const Contact = () => {
 
               <div className="group/field space-y-3">
                 <div className="flex justify-between items-center px-1">
-                   <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">TRANSMISSION DATA</label>
+                   <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">YOUR MESSAGE</label>
                    <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">DATA PACKET READY</span>
                 </div>
                 <textarea 
@@ -104,7 +104,7 @@ const Contact = () => {
                 type="submit"
                 className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-base md:text-lg tracking-tighter flex items-center justify-center gap-4 hover:bg-accent hover:text-black hover:shadow-[0_0_30px_rgba(255,184,0,0.3)] transition-all group"
               >
-                SEND UPLINK
+                SEND
                 <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
               </button>
             </form>

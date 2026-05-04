@@ -35,14 +35,9 @@ const BootSequence = ({ onComplete }: { onComplete: () => void }) => {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] bg-bg-base flex items-center justify-center font-mono overflow-hidden"
+      transition={{ duration: 0.8 }}
+      className="fixed inset-0 z-[100] bg-transparent flex items-center justify-center font-mono overflow-hidden"
     >
-      {/* Background Dot Grid */}
-      <div className="absolute inset-0 grid grid-cols-10 gap-4 p-8 opacity-[0.03] pointer-events-none">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <div key={i} className="w-1 h-1 bg-foreground rounded-full" />
-        ))}
-      </div>
 
       <div className="relative flex flex-col items-center gap-12 max-w-sm w-full">
         {/* Profile Dot Matrix Core */}

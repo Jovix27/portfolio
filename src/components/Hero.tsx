@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Terminal, Globe, Cpu } from "lucide-react";
+import { ArrowRight, Mail, Terminal, Globe, Cpu } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -15,22 +15,10 @@ const Hero = () => {
         >
           {/* Circuit Board Background Decoration */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-            {/* Main CPU chip icon — grey, clearly visible */}
-            <div className="absolute -top-8 -right-8 text-gray-400/30 dark:text-gray-500/25">
-              <Cpu className="w-[340px] h-[340px] md:w-[420px] md:h-[420px]" />
+            {/* Main CPU chip icon — clean and minimal */}
+            <div className="absolute top-12 md:top-16 right-[-20px] md:right-8 text-foreground/5 dark:text-foreground/10">
+              <Cpu className="w-[180px] h-[180px] md:w-[260px] md:h-[260px]" strokeWidth={2} />
             </div>
-            {/* Circuit traces — horizontal, grey */}
-            <div className="absolute top-[22%] right-[290px] md:right-[360px] h-[1.5px] w-20 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            <div className="absolute top-[36%] right-[290px] md:right-[360px] h-[1.5px] w-12 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            <div className="absolute top-[51%] right-[290px] md:right-[360px] h-[1.5px] w-28 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            <div className="absolute top-[67%] right-[290px] md:right-[360px] h-[1.5px] w-16 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            {/* Circuit traces — vertical, grey */}
-            <div className="absolute top-[300px] md:top-[360px] right-[20%] w-[1.5px] h-16 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            <div className="absolute top-[300px] md:top-[360px] right-[36%] w-[1.5px] h-10 bg-gray-400/25 dark:bg-gray-500/20 rounded-full" />
-            {/* Junction dots — grey */}
-            <div className="absolute top-[22%] right-[290px] md:right-[360px] w-2 h-2 rounded-full bg-gray-400/40 dark:bg-gray-500/35 -translate-y-[50%]" />
-            <div className="absolute top-[51%] right-[290px] md:right-[360px] w-2 h-2 rounded-full bg-gray-400/40 dark:bg-gray-500/35 -translate-y-[50%]" />
-            <div className="absolute top-[67%] right-[290px] md:right-[360px] w-1.5 h-1.5 rounded-full bg-gray-400/30 dark:bg-gray-500/25 -translate-y-[50%]" />
           </div>
 
           <div className="relative z-10">
@@ -56,18 +44,13 @@ const Hero = () => {
               VIEW WORK
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button 
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = "./resume.pdf";
-                link.download = "Joseva_A_Resume.pdf";
-                link.click();
-              }}
+            <a 
+              href="#contact"
               className="px-8 py-4 border border-border rounded-full font-bold flex items-center gap-3 hover:bg-muted transition-colors text-foreground"
             >
-              DOWNLOAD RESUME
-              <Download className="w-4 h-4" />
-            </button>
+              CONTACT ME
+              <Mail className="w-4 h-4" />
+            </a>
           </div>
         </motion.div>
 

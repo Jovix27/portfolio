@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -19,37 +19,40 @@ const Index = () => {
   const [isBooting, setIsBooting] = useState(true);
 
   return (
-    <>
-      <AnimatePresence mode="wait">
+    <div className="min-h-screen relative overflow-hidden bg-bg-base">
+      <MatrixBackground />
+      {/* Frosted Overlay from Image 1 */}
+      <div className="fixed inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-[2px] pointer-events-none z-[1]" />
+
+      <AnimatePresence>
         {isBooting && (
           <BootSequence key="boot" onComplete={() => setIsBooting(false)} />
         )}
       </AnimatePresence>
 
       {!isBooting && (
-        <div className="min-h-screen relative overflow-hidden bg-bg-base">
-          <MatrixBackground />
-          {/* Frosted Overlay from Image 1 */}
-          <div className="fixed inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-[2px] pointer-events-none z-[1]" />
-          
-          <div className="relative z-10">
-            <StatusBar />
-            <Navigation />
-            <main>
-              <Hero />
-              <About />
-              <Experience />
-              <Skills />
-              <Services />
-              <Projects />
-              <Achievements />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10"
+        >
+          <StatusBar />
+          <Navigation />
+          <main>
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Services />
+            <Projects />
+            <Achievements />
+            <Contact />
+          </main>
+          <Footer />
+        </motion.div>
       )}
-    </>
+    </div>
   );
 };
 
