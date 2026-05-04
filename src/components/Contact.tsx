@@ -1,10 +1,41 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Linkedin, Github } from "lucide-react";
+import { Send, Mail, Linkedin, Github, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 import EarthCanvas from "./canvas/Earth";
 import MatrixGraph from "./MatrixGraph";
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.current) return;
+
+    setIsSending(true);
+    try {
+      await emailjs.sendForm(
+        'service_5ixterr',
+        'template_qqi02fi',
+        form.current,
+        'aEvbeb24MPIqmNjUu'
+      );
+      toast.success("MESSAGE SENT SUCCESSFULLY", {
+        description: "I'll get back to you as soon as possible.",
+      });
+      form.current.reset();
+    } catch (error) {
+      toast.error("FAILED TO SEND MESSAGE", {
+        description: "Please try again later or reach out via LinkedIn.",
+      });
+      console.error('EmailJS Error:', error);
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <section id="contact" className="section-padding py-16 md:py-24 bg-bg-base relative overflow-hidden">
@@ -61,13 +92,15 @@ const Contact = () => {
                   <Mail className="w-32 h-32 text-accent rotate-[15deg] stroke-[0.5]" />
               </div>
 
-              <form className="space-y-10 relative z-10 w-full">
+              <form ref={form} onSubmit={sendEmail} className="space-y-10 relative z-10 w-full">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="group space-y-4">
                     <label className="dot-matrix text-[10px] tracking-[0.4em] text-foreground/40 group-focus-within:text-accent transition-all font-bold uppercase">Name</label>
                     <div className="relative">
                       <input 
                         type="text" 
+                        name="user_name"
+                        required
                         placeholder="ENTER NAME"
                         className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 text-foreground uppercase tracking-tight"
                       />
@@ -79,6 +112,8 @@ const Contact = () => {
                     <div className="relative">
                       <input 
                         type="email" 
+                        name="user_email"
+                        required
                         placeholder="EMAIL@ADDRESS.COM"
                         className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 text-foreground uppercase tracking-tight"
                       />
@@ -91,7 +126,9 @@ const Contact = () => {
                   <label className="dot-matrix text-[10px] tracking-[0.4em] text-foreground/40 group-focus-within:text-accent transition-all font-bold uppercase">Message</label>
                   <div className="relative">
                     <textarea 
+                      name="message"
                       rows={4}
+                      required
                       placeholder="YOUR MESSAGE..."
                       className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 resize-none text-foreground uppercase tracking-tight"
                     />
@@ -102,11 +139,21 @@ const Contact = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-12 pt-6">
                   <button 
                     type="submit"
-                    className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-[10px] tracking-[0.4em] flex items-center justify-center gap-5 hover:bg-accent hover:text-black transition-all group dot-matrix uppercase overflow-hidden relative shadow-2xl shadow-black/40 active:scale-95"
+                    disabled={isSending}
+                    className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-[10px] tracking-[0.4em] flex items-center justify-center gap-5 hover:bg-accent hover:text-black transition-all group dot-matrix uppercase overflow-hidden relative shadow-2xl shadow-black/40 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="relative z-10 flex items-center gap-3">
-                      Send Me
-                      <Send className="w-4 h-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
+                      {isSending ? (
+                        <>
+                          SENDING...
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          Send Me
+                          <Send className="w-4 h-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
+                        </>
+                      )}
                     </span>
                   </button>
 

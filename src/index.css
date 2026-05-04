@@ -88,7 +88,7 @@
     min-height: 100vh;
     overflow-x: hidden;
     background-image: radial-gradient(var(--matrix-dot) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-size: 24px 24px;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
@@ -141,6 +141,8 @@
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
+    background-image: radial-gradient(var(--matrix-dot) 1px, transparent 1px);
+    background-size: 8px 8px;
   }
 
   .gradient-orange {

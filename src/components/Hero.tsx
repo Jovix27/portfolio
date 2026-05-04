@@ -61,7 +61,7 @@ const Hero = () => {
             </div>
 
             {/* Status badge - Floating on circle */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-40 w-[200px]">
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-40 w-[200px]">
               <div className="nothing-card-flat bg-background/85 backdrop-blur-2xl px-3 py-2 flex items-center justify-between shadow-xl border-accent/20">
                 <span className="text-[8px] font-black uppercase tracking-[0.2em] text-foreground">
                   OPEN TO WORK
@@ -151,12 +151,18 @@ const Hero = () => {
                 <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
                   {/* Photo container */}
                   <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
+                    {/* BACKGROUND MATRIX (BUILDSIGHT STYLE) */}
+                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none scale-125">
+                      <MatrixGraph />
+                    </div>
+
                     {/* The actual photo */}
                     <img
                       src="./profile photo dot matrix.png"
                       alt="Joseva A"
                       loading="eager"
                       className="w-full h-full object-cover relative z-10 transition-all duration-700"
+                      style={{ objectPosition: "center 15%" }}
                     />
 
                     {/* DOT MATRIX OVERLAY */}
@@ -177,10 +183,7 @@ const Hero = () => {
                       }}
                     />
 
-                    {/* Matrix graph animation */}
-                    <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
-                      <MatrixGraph />
-                    </div>
+
 
                     {/* Radial vignette */}
                     <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
@@ -188,7 +191,7 @@ const Hero = () => {
                 </div>
 
                 {/* Status badge - Floating on circle */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-40 w-[210px]">
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-40 w-[210px]">
                   <div className="nothing-card-flat bg-background/85 backdrop-blur-2xl p-3 flex items-center justify-between shadow-xl border-accent/20">
                     <span className="text-[9px] font-black uppercase tracking-[0.2em] text-foreground">
                       OPEN TO WORK

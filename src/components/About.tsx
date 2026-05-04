@@ -3,7 +3,7 @@ import { User, Download } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="section-padding py-24 md:py-32 bg-bg-base relative overflow-hidden">
+    <section id="about" className="section-padding pt-24 pb-8 md:pt-32 md:pb-12 bg-bg-base relative overflow-hidden">
 
       {/* ── Dot Matrix Background ───────────────────────────────── */}
       <div
