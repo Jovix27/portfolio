@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Cpu, Award, Database, Download } from "lucide-react";
-import MatrixGraph from "./MatrixGraph";
+import { User, Download } from "lucide-react";
 
 const About = () => {
   return (
@@ -87,68 +86,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* ── Right: Profile Photo + Education ──────────────────── */}
-          <div className="lg:col-span-5 flex flex-col gap-10">
-
-            {/* Profile Photo with Dot-Matrix Overlay */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex justify-center items-center lg:justify-end"
-            >
-              <div className="w-56 h-56 md:w-72 md:h-72 relative group">
-                {/* Outer ring */}
-                <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
-                  {/* Photo container */}
-                  <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
-
-                    {/* The actual photo */}
-                    <img
-                      src="./profile photo dot matrix.png"
-                      alt="Joseva A"
-                      loading="eager"
-                      className="w-full h-full object-cover relative z-10 transition-all duration-700"
-                    />
-
-                    {/* ── DOT MATRIX OVERLAY ── works in light + dark mode ── */}
-                    {/* Uses SVG pattern so dots are always visible regardless of theme */}
-                    <div
-                      className="absolute inset-0 z-20 pointer-events-none"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "8px 8px",
-                      }}
-                    />
-
-                    {/* Dark mode dot matrix (slightly different weight) */}
-                    <div
-                      className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "8px 8px",
-                      }}
-                    />
-
-                    {/* Matrix graph animation */}
-                    <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
-                      <MatrixGraph />
-                    </div>
-
-                    {/* Radial vignette */}
-                    <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
-                  </div>
-                </div>
-
-                {/* Accent pulse ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse pointer-events-none" />
-              </div>
-            </motion.div>
-
-            {/* Education Card */}
+          {/* ── Right: Education ───────────────────────────────────── */}
+          <div className="lg:col-span-5 flex flex-col pt-4 lg:pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +104,6 @@ const About = () => {
                   color: "var(--foreground)",
                 }}
               />
-
 
               <div className="flex items-center gap-4 relative z-10">
                 <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
@@ -207,7 +145,6 @@ const About = () => {
                 </div>
               </div>
             </motion.div>
-
           </div>
         </div>
       </div>
