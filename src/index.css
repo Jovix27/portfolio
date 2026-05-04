@@ -1,86 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─────────────────────────────────────────────
-   ConTech Portfolio — Glassmorphism Design System
-───────────────────────────────────────────── */
-
 @layer base {
   :root {
-    /* Shadcn/ui tokens */
-    --background: 222 47% 5%;
-    --foreground:  0 0% 100%;
-    --card:       222 47% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover:    222 47% 7%;
-    --popover-foreground: 0 0% 100%;
-    --primary:    217 91% 60%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 221 83% 53%;
-    --secondary:  217 32% 17%;
-    --secondary-foreground: 0 0% 100%;
-    --muted:      217 32% 15%;
-    --muted-foreground: 215 20% 60%;
-    --accent:     217 91% 60%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border:     217 32% 17%;
-    --input:      217 32% 17%;
-    --ring:       217 91% 60%;
-    --radius:     0.75rem;
+    --accent: 43 100% 50%; /* Vibrant Yellow-Orange #FFB800 */
+    --accent-foreground: 0 0% 0%;
+    --nothing-yellow: #FFB800; 
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 30%;
+    --border: 0 0% 85%;
+    --radius: 28px;
+    
+    --bg-base: #EFEFEF;
+    --bg-alt: #F7F7F7;
+    --matrix-dot: rgba(0, 0, 0, 0.08);
+    --matrix-level-0: rgba(0, 0, 0, 0.03);
+    --matrix-level-1: rgba(0, 0, 0, 0.08);
+    --matrix-level-2: rgba(0, 0, 0, 0.15);
+    --matrix-level-3: rgba(0, 0, 0, 0.3);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 10px 30px -10px rgba(0,0,0,0.05);
 
-    /* ── Brand palette ── */
-    --blue:    #3b82f6;
-    --emerald: #10b981;
-    --violet:  #8b5cf6;
-    --amber:   #f59e0b;
-
-    /* ── Light mode surfaces ── */
-    --bg-base:    #f8faff;
-    --bg-alt:     #f1f5f9;
-    --card-bg:    rgba(255, 255, 255, 0.45);
-    --card-border: rgba(255, 255, 255, 0.6);
-    --card-inner-highlight: rgba(255,255,255,0.8);
-    --card-hover-border: rgba(59, 130, 246, 0.4);
-    --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
-    --card-hover-shadow: 0 20px 48px rgba(59,130,246,0.1);
-    --glass-blur: blur(20px);
-
-    /* ── Typography ── */
-    --text-primary:   #0f172a;
-    --text-secondary: #334155;
-    --text-muted:     #64748b;
-
-    /* ── Gradient ── */
-    --hero-gradient: linear-gradient(90deg, #2563eb, #0d9488);
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Project Box Colors - Light Mode */
+    --problem-bg: 0 100% 98%; /* Light Red/Pink */
+    --problem-text: 0 84% 60%;
+    --solution-bg: 210 100% 98%; /* Light Blue */
+    --solution-text: 210 84% 60%;
+    --impact-bg: 43 100% 98%; /* Light Yellow */
+    --impact-text: 43 84% 50%;
   }
-}
 
-/* ── Dark mode: deep navy glass ── */
-html.dark {
-  --bg-base:    #020617;
-  --bg-alt:     #030712;
-  --card-bg:    rgba(15, 23, 42, 0.75);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --card-inner-highlight: rgba(255, 255, 255, 0.04);
-  --card-hover-border: rgba(59, 130, 246, 0.5);
-  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --card-hover-shadow: 0 20px 48px rgba(0,0,0,0.6);
-  --glass-blur: blur(28px);
-  --text-primary:   #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted:     #475569;
+  html.dark {
+    --background: 0 0% 0%; /* Absolute black */
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 6%;
+    --muted-foreground: 0 0% 70%;
+    --border: 0 0% 14%;
+    
+    --bg-base: #000000;
+    --bg-alt: #050505; /* Slightly lighter than base for section separation */
+    --matrix-dot: rgba(255, 255, 255, 0.05);
+    --matrix-level-0: rgba(255, 255, 255, 0.02);
+    --matrix-level-1: rgba(255, 255, 255, 0.08);
+    --matrix-level-2: rgba(255, 255, 255, 0.15);
+    --matrix-level-3: rgba(255, 255, 255, 0.3);
+    --card-bg: rgba(10, 10, 10, 0.8);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --shadow-soft: 0 20px 50px -20px rgba(0,0,0,0.9);
+
+    /* Project Box Colors - Dark Mode - High Contrast / Low Saturation */
+    --problem-bg: 0 100% 8%;
+    --problem-text: 0 100% 85%;
+    --solution-bg: 210 100% 8%;
+    --solution-text: 210 100% 85%;
+    --impact-bg: 43 100% 8%;
+    --impact-text: 43 100% 85%;
+  }
 }
 
 @layer base {
@@ -88,227 +73,120 @@ html.dark {
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-base);
-    background-attachment: fixed;
-    color: var(--text-primary);
+    color: var(--foreground);
     min-height: 100vh;
-    min-height: 100dvh;
     overflow-x: hidden;
-    width: 100%;
-    position: relative;
-    touch-action: manipulation;
+    background-image: radial-gradient(var(--matrix-dot) 1px, transparent 1px);
+    background-size: 32px 32px;
     transition: background-color 0.4s ease, color 0.4s ease;
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.03) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.03) 0%, transparent 50%);
   }
 
-  html.dark body {
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.14) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(16,185,129,0.14) 0%, transparent 50%);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    @apply tracking-tighter font-bold;
   }
-
-  /* ── Dark mode Tailwind class overrides ── */
-  html.dark .text-slate-900 { color: #f8fafc !important; }
-  html.dark .text-slate-800 { color: #f1f5f9 !important; }
-  html.dark .text-slate-700 { color: #e2e8f0 !important; }
-  html.dark .text-slate-600 { color: #cbd5e1 !important; }
-  html.dark .text-slate-500 { color: #94a3b8 !important; }
-  html.dark .text-slate-400 { color: #64748b !important; }
-
-  html.dark .bg-slate-50  { background-color: #030712 !important; }
-  html.dark .bg-slate-100 { background-color: #0f172a !important; }
-  html.dark .bg-white     { background-color: transparent !important; }
-
-  html.dark .border-slate-200 { border-color: rgba(255,255,255,0.06) !important; }
-  html.dark .border-slate-100 { border-color: rgba(255,255,255,0.04) !important; }
-  html.dark .border-blue-100  { border-color: rgba(59,130,246,0.15) !important; }
-  html.dark .border-blue-50   { border-color: rgba(59,130,246,0.1) !important; }
 }
 
 @layer utilities {
-  /* Gradient headline text */
-  .text-hero-gradient {
-    background: var(--hero-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .dot-matrix {
+    font-family: 'DotGothic16', sans-serif;
+    text-transform: uppercase;
   }
 
-  /* Section backgrounds */
-  .bg-hero-dark   { background-color: var(--bg-base); }
-  .bg-section     { background-color: var(--bg-base); }
-  .bg-section-alt { background-color: var(--bg-alt); }
+  .font-mono {
+    font-family: 'Space Mono', monospace;
+  }
 
-  /* ── Professional Glassmorphism Card ── */
-  .glass-card {
+  .font-3022 {
+    @apply font-black tracking-[-0.08em] leading-none uppercase;
+    font-size: 1.2em;
+  }
+  
+  .nothing-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    box-shadow: var(--card-shadow);
-    border-radius: 1.25rem;
-    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-                box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-                border-color 0.35s ease;
-    position: relative;
-    overflow: hidden;
+    border-radius: var(--radius);
+    backdrop-filter: blur(24px) saturate(200%);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-soft);
   }
 
-  /* Inner highlight shimmer — key to glass realism */
-  .glass-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(
-      135deg,
-      var(--card-inner-highlight) 0%,
-      transparent 50%
-    );
-    pointer-events: none;
+  .nothing-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
   }
 
-  .glass-card:hover {
-    border-color: var(--card-hover-border);
-    transform: translateY(-6px);
-    box-shadow: var(--card-hover-shadow);
+  .clay-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.3), 
+                0 10px 20px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
   }
 
-  /* Section heading underline bar */
-  .section-bar {
-    @apply w-20 h-1 mx-auto rounded-full mt-4;
-    background: linear-gradient(90deg, #3b82f6, #10b981);
+  .nothing-card-flat {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+
+  .gradient-orange {
+    background: linear-gradient(180deg, #FFB800 0%, #FF8A00 100%);
   }
 
   .section-padding {
-    @apply py-12 px-4 sm:py-16 sm:px-8 md:py-24 md:px-12 lg:px-24;
+    @apply py-16 md:py-24 px-4 sm:px-6 md:px-12 lg:px-24;
   }
 
-  /* Glow button */
-  .btn-glow {
-    box-shadow: 0 0 20px rgba(59,130,246,0.35);
-    transition: box-shadow 0.25s ease, transform 0.2s ease;
-  }
-  .btn-glow:hover {
-    box-shadow: 0 0 35px rgba(59,130,246,0.60);
-    transform: translateY(-1px);
-  }
-  .btn-glow:active { transform: translateY(0); }
-
-  /* Ambient glow orbs for glassmorphism depth */
-  .ambient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    opacity: 0.55;
-    animation: orb-drift 18s ease-in-out infinite alternate;
-  }
-  .ambient-orb-sm {
-    filter: blur(50px);
-    opacity: 0.40;
+  .project-box-red {
+    background-color: hsl(var(--problem-bg));
+    color: hsl(var(--problem-text));
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid hsla(var(--problem-text), 0.1);
   }
 
-  /* Animations */
-  .animate-spin-slow   { animation: spin-slow 14s linear infinite; }
-  .animate-loading-bar { animation: loading-bar 1.8s ease-in-out infinite; }
-  .animate-scan-line   { animation: scan-line 4s ease-in-out infinite; }
-  .animate-float       { animation: orb-drift 6s ease-in-out infinite alternate; }
-  .animate-bounce-x    { animation: bounce-x 1s infinite; }
+  .project-box-blue {
+    background-color: hsl(var(--solution-bg));
+    color: hsl(var(--solution-text));
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid hsla(var(--solution-text), 0.1);
+  }
 
-  /* Blueprint CAD grid */
-  .cad-grid {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(59,130,246,0.15) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.15) 1px, transparent 1px),
-      linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  .project-box-yellow {
+    background-color: hsl(var(--impact-bg));
+    color: hsl(var(--impact-text));
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid hsla(var(--impact-text), 0.1);
   }
 }
 
-/* ── Keyframes ── */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
 }
-@keyframes loading-bar {
-  0%   { transform: translateX(-100%); }
-  50%  { transform: translateX(0%); }
-  100% { transform: translateX(100%); }
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
 }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
 @keyframes scan-line {
-  0%   { transform: translateY(-100%); opacity: 0; }
-  10%  { opacity: 0.5; }
-  50%  { opacity: 0.8; }
-  90%  { opacity: 0.5; }
-  100% { transform: translateY(400px); opacity: 0; }
-}
-@keyframes orb-drift {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(6%, 12%) scale(1.08); }
-  66%  { transform: translate(-8%, 6%) scale(0.94); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes accordion-down {
-  from { height: 0; }
-  to   { height: var(--radix-accordion-content-height); }
-}
-@keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); }
-  to   { height: 0; }
-}
-@keyframes bounce-x {
-  0%, 100% { transform: translateX(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-  50% { transform: translateX(25%); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
-/* ── Vertical Timeline ── */
-.vertical-timeline::before {
-  background: rgba(59,130,246,0.15) !important;
-  width: 1.5px !important;
-}
-.vertical-timeline-element-content {
-  box-shadow: none !important;
-}
-.vertical-timeline-element-content-arrow {
-  display: none !important;
-}
-html.dark .vertical-timeline-element-content {
-  background: rgba(13,22,48,0.70) !important;
-  border: 1px solid rgba(255,255,255,0.07) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-html.dark .vertical-timeline::before {
-  background: rgba(59,130,246,0.22) !important;
-}
-
-/* ── Skill card dark override (bg-white class) ── */
-html.dark .skill-glass-card {
-  background: rgba(13,22,48,0.60) !important;
-  border-color: rgba(255,255,255,0.07) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* Smooth theme transition on all elements */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-/* But not transforms or specialized components — it breaks animations */
-*:not(.glass-card):not(.btn-glow):not([class*="motion"]):not([class*="cad-grid"]) {
-  transition-property: background-color, border-color, color, fill, stroke;
+.animate-scan-line {
+  animation: scan-line 8s linear infinite;
 }

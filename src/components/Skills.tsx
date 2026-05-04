@@ -1,73 +1,138 @@
 import { motion } from "framer-motion";
-import { useTheme } from "@/hooks/useTheme";
+import { Cpu, Brain, Layout, Box, Zap, Shield } from "lucide-react";
 
 const skillCategories = [
-  { color: "#3b82f6", title: "Civil & BIM Tools",    icon: "🏗️",
-    skills: ["AutoCAD", "Autodesk Revit", "STAAD Pro", "EPANET", "QGIS", "MS Project"] },
-  { color: "#10b981", title: "Sustainable Design",   icon: "♻️",
-    skills: ["Green Building Studio", "Energy Modeling", "Passive Cooling Analysis", "IGBC AP"] },
-  { color: "#a855f7", title: "AI & Programming",     icon: "🤖",
-    skills: ["Python", "PyTorch", "Computer Vision", "Generative AI", "AI App/Web Dev"] },
-  { color: "#f59e0b", title: "Software & Analysis",  icon: "📊",
-    skills: ["IBM SPSS", "Microsoft Excel", "Microsoft PowerPoint", "Microsoft Office"] },
-  { color: "#06b6d4", title: "Core Competencies",    icon: "🧠",
-    skills: ["BIM Management", "AI in Civil Engineering", "Sustainable Infrastructure", "Project Management"] },
+  {
+    title: "Civil & BIM Tools",
+    subtitle: "Core Engineering Stack",
+    skills: ["AUTOCAD", "AUTODESK REVIT", "STAAD PRO", "MS PROJECT", "EPANET", "QGIS"],
+    icon: Box,
+    id: "MOD_01",
+    accent: "#F59E0B",
+    accentClass: "text-accent",
+    bgClass: "bg-accent/10",
+    borderClass: "border-accent/30",
+    chipBorder: "border-accent/20 hover:border-accent/50 hover:bg-accent/5"
+  },
+  {
+    title: "AI & Data Science",
+    subtitle: "Intelligence Layer",
+    skills: ["PYTHON", "PYTORCH", "COMPUTER VISION", "YOLO v11", "GENERATIVE AI", "FASTAPI"],
+    icon: Brain,
+    id: "MOD_03",
+    accent: "#3B82F6",
+    accentClass: "text-blue-400",
+    bgClass: "bg-blue-500/10",
+    borderClass: "border-blue-500/30",
+    chipBorder: "border-blue-500/20 hover:border-blue-400/50 hover:bg-blue-500/5"
+  },
+  {
+    title: "Sustainable Design",
+    subtitle: "Green Building Expertise",
+    skills: ["GREEN BUILDING STUDIO", "ENERGY MODELING", "PASSIVE COOLING", "IGBC AP"],
+    icon: Layout,
+    id: "MOD_02",
+    accent: "#10B981",
+    accentClass: "text-emerald-400",
+    bgClass: "bg-emerald-500/10",
+    borderClass: "border-emerald-500/30",
+    chipBorder: "border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-500/5"
+  },
+  {
+    title: "Core Competencies",
+    subtitle: "Professional Skills",
+    skills: ["BIM MANAGEMENT", "SITE MONITORING", "PROJECT PLANNING", "STRUCTURAL ANALYSIS"],
+    icon: Cpu,
+    id: "MOD_05",
+    accent: "#A855F7",
+    accentClass: "text-purple-400",
+    bgClass: "bg-purple-500/10",
+    borderClass: "border-purple-500/30",
+    chipBorder: "border-purple-500/20 hover:border-purple-400/50 hover:bg-purple-500/5"
+  }
 ];
 
+const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0);
+
 const Skills = () => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
-    <section id="skills" className="section-padding bg-section overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <p className="text-blue-500 text-sm uppercase tracking-[0.2em] font-bold mb-3">Capabilities</p>
-          <h2 className={`text-4xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-            Skills & <span className="text-hero-gradient">Expertise</span>
-          </h2>
-          <div className="section-bar bg-blue-500/20" />
-        </motion.div>
+    <section id="skills" className="section-padding bg-bg-base relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-accent/3 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-tr from-blue-500/3 to-transparent pointer-events-none" />
 
-        {/* DETAILED CATEGORY GRID */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((cat, i) => (
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* Header */}
+        <div className="mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase">// TECHNICAL REGISTRY</p>
+            <h2 className="text-4xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
+              SKILLS
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* Skill Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {skillCategories.map((category, idx) => (
             <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-3xl p-8 glass-card group transition-all duration-300 hover:-translate-y-1"
+              key={category.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="nothing-card group p-8 md:p-10 transition-all duration-500 relative overflow-hidden"
             >
-              <div className="flex items-center gap-4 mb-8">
-                <div 
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 group-hover:scale-110"
-                  style={{ 
-                    background: `${cat.color}12`, 
-                    border: `1px solid ${cat.color}25` 
-                  }}
-                >
-                  {cat.icon}
+              {/* Hover glow */}
+              <div
+                className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                style={{ backgroundColor: category.accent + "18" }}
+              />
+
+              {/* Card Header */}
+              <div className="flex items-center justify-between mb-7 relative z-10">
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-xl ${category.bgClass} border ${category.borderClass} flex items-center justify-center transition-all duration-300 group-hover:scale-110`}>
+                    <category.icon className={`w-6 h-6 ${category.accentClass}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black uppercase tracking-tight text-foreground leading-none">{category.title}</h3>
+                    <p className="text-[10px] text-foreground/50 uppercase tracking-widest font-medium mt-0.5">{category.subtitle}</p>
+                  </div>
                 </div>
-                <h3 className={`text-lg font-black tracking-tight ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
-                  {cat.title}
-                </h3>
+                <span className={`dot-matrix text-[9px] font-bold ${category.accentClass} opacity-60`}>
+                  {category.skills.length} SKILLS
+                </span>
               </div>
-              <div className="flex flex-wrap gap-2.5">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-4 py-2 text-[10px] rounded-xl font-black uppercase tracking-widest transition-all cursor-default border ${
-                      isDark 
-                        ? 'border-white/5 bg-white/5 text-slate-500 hover:text-blue-400 hover:border-blue-500/30' 
-                        : 'border-slate-200 bg-slate-50 text-slate-500 hover:text-blue-600 hover:border-blue-300'
-                    }`}
+
+              {/* Divider */}
+              <div className="h-[1px] w-full bg-gradient-to-r from-border/60 to-transparent mb-6 relative z-10" />
+
+              {/* Skill Chips */}
+              <div className="flex flex-wrap gap-2.5 relative z-10">
+                {category.skills.map((skill, sIdx) => (
+                  <motion.div
+                    key={sIdx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 + sIdx * 0.04 }}
+                    className={`flex items-center gap-2 px-3.5 py-2 border rounded-lg bg-foreground/[0.02] ${category.chipBorder} transition-all duration-300 cursor-default`}
                   >
-                    {skill}
-                  </span>
+                    <div
+                      className="w-1 h-1 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: category.accent }}
+                    />
+                    <span className="text-[10px] font-black tracking-wider uppercase text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap">
+                      {skill}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

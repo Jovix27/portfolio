@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Trophy, Award, Users } from "lucide-react";
+import { Trophy, Award, Users, ChevronRight } from "lucide-react";
 
 const achievements = [
-  { icon: Users,  color: "#3b82f6", title: "Chairperson",          org: "IGBC Student Chapter, SASTRA University",               year: "2024–25" },
-  { icon: Users,  color: "#3b82f6", title: "Core Executive Member", org: "Civil Engineering Association (CEA), SASTRA",           year: "2024–25" },
-  { icon: Users,  color: "#8b5cf6", title: "Technical Head",        org: "Utsav 2025 (Annual Cultural Festival), SASTRA",         year: "2024–25" },
-  { icon: Trophy, color: "#f59e0b", title: "Internal Finalist",     org: "Smart India Hackathon (SIH) — AI Civil Solutions",      year: "2024" },
-  { icon: Trophy, color: "#f59e0b", title: "Internal Finalist",     org: "Daksh AI Hackathon — Machine Learning in Construction", year: "2025" },
+  { icon: Users,  title: "Chairperson",          org: "IGBC Student Chapter, SASTRA University",               year: "2024–25" },
+  { icon: Users,  title: "Core Executive Member", org: "Civil Engineering Association (CEA), SASTRA",           year: "2024–25" },
+  { icon: Users,  title: "Technical Head",        org: "Utsav 2025 (Annual Cultural Festival), SASTRA",         year: "2024–25" },
+  { icon: Trophy, title: "Internal Finalist",     org: "Smart India Hackathon (SIH) — AI Civil Solutions",      year: "2024" },
+  { icon: Trophy, title: "Internal Finalist",     org: "Daksh AI Hackathon — Machine Learning in Construction", year: "2025" },
 ];
 
 const certifications = [
@@ -18,46 +18,45 @@ const certifications = [
 ];
 
 const Achievements = () => (
-  <section id="achievements" className="section-padding bg-section">
-    <div className="max-w-7xl mx-auto">
-
-      {/* Achievements */}
+  <section id="achievements" className="section-padding bg-bg-base relative">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Achievements Header */}
       <motion.div
         initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.7 }}
-        className="text-center mb-14"
+        className="mb-16"
       >
-        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">Recognition</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
-          Achievements & <span className="text-hero-gradient">Leadership</span>
+        <p className="text-accent dot-matrix text-[10px] tracking-[0.4em] font-bold mb-4">// SYSTEM RECOGNITION</p>
+        <h2 className="text-4xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
+          ACHIEVEMENTS
         </h2>
-        <div className="section-bar" />
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
         {achievements.map((a, i) => {
           const Icon = a.icon;
           return (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="p-6 rounded-2xl glass-card"
-              style={{ borderColor: `${a.color}22` }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="nothing-card p-8 group hover:bg-foreground/5 transition-all"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl flex-shrink-0"
-                  style={{ background: `${a.color}14`, border: `1px solid ${a.color}28` }}>
-                  <Icon className="h-5 w-5" style={{ color: a.color }} />
+              <div className="flex flex-col gap-6">
+                <div className="flex justify-between items-start">
+                  <div className="p-3 rounded-full border border-border/30 text-accent bg-bg-base">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="font-3022 text-xl text-foreground group-hover:text-accent transition-colors">{a.year.split('–')[0]}</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base leading-tight">{a.title}</h3>
-                  <p className="text-sm text-slate-500 mt-1 leading-snug">{a.org}</p>
-                  <span
-                    className="inline-block mt-2 text-xs font-semibold px-2.5 py-0.5 rounded-full"
-                    style={{ background: `${a.color}14`, color: a.color, border: `1px solid ${a.color}28` }}
-                  >{a.year}</span>
+                  <h3 className="text-lg font-bold tracking-tight mb-2 uppercase text-foreground">
+                    {a.title}
+                  </h3>
+                  <p className="text-[10px] text-foreground dot-matrix tracking-widest uppercase leading-relaxed">
+                    {a.org}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -65,39 +64,46 @@ const Achievements = () => (
         })}
       </div>
 
-      {/* Certifications */}
+      {/* Certifications Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.7 }}
-        className="text-center mb-14"
+        className="mb-12"
       >
-        <p className="text-blue-600 text-sm uppercase tracking-widest font-medium mb-2">Credentials</p>
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
-          <span className="text-hero-gradient">Certifications</span>
+        <p className="text-accent dot-matrix text-[10px] tracking-[0.4em] font-bold mb-4">// CREDENTIAL REGISTRY</p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase leading-none text-foreground">
+          CERTIFICATIONS
         </h2>
-        <div className="section-bar" />
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {certifications.map((c, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
-            whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="p-6 rounded-2xl glass-card flex items-start gap-4"
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}
+            className="flex items-center justify-between p-6 nothing-card group hover:border-accent transition-all relative overflow-hidden"
           >
-            <div className="p-3 rounded-xl flex-shrink-0"
-              style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
-              <Award className="h-5 w-5 text-emerald-600" />
+            {/* Background Accent Pulse */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-3xl -mr-16 -mt-16 group-hover:bg-accent/10 transition-colors" />
+            
+            <div className="flex items-center gap-6 relative z-10">
+              <div className="w-12 h-12 rounded-full border border-border/30 flex items-center justify-center bg-bg-base group-hover:border-accent group-hover:text-accent transition-all duration-500">
+                <Award className="w-6 h-6 text-foreground group-hover:text-accent group-hover:scale-110 transition-all" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-sm md:text-lg font-bold tracking-tight uppercase group-hover:text-foreground transition-colors text-foreground">
+                  {c.title}
+                </h3>
+                <div className="flex items-center gap-3">
+                  <p className="text-[10px] text-foreground dot-matrix tracking-widest uppercase">
+                    {c.issuer} • {c.year}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-slate-900 text-sm leading-snug">{c.title}</h3>
-              <p className="text-xs text-slate-500 mt-1">{c.issuer}</p>
-              <span className="inline-block mt-2 text-xs font-semibold px-2.5 py-0.5 rounded-full"
-                style={{ background: "rgba(16,185,129,0.12)", color: "#10b981", border: "1px solid rgba(16,185,129,0.22)" }}>
-                {c.year}
-              </span>
+            <div className="relative z-10 p-2 rounded-full border border-border/20 group-hover:border-accent/30 group-hover:translate-x-1 transition-all">
+              <ChevronRight className="w-4 h-4 text-foreground group-hover:text-accent" />
             </div>
           </motion.div>
         ))}

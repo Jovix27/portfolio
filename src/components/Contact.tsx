@@ -1,214 +1,139 @@
-import { useState, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, ExternalLink, Send, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import emailjs from "@emailjs/browser";
-import { EarthFallback } from "./canvas/Earth";
-import { useTheme } from "@/hooks/useTheme";
-
-const EarthCanvas = lazy(() => import("./canvas/Earth"));
+import { Send, Mail, MapPin, Linkedin, Github, Globe } from "lucide-react";
+import EarthCanvas from "./canvas/Earth";
 
 const Contact = () => {
-  const { toast } = useToast();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [busy, setBusy] = useState(false);
-
-  const cardStyle = {
-    background: isDark ? "rgba(15,23,42,0.60)" : "rgba(255,255,255,0.7)",
-    border: `1px solid ${isDark ? "rgba(255,255,255,0.05)" : "rgba(59,130,246,0.12)"}`,
-    backdropFilter: "blur(24px)",
-    boxShadow: isDark ? "0 20px 40px -15px rgba(0,0,0,0.5)" : "0 10px 30px -15px rgba(59,130,246,0.1)",
-  };
-
-  const inputStyle = {
-    background: isDark ? "rgba(15,23,42,0.40)" : "rgba(255,255,255,0.5)",
-    border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(59,130,246,0.15)"}`,
-  };
-
-  const inputClass = `
-    w-full px-5 py-4 rounded-2xl text-sm outline-none transition-all focus:ring-2 focus:ring-blue-500/20
-    ${isDark ? "text-white placeholder:text-slate-600 font-medium" : "text-slate-900 placeholder:text-slate-400 font-medium"}
-  `.trim();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setBusy(true);
-    try {
-      emailjs.init("aEvbeb24MPIqmNjUu");
-      const templateParams = {
-        user_name: form.name,
-        user_email: form.email,
-        to_name: "Joseva A",
-        message: form.message,
-      };
-      const result = await emailjs.send("service_5ixterr", "template_qqi02fi", templateParams);
-      if (result.status === 200) {
-        toast({ title: "Message Sent!", description: "I'll get back to you soon." });
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send message");
-      }
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      toast({ title: "Error", description: "Failed to send. Please try again.", variant: "destructive" });
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const contactInfo = [
-    { icon: MapPin, color: "#8b5cf6", label: "Location", value: "Tiruchirappalli, TN", link: null },
-    { icon: Mail, color: "#3b82f6", label: "Email", value: "ajoseva04@gmail.com", link: "mailto:ajoseva04@gmail.com" },
-    { icon: Phone, color: "#10b981", label: "Phone", value: "+91 8015164110", link: "tel:+918015164110" },
-  ];
-
-  const socials = [
-    { icon: Linkedin, color: "#3b82f6", label: "LinkedIn", url: "https://linkedin.com/in/joseva2748" },
-    { icon: ExternalLink, color: "#8b5cf6", label: "GitHub", url: "https://github.com/Jovix27" },
-  ];
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
-    <section id="contact" className="section-padding bg-section-alt overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.7 }}
-          className="text-center mb-20"
-        >
-          <p className="text-blue-500 text-sm uppercase tracking-[0.2em] font-black mb-3">Let's collaborate</p>
-          <h2 className={`text-4xl md:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-            Get In <span className="text-hero-gradient">Touch</span>
-          </h2>
-          <div className="section-bar bg-blue-500/20" />
-          <p className={`mt-6 max-w-xl mx-auto text-sm leading-relaxed font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-            Open to ConTech roles, BIM engineering positions, and AI-construction research collaborations.
-          </p>
-        </motion.div>
+    <section id="contact" className="section-padding py-12 md:py-20 bg-bg-alt relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12">
+          
+          {/* Header & Earth Widget */}
+          <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase">// UPLINK INITIATION</p>
+              <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none mb-6 text-foreground">
+                CONTACT
+              </h2>
+              <p className="text-foreground font-medium text-base md:text-lg leading-relaxed max-w-md">
+                Ready to integrate into your next engineering lifecycle or BIM ecosystem.
+              </p>
+            </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <motion.div className="space-y-6"
-            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.7 }}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="nothing-card p-4 aspect-square bg-black relative overflow-hidden flex flex-col justify-between border border-border/20"
+            >
+               <div className="absolute inset-0 opacity-60">
+                  <EarthCanvas />
+               </div>
+               <div className="relative z-10 p-4 md:p-6 pb-20 md:pb-24">
+                  <div className="flex items-center gap-2">
+                     <Globe className="w-4 h-4 text-accent" />
+                     <span className="text-[10px] md:text-xs font-bold dot-matrix tracking-widest text-accent drop-shadow-sm">PLANET EARTH</span>
+                  </div>
+               </div>
+               <div className="relative z-10 p-4 md:p-6 flex justify-between items-end border-t border-white/5 bg-gradient-to-t from-black/80 to-transparent">
+                   <span className="dot-matrix text-[8px] md:text-[10px] tracking-widest text-white">GEO TRACKING V4.0</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(255,184,0,0.5)]" />
+               </div>
+            </motion.div>
+          </div>
+
+          {/* Contact Form Widget */}
+          <motion.div 
+            initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 40 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 nothing-card p-6 md:p-12 flex flex-col justify-between relative overflow-hidden border border-border/20"
           >
-            {/* Globe Card */}
-            <div className="h-72 sm:h-80 md:h-96 relative rounded-3xl overflow-hidden glass-card shadow-2xl group/globe"
-              style={{ ...cardStyle, border: isDark ? "1px solid rgba(59,130,246,0.15)" : "1px solid rgba(59,130,246,0.2)" }}>
-              
-
-
-              <div className="absolute inset-0 z-0">
-                <Suspense fallback={<EarthFallback />}><EarthCanvas /></Suspense>
-              </div>
-              <div className={`absolute inset-0 pointer-events-none z-10 ${isDark ? 'bg-gradient-to-t from-[#020617]/90 via-transparent to-transparent' : 'bg-gradient-to-t from-slate-200/60 via-transparent to-transparent'}`} />
-              
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className={`px-4 py-2 rounded-full border backdrop-blur-md shadow-lg ${isDark ? 'bg-slate-900/50 border-white/10' : 'bg-white/50 border-blue-500/20'}`}
-                >
-                  <p className={`text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-                    Explore my experience
-                  </p>
-                </motion.div>
-              </div>
-              
-
+            <div className="absolute top-0 right-0 p-6 opacity-5 md:opacity-10 pointer-events-none hidden sm:block">
+              <span className="dot-matrix text-[40px] md:text-[60px] font-black leading-none tracking-tighter">@CONTACT</span>
             </div>
 
-
-            {/* Contact Chips */}
-            <div className="space-y-4">
-              {contactInfo.map((info, i) => {
-                const Icon = info.icon;
-                const inner = (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                    whileHover={{ x: 6 }}
-                    className="flex items-center gap-5 p-5 rounded-3xl transition-all glass-card"
-                    style={cardStyle}
-                  >
-                    <div className="p-3.5 rounded-2xl flex-shrink-0 shadow-lg"
-                      style={{ background: `${info.color}${isDark ? '15' : '10'}`, border: `1px solid ${info.color}${isDark ? '30' : '20'}` }}>
-                      <Icon className="h-6 w-6" style={{ color: info.color }} />
-                    </div>
-                    <div>
-                      <p className={`text-[10px] uppercase tracking-[0.2em] font-black ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{info.label}</p>
-                      <p className={`text-sm font-black mt-1 ${isDark ? 'text-white' : 'text-slate-800'}`}>{info.value}</p>
-                    </div>
-                  </motion.div>
-                );
-                return info.link ? <a key={i} href={info.link} className="block">{inner}</a> : <div key={i}>{inner}</div>;
-              })}
-            </div>
-
-            {/* Socials */}
-            <div className="flex flex-wrap gap-4">
-              {socials.map((s, i) => {
-                const Icon = s.icon;
-                return (
-                  <motion.a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }} transition={{ delay: 0.3 + i * 0.1 }}
-                    whileHover={{ y: -4 }}
-                    className="flex items-center gap-3 px-6 py-3.5 rounded-2xl glass-card transition-all"
-                    style={{ background: `${s.color}${isDark ? '15' : '10'}`, border: `1px solid ${s.color}${isDark ? '30' : '20'}` }}
-                  >
-                    <Icon className="h-4 w-4" style={{ color: s.color }} />
-                    <span className="text-xs font-black uppercase tracking-widest" style={{ color: s.color }}>{s.label}</span>
-                  </motion.a>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="rounded-3xl p-8 sm:p-12 glass-card shadow-2xl" style={cardStyle}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {[
-                { id: "name", label: "Full Name", type: "text", ph: "Enter your name..." },
-                { id: "email", label: "Email Address", type: "email", ph: "name@example.com" },
-              ].map(({ id, label, type, ph }) => (
-                <div key={id}>
-                  <label htmlFor={id} className={`block text-[10px] uppercase tracking-[0.2em] font-black mb-3 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{label}</label>
-                  <input
-                    id={id} type={type} placeholder={ph} required
-                    value={(form as any)[id]}
-                    onChange={(e) => setForm({ ...form, [id]: e.target.value })}
-                    className={inputClass}
-                    style={inputStyle}
+            <form className="space-y-8 md:space-y-10 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
+                <div className="group/field space-y-3">
+                  <div className="flex justify-between items-center px-1">
+                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">FULL NAME</label>
+                    <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">REQUIRED</span>
+                  </div>
+                  <input 
+                    type="text" 
+                    placeholder="IDENTIFY..."
+                    className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20"
                   />
                 </div>
-              ))}
-              <div>
-                <label htmlFor="message" className={`block text-[10px] uppercase tracking-[0.2em] font-black mb-3 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Message</label>
-                <textarea
-                  id="message" rows={5} required
-                  placeholder="How can I help with your project?"
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className={`${inputClass} resize-none`}
-                  style={inputStyle}
+                <div className="group/field space-y-3">
+                  <div className="flex justify-between items-center px-1">
+                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">UPLINK EMAIL</label>
+                    <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">VALID_REQUIRED</span>
+                  </div>
+                  <input 
+                    type="email" 
+                    placeholder="DESTINATION..."
+                    className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20"
+                  />
+                </div>
+              </div>
+
+              <div className="group/field space-y-3">
+                <div className="flex justify-between items-center px-1">
+                   <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">TRANSMISSION DATA</label>
+                   <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">DATA PACKET READY</span>
+                </div>
+                <textarea 
+                  rows={4}
+                  placeholder="BEGIN_MESSAGE..."
+                  className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20 resize-none"
                 />
               </div>
-              <button
-                type="submit" disabled={busy}
-                className="w-full h-14 rounded-2xl text-sm font-black uppercase tracking-[0.2em] text-white btn-glow transition-all flex items-center justify-center gap-3 disabled:opacity-60 shadow-xl"
-                style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)" }}
+
+              <button 
+                type="submit"
+                className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-base md:text-lg tracking-tighter flex items-center justify-center gap-4 hover:bg-accent hover:text-black hover:shadow-[0_0_30px_rgba(255,184,0,0.3)] transition-all group"
               >
-                {busy ? <><Loader2 className="h-5 w-5 animate-spin" />Sending</> : <><Send className="h-5 w-5" />Send Message</>}
+                SEND UPLINK
+                <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
               </button>
             </form>
+
+            <div className="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-border/30 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-10">
+               <div className="group/link cursor-pointer">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
+                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">GITHUB CORE</span>
+                  </div>
+                  <a href="https://github.com/Jovix27" target="_blank" rel="noopener noreferrer" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors">github.com/Jovix27</a>
+               </div>
+               <div className="group/link cursor-pointer">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
+                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">LINKEDIN SYNC</span>
+                  </div>
+                  <a href="https://linkedin.com/in/joseva2748" target="_blank" rel="noopener noreferrer" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors">linkedin.com/joseva2748</a>
+               </div>
+               <div className="group/link cursor-pointer">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
+                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">DIRECT MAIL</span>
+                  </div>
+                  <a href="mailto:ajoseva04@gmail.com" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors truncate">ajoseva04@gmail.com</a>
+               </div>
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>

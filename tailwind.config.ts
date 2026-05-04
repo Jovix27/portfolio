@@ -60,6 +60,8 @@ export default {
         },
         "hero-dark": "#050816",
         "hero-gradient": "linear-gradient(to right, #3b82f6, #2563eb)",
+        "bg-base": "var(--bg-base)",
+        "bg-alt": "var(--bg-alt)",
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -16,12 +16,12 @@ const DeskFallback = () => (
     />
 
     {/* Bottom gradient fade into page */}
-    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 via-slate-50/40 to-transparent z-20 pointer-events-none" />
+    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-bg-alt via-bg-alt/40 to-transparent z-20 pointer-events-none" />
 
     {/* Floating label */}
-    <div className="absolute bottom-4 left-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 border border-blue-500/10 backdrop-blur-sm shadow-sm">
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-      <span className="text-xs text-blue-600 font-medium">BIM Workspace</span>
+    <div className="absolute bottom-4 left-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/80 border border-border/30 backdrop-blur-sm shadow-sm">
+      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+      <span className="text-xs text-foreground font-medium">BIM Workspace</span>
     </div>
   </div>
 );
@@ -29,5 +29,4 @@ const DeskFallback = () => (
 // Main export — uses the image for all screen sizes (no GLTF required)
 const ArchitectDeskCanvas = () => <DeskFallback />;
 
-export { DeskFallback };
 export default ArchitectDeskCanvas;

@@ -41,7 +41,6 @@ const Hotspot = ({ name, pos, target, desc, certificateUrl, type, onHover, pulse
     e.stopPropagation();
     if (!isClickable) return;
     
-    // Direct download with proper base path
     const link = document.createElement("a");
     link.href = certificateUrl;
     link.download = certificateUrl.split("/").pop() || "certificate.pdf";
@@ -59,36 +58,39 @@ const Hotspot = ({ name, pos, target, desc, certificateUrl, type, onHover, pulse
       >
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshBasicMaterial 
-          color={isClickable ? (hovered ? "#60a5fa" : "#3b82f6") : "#1e293b"} 
+          color={isClickable ? (hovered ? "#ffb800" : "#ffb800") : "#444"} 
           transparent 
           opacity={isClickable ? 1 : 0.6}
         />
       </mesh>
       
       {/* Outer pulse */}
-      <mesh scale={hovered ? 2.2 : 1.6}>
+      <mesh scale={hovered ? 2.5 : 1.8}>
         <sphereGeometry args={[0.1, 16, 16]} />
         <meshBasicMaterial 
-          color={isClickable ? "#3b82f6" : "#475569"} 
+          color="#ffb800" 
           transparent 
-          opacity={isClickable ? (hovered ? 0.4 : 0.2) : 0.1} 
+          opacity={isClickable ? (hovered ? 0.3 : 0.1) : 0.05} 
         />
       </mesh>
 
       {/* Pulsing ring for clickable nodes */}
       {isClickable && (
-        <mesh scale={1.8 + pulse * 0.4}>
-          <ringGeometry args={[0.09, 0.1, 32]} />
-          <meshBasicMaterial color="#3b82f6" transparent opacity={0.3 * (1 - pulse)} side={THREE.DoubleSide} />
+        <mesh scale={1.8 + pulse * 0.5}>
+          <ringGeometry args={[0.09, 0.11, 32]} />
+          <meshBasicMaterial color="#ffb800" transparent opacity={0.4 * (1 - pulse)} side={THREE.DoubleSide} />
         </mesh>
       )}
 
       {hovered && (
         <Html distanceFactor={10} zIndexRange={[100, 0]}>
-          <div className={`backdrop-blur-md p-3 rounded-lg shadow-xl pointer-events-none whitespace-nowrap border ${isClickable ? 'bg-white/95 border-blue-500/20 shadow-blue-500/10' : 'bg-slate-900/90 border-slate-500/20 shadow-slate-900/40'}`}>
-            <p className={`${isClickable ? 'text-blue-600' : 'text-slate-300'} text-[10px] font-bold uppercase tracking-tighter mb-0.5`}>{name}</p>
-            <p className={`${isClickable ? 'text-slate-600' : 'text-slate-400'} text-[9px] font-medium`}>
-              {isClickable ? "Click to Download Certificate" : "Academic Foundation"}
+          <div className="bg-black/90 backdrop-blur-md p-4 border border-accent/20 rounded-none shadow-2xl pointer-events-none whitespace-nowrap">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-1 h-1 bg-accent" />
+              <p className="dot-matrix text-accent text-[10px] font-black uppercase tracking-widest">{name}</p>
+            </div>
+            <p className="text-white/40 text-[9px] font-bold uppercase tracking-tight">
+              {isClickable ? "SYSTEM ACCESS: DOWNLOAD CREDENTIAL" : "DATA NODE: ACADEMIC RECORD"}
             </p>
           </div>
         </Html>
@@ -100,39 +102,38 @@ const Hotspot = ({ name, pos, target, desc, certificateUrl, type, onHover, pulse
 const GlobeModel = ({ onHoverNode }: { onHoverNode: (id: string | null) => void }) => {
   const isMobile = window.innerWidth < 768;
   const meshRef = useRef<THREE.Mesh>(null);
-  const geometry = useMemo(() => {
-    // Significantly lower resolution for mobile to prevent loading hangups
-    return new THREE.SphereGeometry(2.5, isMobile ? 20 : 32, isMobile ? 14 : 24);
-  }, [isMobile]);
+  const secondaryMeshRef = useRef<THREE.Mesh>(null);
+  
+  const geometry = useMemo(() => new THREE.SphereGeometry(2.5, isMobile ? 16 : 48, isMobile ? 12 : 32), [isMobile]);
+  const innerGeometry = useMemo(() => new THREE.SphereGeometry(2.48, isMobile ? 12 : 24, isMobile ? 8 : 16), [isMobile]);
   
   const [pulse, setPulse] = useState(0);
   
   useFrame((state) => {
+    const time = state.clock.getElapsedTime();
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.12;
+      meshRef.current.rotation.y = time * (isMobile ? 0.08 : 0.1);
     }
-    setPulse(Math.sin(state.clock.getElapsedTime() * 4) * 0.5 + 0.5);
+    if (secondaryMeshRef.current) {
+      secondaryMeshRef.current.rotation.y = -time * 0.05;
+      secondaryMeshRef.current.rotation.z = time * 0.02;
+    }
+    setPulse(Math.sin(time * 3) * 0.5 + 0.5);
   });
 
   return (
     <group>
-      {/* 1. Boundary Circle - Blue */}
-      <mesh>
-        <ringGeometry args={[2.55, 2.58, isMobile ? 32 : 64]} />
-        <meshBasicMaterial color="#3b82f6" side={THREE.DoubleSide} transparent opacity={0.4} />
-      </mesh>
-
-      {/* 2. Main Wireframe - Blue */}
+      {/* 1. Main Wireframe - Accent Amber */}
       <mesh ref={meshRef}>
         <primitive object={geometry} attach="geometry" />
         <meshBasicMaterial 
-          color="#3b82f6" 
+          color="#ffb800" 
           wireframe 
           transparent 
-          opacity={0.35}
+          opacity={isMobile ? 0.2 : 0.25}
         />
         
-        {/* Project Hotspots attached to the rotating globe */}
+        {/* Project Hotspots */}
         {hotspots.map((h, i) => (
           <Hotspot 
             key={i} 
@@ -143,17 +144,40 @@ const GlobeModel = ({ onHoverNode }: { onHoverNode: (id: string | null) => void 
         ))}
       </mesh>
 
-      {/* 3. Inner Glow & Atmosphere */}
+      {/* 2. Secondary Tech Wireframe - Subtle Blue/Grey */}
+      {!isMobile && (
+        <mesh ref={secondaryMeshRef}>
+          <primitive object={innerGeometry} attach="geometry" />
+          <meshBasicMaterial 
+            color="#3b82f6" 
+            wireframe 
+            transparent 
+            opacity={0.08}
+          />
+        </mesh>
+      )}
+
+      {/* 3. Outer Atmosphere Glow */}
       <mesh>
-        <sphereGeometry args={[2.45, isMobile ? 12 : 32, isMobile ? 8 : 24]} />
-        <meshBasicMaterial color="#3b82f6" transparent opacity={0.08} />
+        <sphereGeometry args={[2.55, 32, 32]} />
+        <meshBasicMaterial color="#ffb800" transparent opacity={0.03} side={THREE.BackSide} />
       </mesh>
-      
-      {/* 4. Holographic Ring */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[2.8, 0.01, 16, 100]} />
-        <meshBasicMaterial color="#3b82f6" transparent opacity={0.1} />
+
+      {/* 4. Scanning Ring */}
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, Math.sin(pulse * Math.PI) * (isMobile ? 0.05 : 0.1), 0]}>
+        <torusGeometry args={[2.7, 0.005, 16, 100]} />
+        <meshBasicMaterial color="#ffb800" transparent opacity={isMobile ? 0.15 : 0.2} />
       </mesh>
+
+      {/* 5. Experience Narrative Text inside Globe - Optimized Position */}
+      <Html position={[0, 0, 0]} center>
+        <div className="flex flex-col items-center justify-center gap-2 pointer-events-none">
+          <div className={`dot-matrix ${isMobile ? 'text-[8px]' : 'text-[10px]'} text-white font-black uppercase tracking-[0.4em] whitespace-nowrap bg-black/60 px-6 py-2.5 backdrop-blur-xl border border-white/20 transition-opacity duration-500 shadow-[0_0_40px_rgba(255,255,255,0.05)]`}>
+            EXPLORE MY EXPERIENCE
+          </div>
+          <div className="h-[1px] w-12 bg-accent" />
+        </div>
+      </Html>
     </group>
   );
 };
@@ -188,18 +212,5 @@ const EarthCanvas = () => {
   );
 };
 
-const EarthFallback = () => (
-  <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900/10 backdrop-blur-sm rounded-3xl">
-     <div className="relative w-32 h-32 flex items-center justify-center">
-       {/* Animated pulse rings */}
-       <div className="absolute inset-0 rounded-full border-2 border-blue-500/20 animate-ping" />
-       <div className="absolute inset-4 rounded-full border-2 border-blue-500/10 animate-pulse" />
-       <div className="w-20 h-20 rounded-full border-2 border-t-blue-500 border-r-blue-500/30 border-b-blue-500/10 border-l-blue-500/30 animate-spin" />
-     </div>
-     <p className="mt-6 text-[10px] text-blue-500 font-black uppercase tracking-[0.3em] animate-pulse">Initializing Interface</p>
-  </div>
-);
-
-export { EarthFallback };
 export default EarthCanvas;
 
