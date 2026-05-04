@@ -19,6 +19,7 @@
     --radius: 28px;
     
     --bg-base: #EFEFEF;
+    --bg-subtle: #F2F2F2;
     --bg-alt: #F7F7F7;
     --matrix-dot: rgba(0, 0, 0, 0.08);
     --matrix-level-0: rgba(0, 0, 0, 0.03);
@@ -27,6 +28,7 @@
     --matrix-level-3: rgba(0, 0, 0, 0.3);
     --card-bg: rgba(255, 255, 255, 0.7);
     --card-border: rgba(0, 0, 0, 0.05);
+    --card-hover-bg: rgba(0, 0, 0, 0.02);
     --shadow-soft: 0 10px 30px -10px rgba(0,0,0,0.05);
 
     /* Project Box Colors - Light Mode */
@@ -39,32 +41,39 @@
   }
 
   html.dark {
-    --background: 0 0% 0%; /* Absolute black */
-    --foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 70%;
-    --border: 0 0% 14%;
+    --background: 0 0% 3%;           /* #080808 — pure black base */
+    --foreground: 0 0% 96%;           /* #F5F5F5 — high contrast text */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3%;
+    --muted: 0 0% 7%;                 /* #121212 — deep charcoal */
+    --muted-foreground: 0 0% 65%;    /* #A6A6A6 — readable secondary */
+    --border: 0 0% 14%;              /* #242424 — subtle structure */
     
-    --bg-base: #000000;
-    --bg-alt: #050505; /* Slightly lighter than base for section separation */
-    --matrix-dot: rgba(255, 255, 255, 0.05);
-    --matrix-level-0: rgba(255, 255, 255, 0.02);
-    --matrix-level-1: rgba(255, 255, 255, 0.08);
-    --matrix-level-2: rgba(255, 255, 255, 0.15);
-    --matrix-level-3: rgba(255, 255, 255, 0.3);
-    --card-bg: rgba(10, 10, 10, 0.8);
-    --card-border: rgba(255, 255, 255, 0.12);
-    --shadow-soft: 0 20px 50px -20px rgba(0,0,0,0.9);
+    /* Background Layers */
+    --bg-base: #080808;              /* deepest layer */
+    --bg-subtle: #0D0D0D;            /* elevated layer */
+    --bg-alt: #121212;               /* section surface */
 
-    /* Project Box Colors - Dark Mode - High Contrast / Low Saturation */
-    --problem-bg: 0 100% 8%;
-    --problem-text: 0 100% 85%;
-    --solution-bg: 210 100% 8%;
-    --solution-text: 210 100% 85%;
-    --impact-bg: 43 100% 8%;
-    --impact-text: 43 100% 85%;
+    /* Matrix dot spectrum */
+    --matrix-dot: rgba(255, 255, 255, 0.03);
+    --matrix-level-0: rgba(255, 255, 255, 0.02);
+    --matrix-level-1: rgba(255, 255, 255, 0.1);
+    --matrix-level-2: rgba(255, 255, 255, 0.2);
+    --matrix-level-3: rgba(255, 255, 255, 0.45);
+
+    /* Card System — Premium glass */
+    --card-bg: rgba(18, 18, 18, 0.8);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-hover-bg: rgba(28, 28, 28, 0.95);
+    --shadow-soft: 0 30px 60px -30px rgba(0, 0, 0, 1);
+
+    /* Project Box Colors — High performance palette */
+    --problem-bg: 0 0% 6%;           /* #0F0F0F */
+    --problem-text: 0 0% 90%;
+    --solution-bg: 0 0% 8%;          /* #141414 */
+    --solution-text: 0 0% 95%;
+    --impact-bg: 0 0% 10%;           /* #1A1A1A */
+    --impact-text: 43 100% 75%;      /* bright accent for dark mode */
   }
 }
 
@@ -116,7 +125,7 @@
   .nothing-card:hover {
     transform: translateY(-6px) scale(1.01);
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-hover-bg);
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
   }
 
@@ -190,6 +199,25 @@
   100% { transform: translateY(100vh); }
 }
 
+@keyframes scan-line-fast {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(320px); } /* Approximate circle height */
+}
+
+@keyframes scan-sweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(320px); opacity: 0; }
+}
+
 .animate-scan-line {
   animation: scan-line 8s linear infinite;
+}
+
+.animate-scan-line-fast {
+  animation: scan-line-fast 3s linear infinite;
+}
+
+.animate-scan-sweep {
+  animation: scan-sweep 6s ease-in-out infinite;
 }

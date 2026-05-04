@@ -1,139 +1,136 @@
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Linkedin, Github, Globe } from "lucide-react";
+import { Send, Mail, Linkedin, Github } from "lucide-react";
 import EarthCanvas from "./canvas/Earth";
+import MatrixGraph from "./MatrixGraph";
 
 const Contact = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
-    <section id="contact" className="section-padding py-12 md:py-20 bg-bg-alt relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12">
+    <section id="contact" className="section-padding py-16 md:py-24 bg-bg-base relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* Header & Earth Widget */}
-          <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
+          <div className="lg:col-span-5 space-y-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
             >
-              <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase">// UPLINK INITIATION</p>
-              <h2 className="text-4xl md:text-6xl font-3022 text-foreground mb-6">
-                CONTACT
+              <h2 className="text-6xl md:text-8xl font-3022 text-foreground mb-8 tracking-tighter uppercase leading-[0.8] flex flex-col">
+                LET'S <span className="text-accent">CONNECT</span>
               </h2>
-              <p className="text-foreground font-medium text-base md:text-lg leading-relaxed max-w-md">
-                Ready to integrate into your next engineering lifecycle or BIM ecosystem.
+              <p className="text-lg text-foreground/70 font-medium leading-relaxed max-w-sm">
+                AVAILABLE FOR COMPLEX SYSTEM INTEGRATIONS AND ARCHITECTURAL AUTOMATION.
               </p>
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="nothing-card p-4 aspect-square bg-black relative overflow-hidden flex flex-col justify-between border border-border/20"
+              transition={{ duration: 1, delay: 0.2 }}
+              className="nothing-card p-4 relative group overflow-hidden bg-foreground/[0.03] backdrop-blur-xl"
             >
-               <div className="absolute inset-0 opacity-60">
-                  <EarthCanvas />
-               </div>
-               <div className="relative z-10 p-4 md:p-6 pb-20 md:pb-24">
-                  <div className="flex items-center gap-2">
-                     <Globe className="w-4 h-4 text-accent" />
-                     <span className="text-[10px] md:text-xs font-bold dot-matrix tracking-widest text-accent drop-shadow-sm">PLANET EARTH</span>
+                <div className="relative overflow-hidden flex flex-col gap-6">
+                  <div className="aspect-[4/3] relative rounded-xl overflow-hidden bg-black border border-white/5 z-10 shadow-inner">
+                    <EarthCanvas />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-4 left-4 flex items-center gap-3 bg-black/60 backdrop-blur-xl px-4 py-2 rounded-full border border-white/10">
+                      <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_var(--accent)]" />
+                      <span className="dot-matrix text-[10px] text-white tracking-[0.2em] uppercase font-bold">13.08° N, 80.27° E</span>
+                    </div>
                   </div>
-               </div>
-               <div className="relative z-10 p-4 md:p-6 flex justify-between items-end border-t border-white/5 bg-gradient-to-t from-black/80 to-transparent">
-                   <span className="dot-matrix text-[8px] md:text-[10px] tracking-widest text-white">GEO TRACKING V4.0</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(255,184,0,0.5)]" />
                </div>
             </motion.div>
           </div>
 
           {/* Contact Form Widget */}
-          <motion.div 
-            initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 40 : 0 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 nothing-card p-6 md:p-12 flex flex-col justify-between relative overflow-hidden border border-border/20"
-          >
-            <div className="absolute top-0 right-0 p-6 opacity-5 md:opacity-10 pointer-events-none hidden sm:block">
-              <span className="font-3022 text-[40px] md:text-[80px] leading-none">@CONTACT</span>
-            </div>
-
-            <form className="space-y-8 md:space-y-10 relative z-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
-                <div className="group/field space-y-3">
-                  <div className="flex justify-between items-center px-1">
-                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">FULL NAME</label>
-                    <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">REQUIRED</span>
-                  </div>
-                  <input 
-                    type="text" 
-                    placeholder="IDENTIFY..."
-                    className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20"
-                  />
-                </div>
-                <div className="group/field space-y-3">
-                   <div className="flex justify-between items-center px-1">
-                     <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">EMAIL</label>
-                    <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">VALID_REQUIRED</span>
-                  </div>
-                  <input 
-                    type="email" 
-                    placeholder="DESTINATION..."
-                    className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20"
-                  />
-                </div>
+          <div className="lg:col-span-7 flex flex-col justify-end">
+            <motion.div 
+              initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 40 : 0 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="nothing-card p-8 md:p-12 relative overflow-hidden flex flex-col justify-center bg-foreground/[0.02]"
+            >
+              {/* Minimalist Mail Icon Decoration */}
+              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none select-none">
+                  <Mail className="w-32 h-32 text-accent rotate-[15deg] stroke-[0.5]" />
               </div>
 
-              <div className="group/field space-y-3">
-                <div className="flex justify-between items-center px-1">
-                   <label className="dot-matrix text-[10px] tracking-widest text-foreground font-black uppercase">YOUR MESSAGE</label>
-                   <span className="text-[8px] font-bold text-accent opacity-0 group-focus-within/field:opacity-100 transition-opacity">DATA PACKET READY</span>
+              <form className="space-y-10 relative z-10 w-full">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="group space-y-4">
+                    <label className="dot-matrix text-[10px] tracking-[0.4em] text-foreground/40 group-focus-within:text-accent transition-all font-bold uppercase">Name</label>
+                    <div className="relative">
+                      <input 
+                        type="text" 
+                        placeholder="ENTER NAME"
+                        className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 text-foreground uppercase tracking-tight"
+                      />
+                      <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent group-focus-within:w-full transition-all duration-700" />
+                    </div>
+                  </div>
+                  <div className="group space-y-4">
+                    <label className="dot-matrix text-[10px] tracking-[0.4em] text-foreground/40 group-focus-within:text-accent transition-all font-bold uppercase">Email</label>
+                    <div className="relative">
+                      <input 
+                        type="email" 
+                        placeholder="EMAIL@ADDRESS.COM"
+                        className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 text-foreground uppercase tracking-tight"
+                      />
+                      <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent group-focus-within:w-full transition-all duration-700" />
+                    </div>
+                  </div>
                 </div>
-                <textarea 
-                  rows={4}
-                  placeholder="BEGIN_MESSAGE..."
-                  className="w-full bg-transparent border-b border-border py-3 focus:border-accent outline-none font-bold tracking-tight text-lg md:text-xl transition-all placeholder:opacity-20 resize-none"
-                />
-              </div>
 
-              <button 
-                type="submit"
-                className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-base md:text-lg tracking-tighter flex items-center justify-center gap-4 hover:bg-accent hover:text-black hover:shadow-[0_0_30px_rgba(255,184,0,0.3)] transition-all group"
-              >
-                SEND
-                <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
-              </button>
-            </form>
+                <div className="group space-y-4">
+                  <label className="dot-matrix text-[10px] tracking-[0.4em] text-foreground/40 group-focus-within:text-accent transition-all font-bold uppercase">Message</label>
+                  <div className="relative">
+                    <textarea 
+                      rows={4}
+                      placeholder="YOUR MESSAGE..."
+                      className="w-full bg-transparent border-b border-border/40 py-3 focus:border-accent outline-none font-bold text-lg transition-all placeholder:text-foreground/10 resize-none text-foreground uppercase tracking-tight"
+                    />
+                    <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent group-focus-within:w-full transition-all duration-700" />
+                  </div>
+                </div>
 
-            <div className="mt-12 md:mt-16 pt-8 md:pt-10 border-t border-border/30 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-10">
-               <div className="group/link cursor-pointer">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
-                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">GITHUB CORE</span>
-                  </div>
-                  <a href="https://github.com/Jovix27" target="_blank" rel="noopener noreferrer" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors">github.com/Jovix27</a>
-               </div>
-               <div className="group/link cursor-pointer">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
-                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">LINKEDIN SYNC</span>
-                  </div>
-                  <a href="https://linkedin.com/in/joseva2748" target="_blank" rel="noopener noreferrer" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors">linkedin.com/joseva2748</a>
-               </div>
-               <div className="group/link cursor-pointer">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/link:animate-ping" />
-                     <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">DIRECT MAIL</span>
-                  </div>
-                  <a href="mailto:ajoseva04@gmail.com" className="block font-black text-xs md:text-sm tracking-tight hover:text-accent transition-colors truncate">ajoseva04@gmail.com</a>
-               </div>
-            </div>
-          </motion.div>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-12 pt-6">
+                  <button 
+                    type="submit"
+                    className="w-full sm:w-auto px-10 py-5 bg-foreground text-background rounded-full font-black text-[10px] tracking-[0.4em] flex items-center justify-center gap-5 hover:bg-accent hover:text-black transition-all group dot-matrix uppercase overflow-hidden relative shadow-2xl shadow-black/40 active:scale-95"
+                  >
+                    <span className="relative z-10 flex items-center gap-3">
+                      Send Me
+                      <Send className="w-4 h-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
+                    </span>
+                  </button>
 
+                  <div className="flex items-center gap-4">
+                    {[
+                      { Icon: Github, href: "https://github.com/Jovix27" },
+                      { Icon: Linkedin, href: "https://linkedin.com/in/joseva2748" },
+                      { Icon: Mail, href: "mailto:ajoseva04@gmail.com" }
+                    ].map(({ Icon, href }, idx) => (
+                      <a 
+                        key={idx}
+                        href={href} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="w-14 h-14 rounded-full border border-foreground/10 flex items-center justify-center hover:bg-accent hover:text-black hover:border-accent transition-all duration-500 text-foreground group"
+                      >
+                        <Icon className="w-6 h-6 transition-transform group-hover:scale-125" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </form>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

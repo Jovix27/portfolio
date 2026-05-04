@@ -1,183 +1,214 @@
 import { motion } from "framer-motion";
 import { User, Cpu, Award, Database, Download } from "lucide-react";
-
-const stats = [
-  { label: "ENGINEERING PROJECTS", value: "3+", icon: Cpu },
-  { label: "IGBC AP ASSOCIATE", value: "IGBC", icon: Award },
-  { label: "BIM & AI SKILLSET", value: "15+", icon: Database },
-  { label: "RESEARCH CONTRIBUTIONS", value: "3+", icon: User },
-];
+import MatrixGraph from "./MatrixGraph";
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-bg-base relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="section-padding py-24 md:py-32 bg-bg-base relative overflow-hidden">
 
-        {/* Section Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-12 md:mb-16"
-        >
-          <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase">// IDENTITY MODULE</p>
-          <h2 className="text-4xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
-            ABOUT ME
-          </h2>
-        </motion.div>
+      {/* ── Dot Matrix Background ───────────────────────────────── */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          opacity: 0.04,
+          color: "var(--foreground)",
+        }}
+      />
+      {/* Accent glow blob */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
-          {/* Left Side: Bio and Stats */}
-          <div className="lg:col-span-8 flex flex-col gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+          {/* ── Left: Bio & Stats ──────────────────────────────────── */}
+          <div className="lg:col-span-7 space-y-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="nothing-card p-6 md:p-10 flex flex-col gap-6"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="space-y-6 text-base md:text-lg text-foreground leading-relaxed">
-                <p>
-                  I'm <span className="text-foreground font-bold italic">Joseva A</span> — a <span className="text-foreground font-bold">Civil Engineering Professional</span> specialized in the integration of <span className="text-accent font-bold">AI systems</span>, <span className="text-accent font-bold">BIM workflows</span>, and <span className="text-[#10B981] font-bold">Sustainable Infrastructure</span>.
+              {/* Section label */}
+              <span className="dot-matrix text-accent font-bold tracking-[0.35em] text-[10px] uppercase block mb-4">
+                WHO I AM
+              </span>
+              <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tighter uppercase leading-none">
+                ABOUT <span className="text-accent">ME</span>
+              </h2>
+              <div className="space-y-5 max-w-2xl">
+                <p className="text-lg md:text-xl font-medium leading-relaxed text-foreground/90 uppercase">
+                  I'm <span className="text-foreground italic">Joseva A</span> — a{" "}
+                  <span className="text-accent">Civil Engineering Professional</span> specializing in{" "}
+                  <span className="text-accent">AI-Driven BIM Automation</span> and{" "}
+                  <span className="text-foreground">Sustainable Infrastructure</span>.
                 </p>
-                <p>
-                  I engineer intelligent solutions that optimize construction safety and energy efficiency. My work bridges the gap between traditional engineering and modern technology, delivering production-ready systems for the built environment.
-                </p>
-                <p className="text-xs italic text-foreground font-medium">
-                  Graduate of SASTRA Deemed University. Professional experience with <span className="text-accent">L&T Chennai Metro</span> and research history at <span className="text-accent">NIT Trichy</span>.
+                <p className="text-base text-foreground/60 leading-relaxed uppercase">
+                  My work bridges the gap between traditional structural engineering and modern software intelligence,
+                  focusing on safety optimization and energy efficiency within the built environment.
                 </p>
               </div>
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {stats.map((stat, i) => (
-                <motion.div 
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "ENGINEERING PROJECTS", value: "3+", sub: "DEPLOYED" },
+                { label: "BIM & AI SKILLS", value: "15+", sub: "CERTIFIED" },
+                { label: "RESEARCH ITEMS", value: "3+", sub: "CONTRIBUTED" },
+                { label: "IGBC", value: "AP ASSOC", sub: "CREDENTIAL" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="nothing-card p-6 md:p-8 flex flex-col items-center justify-center text-center group relative cursor-pointer overflow-hidden"
+                  transition={{ delay: i * 0.08 }}
+                  className="nothing-card p-5 flex flex-col justify-center items-center text-center relative overflow-hidden group"
                 >
-                  <span className="text-4xl font-black tracking-tighter mb-1 text-foreground group-hover:text-accent transition-colors">{stat.value}</span>
-                  <span className="text-[10px] font-bold dot-matrix tracking-widest text-foreground uppercase">{stat.label}</span>
+                  {/* Mini dot-matrix per-card overlay */}
+                  <div
+                    className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                    style={{
+                      backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+                      backgroundSize: "12px 12px",
+                      color: "var(--foreground)",
+                    }}
+                  />
+                  <p className="text-2xl md:text-3xl font-black text-foreground mb-1 relative z-10">
+                    {stat.label === "IGBC" ? <span className="font-bold">IGBC</span> : stat.value}
+                  </p>
+                  <p className="text-[8px] md:text-[9px] font-bold dot-matrix text-foreground/40 tracking-widest uppercase relative z-10">
+                    {stat.label === "IGBC" ? stat.value : stat.label}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Right Side: Photo and Education */}
-          <div className="lg:col-span-4 flex flex-col gap-8">
-            {/* Profile Photo Circular */}
+          {/* ── Right: Profile Photo + Education ──────────────────── */}
+          <div className="lg:col-span-5 flex flex-col gap-10">
+
+            {/* Profile Photo with Dot-Matrix Overlay */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center gap-4"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex justify-center items-center lg:justify-end"
             >
-              <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-accent/30 relative group bg-muted">
-                <motion.img
-                  src="./profile photo dot matrix.png"
-                  alt="Joseva A"
-                  loading="lazy"
-                  initial={{ opacity: 0 }}
-                  whileInView={{
-                    opacity: 1,
-                    transition: { duration: 1 }
-                  }}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Dot Matrix Animation Overlay */}
-                <motion.div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    backgroundImage: `radial-gradient(circle, var(--accent) 1px, transparent 1px)`,
-                    backgroundSize: '4px 4px',
-                    opacity: 0.3
-                  }}
-                  animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                    scale: [1, 1.01, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
+              <div className="w-56 h-56 md:w-72 md:h-72 relative group">
+                {/* Outer ring */}
+                <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
+                  {/* Photo container */}
+                  <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
 
-                {/* Digital Flicker Overlay */}
-                <motion.div 
-                  className="absolute inset-0 bg-accent/5 pointer-events-none"
-                  animate={{
-                    opacity: [0, 0.1, 0, 0.05, 0],
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    repeat: Infinity,
-                    repeatDelay: Math.random() * 5
-                  }}
-                />
+                    {/* The actual photo */}
+                    <img
+                      src="./profile photo dot matrix.png"
+                      alt="Joseva A"
+                      loading="eager"
+                      className="w-full h-full object-cover relative z-10 transition-all duration-700"
+                    />
+
+                    {/* ── DOT MATRIX OVERLAY ── works in light + dark mode ── */}
+                    {/* Uses SVG pattern so dots are always visible regardless of theme */}
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "8px 8px",
+                      }}
+                    />
+
+                    {/* Dark mode dot matrix (slightly different weight) */}
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "8px 8px",
+                      }}
+                    />
+
+                    {/* Matrix graph animation */}
+                    <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
+                      <MatrixGraph />
+                    </div>
+
+                    {/* Radial vignette */}
+                    <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Accent pulse ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse pointer-events-none" />
               </div>
             </motion.div>
 
             {/* Education Card */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="nothing-card p-6 md:p-8 flex flex-col gap-6"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="nothing-card p-6 md:p-8 space-y-6 w-full relative overflow-hidden"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                   <User className="w-6 h-6" />
+              {/* Dot matrix texture on education card */}
+              <div
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                style={{
+                  backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+                  backgroundSize: "16px 16px",
+                  color: "var(--foreground)",
+                }}
+              />
+
+
+              <div className="flex items-center gap-4 relative z-10">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                  <User className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter text-foreground">Education</h3>
+                <h3 className="text-xl font-black tracking-tighter uppercase text-foreground">Education</h3>
               </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-bold uppercase tracking-tight text-foreground">Bachelor of Technology</p>
-                  <p className="text-xs font-bold text-accent uppercase tracking-widest">CIVIL ENGINEERING</p>
+
+              <div className="space-y-4 relative z-10">
+                <div className="space-y-0.5">
+                  <p className="text-base font-black tracking-tight text-foreground uppercase">Bachelor of Technology</p>
+                  <p className="text-sm font-black text-accent tracking-tight uppercase">Civil Engineering</p>
                 </div>
-                
-                <div className="pt-4 border-t border-border/50">
-                  <p className="text-sm font-bold text-foreground">SASTRA Deemed University</p>
-                  <p className="text-[10px] text-foreground font-bold uppercase tracking-widest">2022 — 2026 · Thanjavur, TN</p>
+                <div className="space-y-0.5">
+                  <h4 className="text-base font-black text-foreground">SASTRA Deemed University</h4>
+                  <p className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest">2022 — 2026 • Thanjavur, TN</p>
                 </div>
 
-                <div className="pt-4 border-t border-border/50 flex items-end justify-between">
-                   <div>
-                      <p className="text-[8px] font-bold uppercase tracking-widest text-foreground mb-1">CUMULATIVE GPA</p>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-black text-accent">7.2</span>
-                        <span className="text-xs font-bold text-foreground">/ 10</span>
-                      </div>
-                   </div>
+                <div className="pt-4 border-t border-foreground/10 flex justify-between items-end">
+                  <div className="space-y-1">
+                    <p className="text-[9px] font-black text-foreground/40 uppercase tracking-[0.2em]">Cumulative GPA</p>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-4xl font-black text-accent">7.2</span>
+                      <span className="text-sm font-black text-foreground/50">/ 10</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const link = document.createElement("a");
+                      link.href = "./resume.pdf";
+                      link.download = "Joseva_A_Resume.pdf";
+                      link.click();
+                    }}
+                    className="px-5 py-2.5 bg-foreground text-bg-base rounded-xl font-black uppercase text-[9px] tracking-[0.2em] flex items-center gap-2 hover:bg-accent hover:text-bg-base transition-all group"
+                  >
+                    <Download className="w-3 h-3 group-hover:translate-y-0.5 transition-transform" />
+                    Resume
+                  </button>
                 </div>
               </div>
             </motion.div>
 
-            {/* Resume Button */}
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = "./resume.pdf";
-                link.download = "Joseva_A_Resume.pdf";
-                link.click();
-              }}
-              className="w-full py-5 bg-accent text-accent-foreground rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 shadow-lg shadow-accent/20"
-            >
-              <Download className="w-5 h-5" />
-              Download Resume
-            </motion.button>
           </div>
-
         </div>
       </div>
     </section>

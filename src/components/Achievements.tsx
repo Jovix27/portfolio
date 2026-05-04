@@ -10,7 +10,7 @@ const achievements = [
 ];
 
 const certifications = [
-  { title: "IGBC Accredited Professional (Associate)", issuer: "Indian Green Building Council", year: "2025" },
+   { title: (<span><span className="font-bold">IGBC</span> Accredited Professional (Associate)</span>), issuer: "Indian Green Building Council", year: "2025" },
   { title: "BIM Workshop",                             issuer: "SASTRA University",             year: "2024" },
   { title: "Revit Workshop — L&T Construction Certified", issuer: "Larsen & Toubro",            year: "2023" },
   { title: "3D Printing Technology in Construction",   issuer: "SASTRA University",             year: "2024" },
@@ -18,18 +18,17 @@ const certifications = [
 ];
 
 const Achievements = () => (
-  <section id="achievements" className="section-padding bg-bg-base relative">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="achievements" className="section-padding bg-bg-base relative overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      {/* Achievements Header */}
       <motion.div
-        initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }} transition={{ duration: 0.7 }}
-        className="mb-16"
+        initial={{ opacity: 0, y: -20, scale: 0.98 }} 
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true }} transition={{ duration: 0.6, ease: "easeOut" }}
+        className="mb-12"
       >
-        <p className="text-accent dot-matrix text-[10px] tracking-[0.4em] font-bold mb-4">// SYSTEM RECOGNITION</p>
         <h2 className="text-4xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
-          ACHIEVEMENTS
+          EXPERIENCE
         </h2>
       </motion.div>
 
@@ -39,22 +38,22 @@ const Achievements = () => (
           return (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="nothing-card p-8 group hover:bg-foreground/5 transition-all"
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="nothing-card p-6 group hover:bg-foreground/5 transition-all relative overflow-hidden flex flex-col justify-between min-h-[180px]"
             >
-              <div className="flex flex-col gap-6">
-                <div className="flex justify-between items-start">
-                  <div className="p-3 rounded-full border border-border/30 text-accent bg-bg-base">
-                    <Icon className="w-5 h-5" />
+              <div className="flex flex-col gap-6 relative z-10">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-2.5 rounded-full border border-border/30 text-accent bg-bg-base group-hover:border-accent/50 transition-colors">
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <span className="font-3022 text-xl text-foreground group-hover:text-accent transition-colors">{a.year.split('–')[0]}</span>
+                  <span className="font-3022 text-lg text-foreground/40 group-hover:text-accent transition-colors">{a.year.split('–')[0]}</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold tracking-tight mb-2 uppercase text-foreground">
+                  <h3 className="text-base font-bold tracking-tight mb-2 uppercase text-foreground leading-tight">
                     {a.title}
                   </h3>
-                  <p className="text-[10px] text-foreground dot-matrix tracking-widest uppercase leading-relaxed">
+                  <p className="text-[9px] text-foreground/50 dot-matrix tracking-widest uppercase leading-relaxed group-hover:text-foreground transition-colors">
                     {a.org}
                   </p>
                 </div>
@@ -64,13 +63,11 @@ const Achievements = () => (
         })}
       </div>
 
-      {/* Certifications Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.7 }}
         className="mb-12"
       >
-        <p className="text-accent dot-matrix text-[10px] tracking-[0.4em] font-bold mb-4">// CREDENTIAL REGISTRY</p>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase leading-none text-foreground">
           CERTIFICATIONS
         </h2>
@@ -96,7 +93,7 @@ const Achievements = () => (
                   {c.title}
                 </h3>
                 <div className="flex items-center gap-3">
-                  <p className="text-[10px] text-foreground dot-matrix tracking-widest uppercase">
+                  <p className="text-[10px] text-foreground/50 dot-matrix tracking-widest uppercase group-hover:text-foreground transition-colors">
                     {c.issuer} • {c.year}
                   </p>
                 </div>

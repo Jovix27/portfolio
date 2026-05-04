@@ -36,8 +36,8 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-padding bg-bg-alt">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="section-padding bg-bg-base relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
 
           {/* Full-width Heading */}
@@ -47,14 +47,13 @@ const Experience = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-accent dot-matrix text-[10px] tracking-[0.5em] font-bold mb-4 uppercase opacity-90">// TIMELINE DATA</p>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
               EXPERIENCE
             </h2>
           </motion.div>
 
           {/* Second Row: Description text left, Matrix right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
             
             {/* Left: Description */}
             <motion.div
@@ -70,12 +69,12 @@ const Experience = () => {
                 </p>
                 <div className="flex items-center gap-6 py-4 border-y border-border/20">
                   <div className="flex flex-col gap-1">
-                    <span className="dot-matrix text-[10px] text-accent tracking-widest font-bold">FOCUS</span>
+                    <span className="dot-matrix text-[10px] text-accent tracking-widest font-bold uppercase">FOCUS</span>
                     <span className="text-xs font-black uppercase tracking-widest text-foreground">CIVIL / BIM / AI</span>
                   </div>
                   <div className="w-[1px] h-10 bg-border/40" />
                   <div className="flex flex-col gap-1">
-                    <span className="dot-matrix text-[10px] text-accent tracking-widest font-bold">SPECIALIZATION</span>
+                    <span className="dot-matrix text-[10px] text-accent tracking-widest font-bold uppercase">SPECIALIZATION</span>
                     <span className="text-xs font-black uppercase tracking-widest text-foreground">SITE INTELLIGENCE</span>
                   </div>
                 </div>
@@ -88,21 +87,9 @@ const Experience = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="lg:col-span-7 nothing-card p-6 md:p-8 backdrop-blur-md relative z-10 border-border/10 overflow-hidden"
+              className="lg:col-span-7 nothing-card relative overflow-hidden min-h-[260px] bg-foreground/[0.02]"
             >
-              <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="dot-matrix text-[8px] md:text-[10px] tracking-widest text-foreground">CONTRIBUTION_GRID</span>
-                  <div className="h-[1px] w-8 md:w-12 bg-accent/20" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="dot-matrix text-[8px] tracking-[0.4em] text-foreground uppercase font-black">LIVE_FEED</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                </div>
-              </div>
-              <div className="flex justify-end items-center">
-                <MatrixGraph />
-              </div>
+              <MatrixGraph />
             </motion.div>
           </div>
 
@@ -115,19 +102,15 @@ const Experience = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="nothing-card p-6 sm:p-10 group flex flex-col h-full hover:bg-foreground/[0.03] transition-all duration-500 border-border/10 hover:border-accent/40 relative overflow-hidden"
+                className="nothing-card p-6 sm:p-10 group flex flex-col h-full hover:bg-foreground/[0.03] transition-all duration-500 border-border/10 hover:border-accent/40 relative overflow-hidden bg-foreground/[0.02]"
               >
-                {/* Background Glow Effect */}
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 rounded-full blur-[80px] group-hover:bg-accent/10 transition-colors duration-700" />
-                
-                {/* Visual Timeline Accent */}
-                <div className="absolute left-0 top-10 bottom-10 w-[2px] bg-accent/20 group-hover:bg-accent transition-colors duration-500" />
+                <div className="absolute left-0 top-10 bottom-10 w-[2px] bg-accent/20 group-hover:bg-accent transition-colors duration-500 z-10" />
 
                 <div className="space-y-6 flex-1 pl-4 relative z-10">
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl border border-border/30 flex-shrink-0 flex items-center justify-center text-accent group-hover:border-accent/40 transition-all duration-500 bg-foreground/5 shadow-sm">
+                        <div className="w-12 h-12 rounded-xl border border-border/30 flex-shrink-0 flex items-center justify-center text-accent group-hover:border-accent/40 transition-all duration-500 bg-bg-base shadow-sm">
                           <Briefcase className="w-6 h-6" />
                         </div>
                         <div>
@@ -138,11 +121,11 @@ const Experience = () => {
                     </div>
                     
                     <div className="flex flex-wrap gap-3">
-                       <span className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-[10px] font-bold dot-matrix tracking-widest text-accent whitespace-nowrap">
+                       <span className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-lg text-[10px] font-bold dot-matrix tracking-widest text-accent whitespace-nowrap uppercase">
                         {exp.period}
                       </span>
-                      <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-foreground/70">
-                        <MapPin className="w-3 h-3" />
+                      <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-foreground/70 border border-border/20">
+                        <MapPin className="w-3 h-3 text-accent" />
                         {exp.location}
                       </div>
                     </div>

@@ -1,84 +1,122 @@
-import React from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from '@/hooks/useTheme';
+
+const GAP = 3;
+const ROWS = 12; // Higher density for a more technical "Engineering" look
 
 const ContributionGrid = () => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dims, setDims] = useState({ dotSize: 8, cols: 40 });
 
-  // Generate 52 weeks of data
-  const weeks = 52;
-  const daysPerWeek = 7;
-  
-  // Fake contribution data (0-4 intensity)
-  const data = Array.from({ length: weeks * daysPerWeek }, () => {
-    const rand = Math.random();
-    if (rand > 0.8) return 4;
-    if (rand > 0.6) return 3;
-    if (rand > 0.4) return 2;
-    if (rand > 0.2) return 1;
-    return 0;
-  });
+  useEffect(() => {
+    const calculate = () => {
+      if (!containerRef.current) return;
+      const { width, height } = containerRef.current.getBoundingClientRect();
+      // Calculate dot size based on fixed rows to fill height
+      const dotSize = Math.max(4, Math.floor((height - GAP * (ROWS - 1)) / ROWS));
+      // Calculate how many columns fit in the width
+      const cols = Math.max(1, Math.floor((width + GAP) / (dotSize + GAP)));
+      setDims({ dotSize, cols });
+    };
 
-  const getLevelColor = (level: number) => {
-    switch (level) {
-      case 0: return isDark ? '#161b22' : 'rgba(0,0,0,0.05)';
-      case 1: return 'var(--matrix-1)';
-      case 2: return 'var(--matrix-2)';
-      case 3: return 'var(--matrix-3)';
-      case 4: return 'var(--matrix-5)';
-      default: return 'transparent';
-    }
-  };
+    calculate();
+    const ro = new ResizeObserver(calculate);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  const total = dims.cols * ROWS;
+
+  // Generate a more "structured" data pattern (simulating peaks of activity)
+  const data = useMemo(() => {
+    return Array.from({ length: total }, (_, i) => {
+      const col = Math.floor(i / ROWS);
+      const row = i % ROWS;
+      
+      // Create some "waves" or "clusters" of activity
+      const seed = Math.sin(col * 0.5) * Math.cos(row * 0.5);
+      const random = Math.random();
+      
+      if (seed > 0.6 && random > 0.4) return 4;
+      if (seed > 0.3 && random > 0.5) return 3;
+      if (random > 0.95) return 4; // Sparkles
+      if (random > 0.85) return 3;
+      if (random > 0.70) return 2;
+      if (random > 0.40) return 1;
+      return 0;
+    });
+  }, [total, dims.cols]);
+
+  const levels = [
+    'var(--matrix-level-0)',
+    'var(--matrix-level-1)',
+    'var(--matrix-level-2)',
+    'var(--matrix-level-3)',
+    'var(--accent)',
+  ];
 
   return (
-    <div className="font-mono mt-12 p-6 border border-primary/20 bg-primary/5">
-      <div className="flex items-center justify-between mb-6">
-        <div className="space-y-1">
-          <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">SYSTEM_ACTIVITY_LOG</h4>
-          <p className="text-[8px] text-primary/60 uppercase tracking-widest">3,492 OPERATIONS_EXECUTED // YEAR_2025</p>
-        </div>
-        <div className="flex items-center gap-2 text-[8px] text-primary/60 font-bold uppercase tracking-tighter">
-          <span>Less</span>
-          {[0, 1, 2, 3, 4].map(l => (
-            <div key={l} className="w-2 h-2" style={{ backgroundColor: getLevelColor(l) }} />
-          ))}
-          <span>More</span>
-        </div>
-      </div>
-
-      <div className="flex gap-[3px] overflow-x-auto pb-4 scrollbar-hide">
-        {Array.from({ length: weeks }).map((_, wIdx) => (
-          <div key={wIdx} className="flex flex-col gap-[3px] flex-shrink-0">
-            {Array.from({ length: daysPerWeek }).map((_, dIdx) => {
-              const level = data[wIdx * daysPerWeek + dIdx];
-              return (
-                <motion.div
-                  key={dIdx}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    delay: (wIdx * 0.01) + (dIdx * 0.005),
-                    duration: 0.2
-                  }}
-                  className="w-[10px] h-[10px] sm:w-[12px] sm:h-[12px] transition-colors hover:ring-1 hover:ring-primary"
-                  style={{ backgroundColor: getLevelColor(level) }}
-                  title={`Activity level: ${level}`}
-                />
-              );
-            })}
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 flex justify-between text-[8px] text-primary/40 font-bold uppercase tracking-widest">
-        <span>JAN</span>
-        <span>MAR</span>
-        <span>MAY</span>
-        <span>JUL</span>
-        <span>SEP</span>
-        <span>NOV</span>
+    <div 
+      ref={containerRef} 
+      style={{ 
+        width: '100%', 
+        height: '100%', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'flex-end' // Align to right to match the text alignment in footer
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${dims.cols}, ${dims.dotSize}px)`,
+          gridTemplateRows: `repeat(${ROWS}, ${dims.dotSize}px)`,
+          gridAutoFlow: 'column',
+          gap: `${GAP}px`,
+        }}
+      >
+        {data.map((level, i) => {
+          const isHigh = level >= 3;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              animate={isHigh ? { 
+                opacity: [0.4, 1, 0.4],
+                boxShadow: [
+                  '0 0 0px var(--accent)',
+                  '0 0 4px var(--accent)',
+                  '0 0 0px var(--accent)'
+                ] 
+              } : {}}
+              transition={isHigh ? {
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: 'easeInOut',
+              } : {
+                delay: Math.min(i * 0.0002, 0.4),
+                duration: 0.2,
+              }}
+              whileHover={{
+                scale: 1.5,
+                backgroundColor: 'var(--accent)',
+                zIndex: 10,
+                boxShadow: '0 0 12px var(--accent)',
+                transition: { duration: 0.1 },
+              }}
+              style={{
+                width: `${dims.dotSize}px`,
+                height: `${dims.dotSize}px`,
+                backgroundColor: levels[Math.min(level, 4)],
+                borderRadius: '2px',
+                cursor: 'crosshair',
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );

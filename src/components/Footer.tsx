@@ -1,9 +1,16 @@
 import { Cpu, Linkedin, Github, Mail } from "lucide-react";
+import ContributionGrid from "./ContributionGrid";
+import MatrixGraph from "./MatrixGraph";
 
 const Footer = () => {
   return (
-    <footer className="bg-bg-base border-t border-border/50 py-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
+    <footer className="bg-bg-base border-t border-border/50 py-16 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      {/* Background Matrix Texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none">
+        <MatrixGraph />
+      </div>
+      
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16 relative z-10">
         
         <div className="space-y-8 max-w-md">
           <div className="flex items-center gap-4">
@@ -19,25 +26,39 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-4">
-             {[Linkedin, Github, Mail].map((Icon, i) => (
+             {[
+               { icon: Linkedin, url: "https://linkedin.com/in/joseva2748" },
+               { icon: Github, url: "https://github.com/Jovix27" },
+               { icon: Mail, url: "mailto:ajoseva04@gmail.com" }
+             ].map((item, i) => (
                 <a 
                   key={i} 
-                  href="#" 
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors text-foreground"
+                  href={item.url} 
+                  target={item.url.startsWith('http') ? "_blank" : undefined}
+                  rel={item.url.startsWith('http') ? "noopener noreferrer" : undefined}
+                  className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-accent hover:text-black hover:border-accent transition-all duration-300 text-foreground group"
                 >
-                  <Icon className="w-5 h-5" />
+                  <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </a>
              ))}
           </div>
         </div>
 
-        <div className="flex flex-col items-start md:items-end gap-6">
-           <p className="text-[10px] font-medium dot-matrix tracking-[0.4em] text-foreground uppercase">
-              © 2026 Joseva A // ALL RIGHTS RESERVED
+        <div className="flex flex-col items-start md:items-end gap-4">
+           <p className="text-[12px] font-bold dot-matrix tracking-[0.5em] text-accent uppercase">
+              DESIGNED BY JOVI
            </p>
+           <p className="text-[10px] font-medium dot-matrix tracking-[0.4em] text-foreground/60 uppercase">
+              © 2026 Joseva A | ALL RIGHTS RESERVED
+          </p>
+          <div className="mt-6 w-full max-w-md overflow-hidden" style={{ height: "120px" }}>
+            <ContributionGrid />
+          </div>
         </div>
 
       </div>
+      
+
     </footer>
   );
 };
