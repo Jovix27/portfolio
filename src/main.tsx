@@ -51,8 +51,8 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
-// Force dark mode
-document.documentElement.classList.add("dark");
+// Ensure light mode by default (remove forced dark mode)
+// document.documentElement.classList.add("dark");
 
 // Clear any existing content in root before React renders
 rootElement.innerHTML = "";
