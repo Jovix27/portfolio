@@ -53,7 +53,7 @@ const About = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "ENGINEERING PROJECTS", value: "3+", sub: "DEPLOYED" },
+                 { label: "DEPLOYABLE PROJECTS", value: "3+", sub: "DEPLOYED" },
                 { label: "BIM & AI SKILLS", value: "15+", sub: "CERTIFIED" },
                 { label: "RESEARCH ITEMS", value: "3+", sub: "CONTRIBUTED" },
                 { label: "IGBC", value: "AP ASSOC", sub: "CREDENTIAL" },

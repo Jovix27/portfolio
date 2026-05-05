@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { Cpu, Brain, Layout, Box } from "lucide-react";
-import MatrixGraph from "./MatrixGraph";
 
 const skillCategories = [
   {
     title: "Civil & BIM Tools",
     subtitle: "Core Engineering Stack",
-    skills: ["AUTOCAD", "AUTODESK REVIT", "STAAD PRO", "MS PROJECT", "EPANET", "QGIS"],
+    skills: ["AUTOCAD", "AUTODESK REVIT", "STAAD PRO", "MS PROJECT", "EPANET", "QGIS", "IBM SPSS", "TRANSPORTATION ENGINEERING", "ARCHITECTURE"],
     icon: Box,
     id: "MOD_01",
-    accent: "var(--foreground)",
-    accentClass: "text-foreground",
     bgClass: "bg-foreground/5",
     borderClass: "border-foreground/10",
     chipBorder: "border-foreground/10 hover:border-accent/50 hover:bg-accent/5"
@@ -18,11 +15,9 @@ const skillCategories = [
   {
     title: "AI & Data Science",
     subtitle: "Intelligence Layer",
-    skills: ["PYTHON", "PYTORCH", "COMPUTER VISION", "YOLO v11", "GENERATIVE AI", "FASTAPI"],
+    skills: ["PYTHON", "PYTORCH", "COMPUTER VISION", "YOLO v11", "GENERATIVE AI", "FASTAPI", "ML FOR INFRASTRUCTURE", "WEB DEVELOPMENT", "APP DEVELOPMENT", "FULL STACK DEVELOPMENT"],
     icon: Brain,
     id: "MOD_03",
-    accent: "var(--foreground)",
-    accentClass: "text-foreground",
     bgClass: "bg-foreground/5",
     borderClass: "border-foreground/10",
     chipBorder: "border-foreground/10 hover:border-accent/50 hover:bg-accent/5"
@@ -30,11 +25,9 @@ const skillCategories = [
   {
     title: "Sustainable Design",
     subtitle: "Green Building Expertise",
-    skills: ["GREEN BUILDING STUDIO", "ENERGY MODELING", "PASSIVE COOLING", "IGBC AP"],
+    skills: ["GREEN BUILDING STUDIO", "ENERGY MODELING", "INSIGHT 360", "IGBC AP", "ENERGY-EFFICIENT BUILDING DESIGN"],
     icon: Layout,
     id: "MOD_02",
-    accent: "var(--foreground)",
-    accentClass: "text-foreground",
     bgClass: "bg-foreground/5",
     borderClass: "border-foreground/10",
     chipBorder: "border-foreground/10 hover:border-accent/50 hover:bg-accent/5"
@@ -42,11 +35,9 @@ const skillCategories = [
   {
     title: "Core Competencies",
     subtitle: "Professional Skills",
-    skills: ["BIM MANAGEMENT", "SITE MONITORING", "PROJECT PLANNING", "STRUCTURAL ANALYSIS"],
+    skills: ["BIM MANAGEMENT", "PROJECT PLANNING", "STRUCTURAL ANALYSIS", "BIM MODELING", "CONSTRUCTION PLANNING & EXECUTION", "CONSTRUCTION MANAGEMENT", "AI-DRIVEN CONSTRUCTION WORKFLOWS"],
     icon: Cpu,
     id: "MOD_05",
-    accent: "var(--foreground)",
-    accentClass: "text-foreground",
     bgClass: "bg-foreground/5",
     borderClass: "border-foreground/10",
     chipBorder: "border-foreground/10 hover:border-accent/50 hover:bg-accent/5"
@@ -87,7 +78,7 @@ const Skills = () => {
               <div className="flex items-center justify-between mb-7 relative z-10">
                 <div className="flex items-center gap-4">
                   <div className={`w-12 h-12 rounded-xl ${category.bgClass} border ${category.borderClass} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-accent/30`}>
-                    <category.icon className={`w-6 h-6 ${category.accentClass} group-hover:text-accent transition-colors`} />
+                    <category.icon className="w-6 h-6 text-foreground/60 group-hover:text-accent transition-colors" />
                   </div>
                   <div>
                     <h3 className="text-lg font-black uppercase tracking-tight text-foreground leading-none">{category.title}</h3>

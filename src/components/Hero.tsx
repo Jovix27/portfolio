@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Cpu } from "lucide-react";
-import MatrixGraph from "./MatrixGraph";
 
 const Hero = () => {
   return (
@@ -24,39 +23,15 @@ const Hero = () => {
             <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
               {/* Photo container */}
               <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
-                {/* The actual photo */}
                 <img
-                  src="./profile photo dot matrix.png"
+                  src="./Joseva_A.jpeg"
                   alt="Joseva A"
                   loading="eager"
                   className="w-full h-full object-cover relative z-10 transition-all duration-700"
+                  style={{ objectPosition: "center 25%" }}
                 />
-
-                {/* DOT MATRIX OVERLAY */}
-                <div
-                  className="absolute inset-0 z-20 pointer-events-none"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: "repeat",
-                    backgroundSize: "8px 8px",
-                  }}
-                />
-                <div
-                  className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: "repeat",
-                    backgroundSize: "8px 8px",
-                  }}
-                />
-
-                {/* Matrix graph animation */}
-                <div className="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-10">
-                  <MatrixGraph />
-                </div>
-
                 {/* Radial vignette */}
-                <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
+                <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
               </div>
             </div>
 
@@ -151,42 +126,15 @@ const Hero = () => {
                 <div className="w-full h-full rounded-full border-[5px] border-foreground/10 p-2.5 relative">
                   {/* Photo container */}
                   <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
-                    {/* BACKGROUND MATRIX (BUILDSIGHT STYLE) */}
-                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none scale-125">
-                      <MatrixGraph />
-                    </div>
-
-                    {/* The actual photo */}
                     <img
-                      src="./profile photo dot matrix.png"
+                      src="./Joseva_A.jpeg"
                       alt="Joseva A"
                       loading="eager"
                       className="w-full h-full object-cover relative z-10 transition-all duration-700"
-                      style={{ objectPosition: "center 15%" }}
+                      style={{ objectPosition: "center 25%" }}
                     />
-
-                    {/* DOT MATRIX OVERLAY */}
-                    <div
-                      className="absolute inset-0 z-20 pointer-events-none"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "8px 8px",
-                      }}
-                    />
-                    <div
-                      className="absolute inset-0 z-20 pointer-events-none dark:opacity-0 opacity-100"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "8px 8px",
-                      }}
-                    />
-
-
-
                     {/* Radial vignette */}
-                    <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
+                    <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
                   </div>
                 </div>
 

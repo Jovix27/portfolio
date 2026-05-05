@@ -61,11 +61,11 @@ const projects = [
     id: 1,
     title: "BuildSight AI",
     subtitle: "AI-POWERED CONSTRUCTION SAFETY SYSTEM",
-    date: "2025 - 2026",
+    date: "2026",
     problem: "Manual PPE checks on active construction sites are unreliable, time-consuming, and miss violations in real-time.",
     solution: "Built an AI-driven computer vision system using YOLOv11 + YOLOv26 + multi-agent orchestration to detect PPE violations in real-time across site camera feeds.",
     impact: "88% precision, reduced manual inspection by ~60%, deployed on live construction infrastructure.",
-    tags: ["YOLOv11", "YOLOv26", "COMPUTER VISION", "PYTHON", "FASTAPI", "WEBSOCKET", "CONTECH"],
+    tags: ["REACT 18", "TYPESCRIPT", "PYTHON", "FASTAPI", "WEBSOCKET", "YOLOv11", "YOLOv26", "COMPUTER VISION", "OPENCV", "MULTI-AGENT AI", "CONTECH"],
     images: [
       "./buildsight_dashboard_full.png",
       "./Detection image .jpeg",
@@ -77,13 +77,13 @@ const projects = [
   },
   {
     id: 2,
-    title: "BIM Energy Model",
-    subtitle: "SUSTAINABLE BUILDING SIMULATION",
-    date: "2024",
-    problem: "Conventional residential designs consume 25-40% more energy than necessary due to poor envelope design and orientation.",
-    solution: "Engineered sustainable residential models in Autodesk Revit with thermal performance simulation and passive cooling optimization.",
-    impact: "Achieved 30% reduction in simulated energy consumption. Validated against optimized building standards.",
-    tags: ["AUTODESK REVIT", "BIM", "ENERGY MODELING"],
+    title: "Eco Estimator",
+    subtitle: "AI-POWERED CONSTRUCTION ESTIMATION PLATFORM",
+    date: "2025",
+    problem: "Construction cost estimation is highly manual and disconnected from sustainability goals — slow QTOs, disjointed supplier rate feeds introducing bid risk, and zero automated carbon tracking during procurement.",
+    solution: "AI-driven cloud-native dashboard automating Quantity Takeoffs from architectural drawings with Carbon-First intelligence, live rate feeds, ML uncertainty quantification, and tender-ready BOQs with an Eco-Grade scoring and Eco-Swap material comparison system.",
+    impact: "Dramatically speeds up estimator workflows, reduces bid risk via ML-based uncertainty quantification, closes the procurement loop with exportable PDF reporting, and delivers actionable carbon metrics and green alternatives at the estimating stage.",
+    tags: ["REACT 18", "TYPESCRIPT", "FASTAPI", "SUPABASE", "POSTGRESQL", "REDIS", "AI/ML", "CONTECH", "PROPTECH", "CARBON TRACKING"],
     images: [],
   },
   {
@@ -168,7 +168,7 @@ const Projects = () => {
                             <div className="w-1.5 h-1.5 rounded-full bg-[#FFB800] animate-pulse" />
                             <span className="text-[10px] font-bold dot-matrix tracking-[0.3em] text-[#FFB800] uppercase">SYSTEM INTERFACE // LIVE VIEW</span>
                          </div>
-                         <span className="text-[10px] font-bold dot-matrix text-foreground tracking-[0.2em] uppercase">2025 - 2026</span>
+                          <span className="text-[10px] font-bold dot-matrix text-foreground tracking-[0.2em] uppercase">2026</span>
                       </div>
                       <div className="rounded-[30px] overflow-hidden border border-border/30 bg-foreground/5 shadow-2xl shadow-black/80 aspect-[21/9]">
                          <ProjectCarousel images={project.images} />

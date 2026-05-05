@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Trophy, Award, Users, ChevronRight } from "lucide-react";
 
 const achievements = [
-  { icon: Users,  title: "Chairperson",          org: "IGBC Student Chapter, SASTRA University",               year: "2024–25" },
-  { icon: Users,  title: "Core Executive Member", org: "Civil Engineering Association (CEA), SASTRA",           year: "2024–25" },
-  { icon: Users,  title: "Technical Head",        org: "Utsav 2025 (Annual Cultural Festival), SASTRA",         year: "2024–25" },
+  { icon: Users,  title: "Chairperson",          org: "IGBC Student Chapter, SASTRA University",               year: "2025-2026" },
+  { icon: Users,  title: "Core Executive Member", org: "Civil Engineering Association (CEA), SASTRA",           year: "2025-2026" },
+  { icon: Users,  title: "Technical Head",        org: "Utsav 2025 (Annual Cultural Festival), SASTRA",         year: "2025" },
   { icon: Trophy, title: "Internal Finalist",     org: "Smart India Hackathon (SIH) — AI Civil Solutions",      year: "2024" },
   { icon: Trophy, title: "Internal Finalist",     org: "Daksh AI Hackathon — Machine Learning in Construction", year: "2025" },
 ];
