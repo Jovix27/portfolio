@@ -174,8 +174,8 @@ const Hero = () => {
                 <h3 className="text-3xl lg:text-4xl font-black leading-none uppercase text-foreground/25">ENGG</h3>
               </div>
               <div className="text-right relative z-10">
-                <span className="text-4xl lg:text-5xl font-black tracking-tighter text-foreground">24/7</span>
-                <p className="text-[8px] font-bold uppercase tracking-widest text-foreground/40 mt-1">Always Building</p>
+                <div className="text-2xl lg:text-3xl font-black tracking-tighter text-foreground uppercase">PROBLEM <span className="text-accent">SOLVER</span></div>
+                <div className="text-2xl lg:text-3xl font-black tracking-tighter text-accent uppercase">& INNOVATOR</div>
               </div>
             </motion.div>
 
@@ -197,8 +197,8 @@ const Hero = () => {
               <h3 className="text-2xl font-black leading-none uppercase text-foreground/25">ENGG</h3>
             </div>
             <div className="text-right relative z-10">
-              <span className="text-3xl font-black tracking-tighter text-foreground">24/7</span>
-              <p className="text-[8px] font-bold uppercase tracking-widest text-foreground/40 mt-0.5">Always Building</p>
+              <div className="text-xl font-black tracking-tighter text-foreground uppercase">PROBLEM <span className="text-accent">SOLVER</span></div>
+              <div className="text-xl font-black tracking-tighter text-accent uppercase">& INNOVATOR</div>
             </div>
           </motion.div>
 
