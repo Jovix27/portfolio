@@ -39,7 +39,9 @@ const About = () => {
               <div className="space-y-5 max-w-2xl">
                 <p className="text-lg md:text-xl font-medium leading-relaxed text-foreground/90 uppercase">
                   I'm <span className="text-foreground italic">Joseva A</span> — a{" "}
-                  <span className="text-accent">Civil Engineering Professional</span> specializing in{" "}
+                  <span className="text-accent">Civil Engineering Professional</span>,{" "}
+                  <span className="text-accent">Problem Solver</span>, and{" "}
+                  <span className="text-accent">Innovator</span> specializing in{" "}
                   <span className="text-accent">AI-Driven BIM Automation</span> and{" "}
                   <span className="text-foreground">Sustainable Infrastructure</span>.
                 </p>
