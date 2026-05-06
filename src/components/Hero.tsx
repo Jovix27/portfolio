@@ -68,10 +68,15 @@ const Hero = () => {
             <div className="absolute top-0 left-0 w-[2px] h-12 bg-accent" />
 
             <div className="relative z-10 flex-1">
-              {/* Tag */}
-              <span className="dot-matrix text-accent font-bold tracking-[0.35em] text-[9px] uppercase block mb-2 md:mb-3">
-                HI THERE, I'M
-              </span>
+              {/* Tags */}
+              <div className="flex items-center gap-3 mb-2 md:mb-3 flex-wrap">
+                <span className="dot-matrix text-accent font-bold tracking-[0.35em] text-[9px] uppercase">
+                  HI THERE, I'M
+                </span>
+                <span className="px-2 py-0.5 rounded-md border border-accent/30 bg-accent/10 text-accent dot-matrix text-[8px] font-bold tracking-widest uppercase">
+                  PROBLEM SOLVER & INNOVATOR
+                </span>
+              </div>
 
               {/* Name — smaller on mobile, big on desktop */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.88] tracking-tighter text-foreground uppercase mb-4 md:mb-5">
