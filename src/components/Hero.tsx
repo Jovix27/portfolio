@@ -73,9 +73,6 @@ const Hero = () => {
                 <span className="dot-matrix text-accent font-bold tracking-[0.35em] text-[9px] uppercase">
                   HI THERE, I'M
                 </span>
-                <span className="px-2 py-0.5 rounded-md border border-accent/30 bg-accent/10 text-accent dot-matrix text-[8px] font-bold tracking-widest uppercase">
-                  PROBLEM SOLVER & INNOVATOR
-                </span>
               </div>
 
               {/* Name — smaller on mobile, big on desktop */}
