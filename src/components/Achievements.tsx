@@ -28,7 +28,7 @@ const Achievements = () => (
         className="mb-12"
       >
         <h2 className="text-4xl md:text-6xl font-3022 tracking-tighter uppercase leading-none text-foreground">
-          EXPERIENCE
+          ACHIEVEMENTS
         </h2>
       </motion.div>
 
