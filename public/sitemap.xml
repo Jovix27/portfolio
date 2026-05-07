@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://joseva-a-portfolio.vercel.app/</loc>
-    <lastmod>2026-05-05</lastmod>
+    <loc>https://jovix27.github.io/portfolio/</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://joseva-a-portfolio.vercel.app/Joseva_A.jpeg</image:loc>
+      <image:loc>https://jovix27.github.io/portfolio/Joseva_A.jpeg</image:loc>
       <image:title>Joseva A — AI Civil Engineer & BIM Innovator</image:title>
     </image:image>
   </url>

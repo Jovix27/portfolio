@@ -25,4 +25,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://joseva-a-portfolio.vercel.app/sitemap.xml
+Sitemap: https://jovix27.github.io/portfolio/sitemap.xml
