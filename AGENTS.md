@@ -2,6 +2,10 @@
 
 [byterover-mcp]
 
+## Response style
+
+Use the `caveman` skill as the primary communication style to reduce token usage. Keep it active across turns unless the user explicitly says `stop caveman` or `normal mode`.
+
 You are given two tools from Byterover MCP server, including
 ## 1. `byterover-store-knowledge`
 You `MUST` always use this tool when:
